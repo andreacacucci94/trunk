@@ -133,7 +133,7 @@ public class Bill extends BaseObject implements Comparable<Bill>
      * @param senateBillNo - The unique bill id
      * @param year - The session year this bill was introduced to
      */
-    public Bill(String billId, int session)
+    private Bill(String billId, int session)
     {
         this.setBillId(billId);
         this.setSession(session);
@@ -174,7 +174,7 @@ public class Bill extends BaseObject implements Comparable<Bill>
     /**
      * @param billId - The new bill id.
      */
-    public void setBillId(String billId)
+    private void setBillId(String billId)
     {
         this.billId = billId;
     }

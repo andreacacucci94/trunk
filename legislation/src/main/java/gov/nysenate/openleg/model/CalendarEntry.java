@@ -104,7 +104,7 @@ public class CalendarEntry
      *
      * @param billHigh
      */
-    public void setBillHigh(String billHigh)
+    private void setBillHigh(String billHigh)
     {
         this.billHigh = billHigh;
     }
@@ -158,7 +158,7 @@ public class CalendarEntry
      *
      * @param motionDate
      */
-    public void setMotionDate(Date motionDate)
+    private void setMotionDate(Date motionDate)
     {
         this.motionDate = motionDate;
     }
@@ -176,7 +176,7 @@ public class CalendarEntry
      *
      * @param bill
      */
-    public void setBill(Bill bill)
+    private void setBill(Bill bill)
     {
         this.bill = bill;
     }
@@ -194,7 +194,7 @@ public class CalendarEntry
      *
      * @param subBill
      */
-    public void setSubBill(Bill subBill)
+    private void setSubBill(Bill subBill)
     {
         this.subBill = subBill;
     }
@@ -212,7 +212,7 @@ public class CalendarEntry
      *
      * @param no
      */
-    public void setNo(String no)
+    private void setNo(String no)
     {
         this.no = no;
     }

@@ -79,7 +79,7 @@ public class Addendum extends BaseObject
     /**
      * @param oid - The object's new object id.
      */
-    public void setOid(String oid)
+    private void setOid(String oid)
     {
         this.oid = oid;
     }
@@ -96,7 +96,7 @@ public class Addendum extends BaseObject
     /**
      * @param agenda - The new target agenda for this addendum.
      */
-    public void setAgenda(Agenda agenda)
+    private void setAgenda(Agenda agenda)
     {
         this.agenda = agenda;
     }
@@ -112,7 +112,7 @@ public class Addendum extends BaseObject
     /**
      * @param addendumId - The new addendum id.
      */
-    public void setAddendumId(String addendumId)
+    private void setAddendumId(String addendumId)
     {
         this.addendumId = addendumId;
     }
@@ -128,7 +128,7 @@ public class Addendum extends BaseObject
     /**
      * @param weekOf - The new Monday of the week this agenda covers.
      */
-    public void setWeekOf(String weekOf)
+  private void setWeekOf(String weekOf)
     {
         this.weekOf = weekOf;
     }

@@ -33,9 +33,9 @@ public class TranscriptPageParser
     private TranscriptPage parseWithManualSpacing(List<String> pageLines) {
         TranscriptPage page = new TranscriptPage();
         int lineCount = 0;
+        TranscriptLine line = new TranscriptLine(pageLines.get(0));
         for (int i = 0; i < pageLines.size(); i++) {
-            TranscriptLine line = new TranscriptLine(pageLines.get(i));
-
+            line.setLine(pageLines.get(i));
             if (line.isTranscriptNumber()) {
                 page.setTranscriptNumber(line.removeInvalidCharacters());
                 lineCount++;
@@ -84,8 +84,10 @@ public class TranscriptPageParser
         TranscriptPage page = new TranscriptPage();
         int lineCount = 0;
 
+        String str = "";
+        TranscriptLine line = new TranscriptLine(str);
         for (String pageLine : pageLines) {
-            TranscriptLine line = new TranscriptLine(pageLine);
+            line.setLine(pageLine);
 
             if (line.isTranscriptNumber()) {
                 page.setTranscriptNumber(line.removeInvalidCharacters());
@@ -108,15 +110,19 @@ public class TranscriptPageParser
         List<String> correctedFirstPage = new ArrayList<String>();
         List<String> firstPage = pages.get(0);
 
+        String str = "";
+        TranscriptLine line = new TranscriptLine(str);
+        TranscriptLine nextLine = new TranscriptLine(str);
+        
         for (int i = 0; i < firstPage.size(); i++) {
-            TranscriptLine line = new TranscriptLine(firstPage.get(i));
+            line.setLine(firstPage.get(i));
 
             if (!line.isEmpty()) {
                 if (line.fullText().endsWith(",") || line.fullText().endsWith(", Acting")) {
                     // Combine two lines into one; corrects formatting. i.e. 123096.v1
-                    TranscriptLine nextLine = getNextLine(firstPage, i);
+                    nextLine = getNextLine(firstPage, i);
                     if (nextLine.fullText().trim().equals("President") || nextLine.fullText().trim().equals("Acting President")) {
-                        line = new TranscriptLine(line.fullText() + " " + nextLine.fullText().trim());
+                        line.setLine(line.fullText() + " " + nextLine.fullText().trim());
                         // Skip next line since we combined it with the previous line.
                         i++;
                     }
@@ -130,15 +136,20 @@ public class TranscriptPageParser
     }
 
     private void addBlankLines(TranscriptPage page, int numLines) {
+        
+        TranscriptLine blankLine = new TranscriptLine(" ");
         for (int i = 0; i < numLines; i++) {
-            TranscriptLine blankLine = new TranscriptLine(" ");
+            blankLine.setLine(" ");
             page.addLine(blankLine);
         }
     }
 
     private boolean pageHasLineNumbers(List<String> pageLines) {
+        
+        String str = "";
+        TranscriptLine line = new TranscriptLine(str);
         for (String pageLine : pageLines) {
-            TranscriptLine line = new TranscriptLine(pageLine);
+            line.setLine(pageLine);
             if (!line.isEmpty() && !line.isTranscriptNumber()) {
                 return line.hasLineNumber();
             }

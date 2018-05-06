@@ -87,7 +87,7 @@ public class Calendar extends BaseObject
      *
      * @return
      */
-    public void setOid(String oid)
+    private void setOid(String oid)
     {
         this.oid = oid;
     }
@@ -103,7 +103,7 @@ public class Calendar extends BaseObject
     /**
      * @param no - The new calendar number for this object.
      */
-    public void setNo(int no)
+    private void setNo(int no)
     {
         this.no = no;
     }
@@ -119,7 +119,7 @@ public class Calendar extends BaseObject
     /**
      * @param year - The new calendar year for this object.
      */
-    public void setYear(int year)
+    private void setYear(int year)
     {
         this.year = year;
     }
@@ -135,7 +135,7 @@ public class Calendar extends BaseObject
     /**
      * @param type - The new calendar type. One of "active" or "floor".
      */
-    public void setType(String type)
+    private void setType(String type)
     {
         this.type = type;
     }

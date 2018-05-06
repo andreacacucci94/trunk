@@ -64,7 +64,7 @@ public class Change implements Comparable<Object>
     /**
      * @param otype - The new object type.
      */
-    public void setOtype(String otype)
+    private void setOtype(String otype)
     {
         this.otype = otype;
     }
@@ -80,7 +80,7 @@ public class Change implements Comparable<Object>
     /**
      * @param oid - The new object id.
      */
-    public void setOid(String oid)
+    private void setOid(String oid)
     {
         this.oid = oid;
     }
@@ -96,7 +96,7 @@ public class Change implements Comparable<Object>
     /**
      * @param status - The new object status.
      */
-    public void setStatus(Storage.Status status)
+    private void setStatus(Storage.Status status)
     {
         this.status = status;
     }
@@ -112,7 +112,7 @@ public class Change implements Comparable<Object>
     /**
      * @param time - The new change time.
      */
-    public void setTime(Date time)
+    private void setTime(Date time)
     {
         this.time = time;
     }

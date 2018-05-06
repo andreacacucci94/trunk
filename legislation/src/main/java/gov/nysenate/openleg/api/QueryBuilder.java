@@ -29,11 +29,11 @@ public class QueryBuilder {
     protected StringBuffer query;
     protected boolean operatorToggle = true;
 
-    public QueryBuilder() {
+    private QueryBuilder() {
         query = new StringBuffer();
     }
 
-    public QueryBuilder(String key, String value) throws QueryBuilderException {
+    private QueryBuilder(String key, String value) throws QueryBuilderException {
         this();
         keyValue(key, value);
     }
@@ -104,7 +104,7 @@ public class QueryBuilder {
         return TextFormatter.append("[",from," ",TO," ",to,"]");
     }
 
-    public QueryBuilder keyValue(String key, String value) throws QueryBuilderException {
+    private QueryBuilder keyValue(String key, String value) throws QueryBuilderException {
         condition();
         return append(key,SEPARATOR, value);
     }

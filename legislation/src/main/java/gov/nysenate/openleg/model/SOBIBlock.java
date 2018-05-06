@@ -111,7 +111,7 @@ public class SOBIBlock
      * the source file and line number the block was initialized from. The line is assumed to be
      * valid SOBI file and is NOT checked for performance reasons.
      */
-    public SOBIBlock(File file, int lineNumber, String line)
+    private SOBIBlock(File file, int lineNumber, String line)
     {
         this(line);
         this.setFile(file);
@@ -143,7 +143,7 @@ public class SOBIBlock
     /**
      * Gets the string representation of the block's data.
      */
-    public String getData()
+    private String getData()
     {
         return dataBuffer.toString();
     }
@@ -151,7 +151,7 @@ public class SOBIBlock
     /**
      * Replaces the block data with the input string.
      */
-    public void setData(String data)
+    private void setData(String data)
     {
         this.dataBuffer = new StringBuffer(data);
     }
@@ -186,7 +186,7 @@ public class SOBIBlock
         return lineNumber;
     }
 
-    public void setLineNumber(int lineNumber)
+    private void setLineNumber(int lineNumber)
     {
         this.lineNumber = lineNumber;
     }
@@ -197,7 +197,7 @@ public class SOBIBlock
         return file;
     }
 
-    public void setFile(File file)
+    private void setFile(File file)
     {
         this.file = file;
     }
@@ -208,7 +208,7 @@ public class SOBIBlock
         return header;
     }
 
-    public void setHeader(String header)
+    private void setHeader(String header)
     {
         this.header = header;
     }
@@ -219,7 +219,7 @@ public class SOBIBlock
         return year;
     }
 
-    public void setYear(int year)
+    private void setYear(int year)
     {
         this.year = year;
     }
@@ -238,7 +238,7 @@ public class SOBIBlock
      * @param printNo
      * @throws NumberFormatException on malformed print numbers
      */
-    public void setPrintNo(String printNo)
+    private void setPrintNo(String printNo)
     {
         // Integer conversion removes leading zeros in the print number.
         this.printNo = printNo.substring(0,1)+Integer.parseInt(printNo.substring(1));
@@ -250,7 +250,7 @@ public class SOBIBlock
         return amendment;
     }
 
-    public void setAmendment(String amendment)
+    private void setAmendment(String amendment)
     {
         this.amendment = amendment;
     }
@@ -261,7 +261,7 @@ public class SOBIBlock
         return type;
     }
 
-    public void setType(char type)
+    private void setType(char type)
     {
         this.type = type;
     }
@@ -271,7 +271,7 @@ public class SOBIBlock
         return billHeader;
     }
 
-    public void setBillHeader(String billHeader)
+    private void setBillHeader(String billHeader)
     {
         this.billHeader = billHeader;
     }

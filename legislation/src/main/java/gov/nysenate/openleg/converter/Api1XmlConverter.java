@@ -83,8 +83,13 @@ public class Api1XmlConverter
     {
         Element root = new Element("results");
         root.setAttribute("total", response.getMetadata().get("totalresults").toString());
+        Element resultNode = new Element("result");
+        Element cosponsorsNode = new Element("cosponsors");
+        Element summaryNode = new Element("summary");
+        Element cosponsorNode = new Element("cosponsor");
+        Element committeeNode = new Element("committee");
         for (Result result : response.getResults()) {
-            Element resultNode = new Element("result");
+            resultNode.setName("result");
             resultNode.setAttribute("type", result.getOtype());
             resultNode.setAttribute("id", result.getOid());
             resultNode.setAttribute("title", result.getTitle());
@@ -110,18 +115,17 @@ public class Api1XmlConverter
                 resultNode.setAttribute("assemblySameAs", bill.getSameAs());
                 resultNode.setAttribute("sameAs", bill.getSameAs());
 
-                Element cosponsorsNode = new Element("cosponsors");
+                
                 for (Person cosponsor : bill.getCoSponsors()) {
-                    Element cosponsorNode = new Element("cosponsor");
                     cosponsorNode.addContent(cosponsor.getFullname());
                 }
                 resultNode.addContent(cosponsorsNode);
 
-                Element summaryNode = new Element("summary");
+                
                 summaryNode.addContent(bill.getSummary());
                 resultNode.addContent(summaryNode);
 
-                Element committeeNode = new Element("committee");
+                
                 committeeNode.addContent(bill.getCurrentCommittee());
                 resultNode.addContent(committeeNode);
             }
@@ -175,9 +179,10 @@ public class Api1XmlConverter
             Iterator<Person> itCos = bill.getCoSponsors().iterator();
             Person coSponsor = null;
 
+            Element elemCosChild = new Element("cosponsor");
             while (itCos.hasNext())
             {
-                Element elemCosChild = new Element("cosponsor");
+               
                 coSponsor = itCos.next();
 
                 elemCos = editElemCos(elemCos, elemCosChild, coSponsor);
@@ -189,8 +194,9 @@ public class Api1XmlConverter
         billElement.addContent(makeElement("committee", bill.getCurrentCommittee()));
 
         Element votesElement = new Element("votes");
+        Element voteElement = new Element("vote");
+        Element elemVoter = new Element("voter");
         for(Vote vote : bill.getVotes()) {
-            Element voteElement = new Element("vote");
             voteElement.setAttribute("timestamp", vote.getVoteDate().getTime() + "");
             voteElement.setAttribute("ayes",vote.getAyes().size()+"");
             voteElement.setAttribute("nays",vote.getNays().size()+"");
@@ -200,7 +206,7 @@ public class Api1XmlConverter
             Iterator<String> it = vote.getAyes().iterator();
 
             while (it.hasNext()) {
-                Element elemVoter = new Element("voter");
+                
                 elemVoter.setAttribute("name",it.next());
                 elemVoter.setAttribute("vote","aye");
                 voteElement.addContent(elemVoter);
@@ -209,7 +215,7 @@ public class Api1XmlConverter
             it = vote.getNays().iterator();
 
             while (it.hasNext()) {
-                Element elemVoter = new Element("voter");
+               
                 elemVoter.setAttribute("name",it.next());
                 elemVoter.setAttribute("vote","nay");
                 voteElement.addContent(elemVoter);
@@ -218,7 +224,7 @@ public class Api1XmlConverter
             it = vote.getAbstains().iterator();
 
             while (it.hasNext()) {
-                Element elemVoter = new Element("voter");
+                
                 elemVoter.setAttribute("name",it.next());
                 elemVoter.setAttribute("vote","abstain");
                 voteElement.addContent(elemVoter);
@@ -227,7 +233,7 @@ public class Api1XmlConverter
             it = vote.getExcused().iterator();
 
             while (it.hasNext()) {
-                Element elemVoter = new Element("voter");
+                
                 elemVoter.setAttribute("name",it.next());
                 elemVoter.setAttribute("vote","excused");
                 voteElement.addContent(elemVoter);

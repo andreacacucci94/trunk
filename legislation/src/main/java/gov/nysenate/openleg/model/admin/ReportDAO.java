@@ -16,6 +16,7 @@ import org.apache.commons.dbutils.ResultSetHandler;
 
 public class ReportDAO
 {
+    
     ArrayList<ReportError> newErrors = new ArrayList<ReportError>();
     ArrayList<ReportError> openErrors = new ArrayList<ReportError>();
     ArrayList<ReportError> closedErrors = new ArrayList<ReportError>();

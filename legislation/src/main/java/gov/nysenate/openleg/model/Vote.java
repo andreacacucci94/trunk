@@ -240,7 +240,7 @@ public class Vote extends BaseObject {
         return sequenceNumber;
     }
 
-    public void setSequenceNumber(String sequenceNumber)
+    private void setSequenceNumber(String sequenceNumber)
     {
         this.sequenceNumber = sequenceNumber;
     }

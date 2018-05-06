@@ -36,10 +36,11 @@ public class BillTextPDFConverter
             margin = resolutionMargin;
         }
 
+        PDPage pg = new PDPage(PDPage.PAGE_SIZE_LETTER);
+        PDPageContentStream contentStream = new PDPageContentStream(doc, pg);
         List<List<String>> pages = TextFormatter.pdfPrintablePages(bill);
         for (List<String> page : pages) {
-            PDPage pg = new PDPage(PDPage.PAGE_SIZE_LETTER);
-            PDPageContentStream contentStream = new PDPageContentStream(doc, pg);
+       
 
             contentStream.beginText();
             contentStream.setFont(font, fontSize);
