@@ -204,6 +204,7 @@ public class Calendar extends BaseObject
     }
 
     @Override
+    public class OVERRIDE{
     public boolean equals(Object obj)
     {
         if (obj != null && obj instanceof Calendar) {
@@ -214,4 +215,7 @@ public class Calendar extends BaseObject
             return false;
         }
     }
+    public int hashCode() {
+        return value;
+    }}
 }

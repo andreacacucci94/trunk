@@ -24,6 +24,12 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.LocalDateTime;
+import java.time.Month;
+import java.util.Date;
+import java.time.temporal.ChronoUnit;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
@@ -40,7 +46,8 @@ import org.codehaus.jackson.map.ObjectMapper;
  */
 public class ApiHelper implements OpenLegConstants {
     private final static DateFormat DATE_FORMAT_MED = SimpleDateFormat.getDateInstance(SimpleDateFormat.MEDIUM);
-    private final static DateFormat DATE_FORMAT_CUSTOM = new SimpleDateFormat("MMM d, yyyy");
+    LocalDate date1 = LocalDate.now();
+      
 
     private static Logger logger = Logger.getLogger(ApiHelper.class);
 
@@ -103,7 +110,7 @@ public class ApiHelper implements OpenLegConstants {
     private String editTitle(String title, Transcript transcript){
         
          if (transcript.getTimeStamp() != null)
-            title = new SimpleDateFormat("MMM d, yyyy h:mm aa").format(transcript.getTimeStamp());
+            title = date1.atTime(LocalTime.MIN).format(transcript.getTimeStamp());
         else
             title = "Transcript - " + transcript.getLocation();
          
@@ -250,7 +257,7 @@ public class ApiHelper implements OpenLegConstants {
         } else if (type.equals("meeting")) {
             Meeting meeting = (Meeting) resultObj;
             title = TextFormatter.append(meeting.getCommitteeName(), " (",
-                    new SimpleDateFormat("MMM d, yyyy - h:mm a").format(meeting.getMeetingDateTime()), ")");
+                    date1.atTime(LocalTime.MIN).format(meeting.getMeetingDateTime()), ")");
 
             fields.put("location", meeting.getLocation());
             fields.put("chair", meeting.getCommitteeChair());
@@ -293,7 +300,7 @@ public class ApiHelper implements OpenLegConstants {
         Pattern  p = Pattern.compile("(\\d{1,2}[-]?){2}(\\d{2,4})T\\d{2}-\\d{2}");
         Matcher m = p.matcher(term);
 
-        SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy'T'KK-mm");
+        LocalDate sdf= LocalDate.now();
 
         while(m.find()) {
             String d = term.substring(m.start(),m.end());
@@ -337,7 +344,7 @@ public class ApiHelper implements OpenLegConstants {
     }
 /** Comments about this class */
     public static String formatDate(String term, String command) {
-        Date date = null;
+        LocalDateTime date = null;
 
         if(term.matches("(\\d{1,2}[-/]?){2}(\\d{2,4})?")) {
             term = term.replace("/","-");
@@ -356,13 +363,14 @@ public class ApiHelper implements OpenLegConstants {
         }
 
         try {
-            date = new SimpleDateFormat("MM-dd-yyyy").parse(term);
+            LocalDate date1 = LocalDate.now();
+            date = date1.atTime(LocalTime.MIN).parse(term);
         }
         catch (java.text.ParseException e) {
             logger.error(e);
         }
 
-        SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy'T'HH-mm");
+       LocalDate sdf= LocalDate.now();
 
         QueryBuilder queryBuilder  = QueryBuilder.build();
 

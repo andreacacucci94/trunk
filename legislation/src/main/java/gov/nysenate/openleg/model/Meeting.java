@@ -176,6 +176,7 @@ public class Meeting extends BaseObject
     }
 
     @Override
+    public class OVERRIDE{
     public boolean equals(Object obj)
     {
         if (obj != null && obj instanceof Meeting)
@@ -186,6 +187,9 @@ public class Meeting extends BaseObject
 
         return false;
     }
+    public int hashCode() {
+        return value;
+    }}
 
     @Override
     public String toString() {

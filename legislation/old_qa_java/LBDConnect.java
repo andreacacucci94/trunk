@@ -244,8 +244,10 @@ public class LBDConnect {
             logger.error(e);
         }
         finally {
-            if(file.exists())
-                file.delete();
+         try{
+         file.close();
+         }catch(Exception e){}
+            
         }
 
         return bill;

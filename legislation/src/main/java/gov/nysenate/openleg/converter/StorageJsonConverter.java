@@ -80,27 +80,77 @@ public class StorageJsonConverter
 /** Comments about this class */
     public void write(Transcript value, File storageFile) throws IOException
     {
-        write(value, new FileOutputStream(storageFile));
+       try {
+    		write(value, new FileOutputStream(storageFile));
+    	} catch (IOException e) {
+    		System.out.println("Exception IO");
+    	}
+       finnally{
+       try{
+         value.close();
+         }catch(Exception e){}
+            System.out.println("Exception IO");
+    }
     }
 /** Comments about this class */
     public void write(Bill value, File storageFile) throws IOException
     {
-        write(value, new FileOutputStream(storageFile));
+        try {
+    		write(value, new FileOutputStream(storageFile));
+    	} catch (IOException e) {
+    		System.out.println("Exception IO");
+    	}
+        finally{
+        try{
+         value.close();
+         }catch(Exception e){}
+            System.out.println("Exception IO");
+        }
     }
 /** Comments about this class */
     public void write(Agenda value, File storageFile) throws IOException
     {
-        write(value, new FileOutputStream(storageFile));
+        try {
+			write(value, new FileOutputStream(storageFile));
+		} catch (IOException e) {
+		System.out.println("Exception IO");
+		}
+        finally{
+        try{
+         value.close();
+         }catch(Exception e){}
+            System.out.println("Exception IO");
+        }
     }
 /** Comments about this class */
     public void write(Meeting value, File storageFile) throws IOException
     {
-        write(value, new FileOutputStream(storageFile));
+        try {
+    		write(value, new FileOutputStream(storageFile));
+	} catch (IOException e) {
+		System.out.println("Exception IO");
+	}
+        finally{
+        try{
+         value.close();
+         }catch(Exception e){}
+            System.out.println("Exception IO");
+        }
     }
 /** Comments about this class */
     public void write(Calendar value, File storageFile) throws IOException
     {
-        write(value, new FileOutputStream(storageFile));
+        try {
+    		write(value, new FileOutputStream(storageFile));
+	} catch (IOException e) {
+		System.out.println("Exception IO");
+ }
+        finally{
+        try{
+         value.close();
+         }catch(Exception e){}
+            System.out.println("Exception IO");
+        }
     }
 /** Comments about this class */
     public String toString(Transcript value) throws IOException

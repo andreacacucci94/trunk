@@ -94,6 +94,7 @@ public class Supplemental {
     }
 /** Comments about this class */
     @Override
+    public class OVERRIDE{
     public boolean equals(Object obj) {
 
         if (obj != null && obj instanceof Supplemental)
@@ -104,4 +105,7 @@ public class Supplemental {
 
         return false;
     }
+    public int hashCode() {
+        return value;
+    }}
 }

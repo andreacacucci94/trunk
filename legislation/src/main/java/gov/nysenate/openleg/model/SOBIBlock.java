@@ -168,13 +168,16 @@ public class SOBIBlock
      * Blocks are considered equal if their header and data (trimmed of all excess whitespace) are
      * identical in content (case-sensitive).
      */
+    public class OVERRIDE{
     public boolean equals(Object obj)
     {
         return obj!= null && obj instanceof SOBIBlock
            && ((SOBIBlock)obj).getHeader().equals(this.getHeader())
            && ((SOBIBlock)obj).getData().trim().equals(this.getData().trim());
     }
-
+    public int hashCode() {
+        return value;
+    }}
     public String toString()
     {
         return this.getLocation()+":"+this.getHeader();

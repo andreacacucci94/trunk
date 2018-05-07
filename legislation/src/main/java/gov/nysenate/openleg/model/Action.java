@@ -128,6 +128,7 @@ public class Action extends BaseObject
     }
 /** Comments about this class */
     @Override
+    public class OVERRIDE{
     public boolean equals(Object obj) {
         if (obj != null && obj instanceof Action) {
             Action other = (Action)obj;
@@ -137,6 +138,10 @@ public class Action extends BaseObject
             return false;
         }
     }
+    public int hashCode() {
+        return value;
+    }}
+    
 /** Comments about this class */
     public int getYear() {
         java.util.Calendar cal = java.util.Calendar.getInstance();

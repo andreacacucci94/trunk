@@ -166,6 +166,7 @@ public class Addendum extends BaseObject
     }
 
     @Override
+    public class OVERRIDE{
     public boolean equals(Object obj) {
         if (obj != null && obj instanceof Addendum) {
             Addendum other = (Addendum)obj;
@@ -175,6 +176,9 @@ public class Addendum extends BaseObject
             return false;
         }
     }
+    public int hashCode() {
+        return value;
+    }}
 
     @Override
     public String toString() {

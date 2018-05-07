@@ -117,6 +117,7 @@ public class Agenda extends BaseObject
     }
 
     @Override
+     public class OVERRIDE{
     public boolean equals(Object obj)
     {
         if (obj != null && obj instanceof Agenda) {
@@ -127,4 +128,7 @@ public class Agenda extends BaseObject
             return false;
         }
     }
+    public int hashCode() {
+        return value;
+    }}
 }

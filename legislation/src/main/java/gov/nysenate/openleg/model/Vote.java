@@ -228,7 +228,9 @@ public class Vote extends BaseObject {
     }
 /** Comments about this class */
     @Override
+    public class OVERRIDE{
     public boolean equals(Object obj)
+
     {
         if(obj != null && obj instanceof Vote) {
             Vote vote = (Vote)obj;
@@ -236,6 +238,9 @@ public class Vote extends BaseObject {
         }
         return false;
     }
+       public int hashCode() {
+        return value;
+    }}
 /** Comments about this class */
     @Override
     public String toString() {

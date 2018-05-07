@@ -86,6 +86,7 @@ public class Person {
     }
 /** Comments about this class */
     @Override
+    public class OVERRIDE{
     public boolean equals(Object obj) {
         if(obj != null && obj instanceof Person)
         {
@@ -94,6 +95,9 @@ public class Person {
         }
         return false;
     }
+    public int hashCode() {
+        return value;
+    }}
 /** Comments about this class */
     @Override
     public String toString() {

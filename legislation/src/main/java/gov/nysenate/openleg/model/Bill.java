@@ -622,6 +622,7 @@ public class Bill extends BaseObject implements Comparable<Bill>
     }
 
     @Override
+     public class OVERRIDE{
     public boolean equals(Object obj)
     {
         if (obj != null && obj instanceof Bill) {
@@ -632,7 +633,9 @@ public class Bill extends BaseObject implements Comparable<Bill>
             return false;
         }
     }
-
+    public int hashCode() {
+        return value;
+    }}
 
     public static Pattern printNumberPattern = Pattern.compile("([ASLREJKBC])([0-9]{1,5})([A-Z]?)");
     public static Pattern billIdPattern = Pattern.compile("("+printNumberPattern.pattern()+")-([0-9]{4})");

@@ -82,6 +82,7 @@ public class Sequence {
     }
 /** Comments about this class */
     @Override
+    public class OVERRIDE{
     public boolean equals(Object obj) {
 
         if (obj != null && obj instanceof Sequence)
@@ -92,6 +93,8 @@ public class Sequence {
 
         return false;
     }
-
+    public int hashCode() {
+        return value;
+    }}
 
 }

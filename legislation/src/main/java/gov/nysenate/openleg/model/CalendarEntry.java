@@ -226,6 +226,7 @@ public class CalendarEntry
     }
 
     @Override
+    public class OVERRIDE{
     public boolean equals(Object obj)
     {
         if (obj != null && obj instanceof CalendarEntry) {
@@ -236,4 +237,7 @@ public class CalendarEntry
             return false;
         }
     }
+    public int hashCode() {
+        return value;
+    }}
 }

@@ -78,6 +78,7 @@ public class Section {
     }
 /** Comments about this class */
     @Override
+    public class OVERRIDE{
     public boolean equals(Object obj) {
 
         if (obj != null && obj instanceof Section)
@@ -88,4 +89,7 @@ public class Section {
 
         return false;
     }
+     public int hashCode() {
+        return value;
+    }}
 }
