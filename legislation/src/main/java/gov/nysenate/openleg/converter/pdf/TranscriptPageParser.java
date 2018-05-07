@@ -5,10 +5,18 @@ import gov.nysenate.openleg.util.TranscriptLine;
 
 import java.util.ArrayList;
 import java.util.List;
+// Richiede commento
 
+/**
+ * PJDCC - Summary for class responsabilities.
+ *
+ * @author 
+ * @since 
+ * @version 
+ */
 public class TranscriptPageParser
 {
-
+/** Comments about this class */
     public List<TranscriptPage> parsePages(Transcript transcript) {
         List<TranscriptPage> pages = new ArrayList<TranscriptPage>();
         List<List<String>> rawPages = splitPages(transcript.getTranscriptText());
@@ -69,7 +77,7 @@ public class TranscriptPageParser
         page.setLineCount(lineCount);
         return page;
     }
-    
+    /** Comments about this class */
     private boolean controlLine(TranscriptLine line){
         
         boolean flag = false;
@@ -79,7 +87,7 @@ public class TranscriptPageParser
         
         return flag;
     }
-
+/** Comments about this class */
     private TranscriptPage parseWithOriginalSpacing(List<String> pageLines) {
         TranscriptPage page = new TranscriptPage();
         int lineCount = 0;
@@ -134,7 +142,7 @@ public class TranscriptPageParser
 
         pages.set(pages.indexOf(firstPage), correctedFirstPage);
     }
-
+/** Comments about this class */
     private void addBlankLines(TranscriptPage page, int numLines) {
         
         TranscriptLine blankLine = new TranscriptLine(" ");
@@ -143,7 +151,7 @@ public class TranscriptPageParser
             page.addLine(blankLine);
         }
     }
-
+/** Comments about this class */
     private boolean pageHasLineNumbers(List<String> pageLines) {
         
         String str = "";
@@ -157,11 +165,11 @@ public class TranscriptPageParser
         return false;
     }
 
-
+/** Comments about this class */
     private boolean isFirstPage(List<String> pageLines, List<List<String>> rawPages) {
         return rawPages.indexOf(pageLines) == 0;
     }
-
+/** Comments about this class */
     private TranscriptLine getNextLine(List<String> pageLines, int i) {
         if (i + 1 < pageLines.size()) {
             return new TranscriptLine(pageLines.get(i + 1));

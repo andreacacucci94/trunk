@@ -1,5 +1,6 @@
 package gov.nysenate.openleg.converter;
 
+
 import gov.nysenate.openleg.model.Action;
 import gov.nysenate.openleg.model.Addendum;
 import gov.nysenate.openleg.model.BaseObject;
@@ -32,14 +33,22 @@ import org.apache.log4j.Logger;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
+// Richiede commento
 
+/**
+ * PJDCC - Summary for class responsabilities.
+ *
+ * @author 
+ * @since 
+ * @version 
+ */
 @SuppressWarnings("unchecked")
 public class LuceneJsonConverter
 {
     public static final Logger logger = Logger.getLogger(LuceneJsonConverter.class);
     protected static HashMap<String,JsonObject> cachedSimpleBills = new HashMap<String,JsonObject>();
     protected static DateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-
+/** Comments about this class */
     private JsonObject editNode(JsonObject node, BaseObject o){
         
         if(o instanceof Bill) {
@@ -139,7 +148,7 @@ public class LuceneJsonConverter
         }
          return root;
     }
-    
+    /** Comments about this class */
     private static boolean controlField(Field f){
         boolean flag= false;
         if(!f.getName().contains("jdo") && !Modifier.isStatic(f.getModifiers())){
@@ -148,13 +157,13 @@ public class LuceneJsonConverter
         
         return flag;
     }
-    
+    /** Comments about this class */
     private void editCache(Bill bill, Object obj)throws Exception{
        if(!cachedSimpleBills.containsKey(bill.getBillId())) {
             cachedSimpleBills.put(bill.getBillId(), converter(obj,internal_bill_exclude()));
         } 
     }
-    
+    /** Comments about this class */
     private static JsonObject workOnRoot(JsonObject root, Object obj, String type, Field f, Object o, String name){
         
         try{
@@ -190,6 +199,7 @@ public class LuceneJsonConverter
         
         return root;
     }
+    /** Comments about this class */
     private static boolean isCollection(String type){
         boolean flag = false;
         if(type.equals("List") || type.equals("HashSet")){
@@ -197,7 +207,7 @@ public class LuceneJsonConverter
         }
         return flag;
     }
-    
+    /** Comments about this class */
     private static JsonArray workOnCollections(Object o, Object obj, JsonArray jarray){
         Collection<?> collection = ((Collection<?>)obj);
         Iterator<?> iter = collection.iterator();
@@ -215,7 +225,7 @@ public class LuceneJsonConverter
         return jarray;
     }
     
-
+/** Comments about this class */
     private static boolean isPrimitive(Object obj)
     {
         return obj != null && (
@@ -260,7 +270,7 @@ public class LuceneJsonConverter
         }
         return jarray;
     }
-    
+    /** Comments about this class */
     private JsonArray editListBill(JsonArray jarray, Object o, Collection<?> c){
         
         if(o instanceof Person) {
@@ -275,7 +285,7 @@ public class LuceneJsonConverter
         }
         return jarray;
     }
-
+/** Comments about this class */
     @SuppressWarnings("unused")
     private static JsonArray listSupplemental(Collection<?> c) throws Exception
     {
@@ -296,7 +306,7 @@ public class LuceneJsonConverter
         }
         return jarray;
     }
-
+/** Comments about this class */
     @SuppressWarnings("unused")
     private static JsonArray listCalendar(Collection<?> c) throws Exception
     {
@@ -311,7 +321,7 @@ public class LuceneJsonConverter
         }
         return jarray;
     }
-
+/** Comments about this class */
     @SuppressWarnings("unused")
     private static JsonArray listMeeting(Collection<?> c) throws Exception
     {
@@ -331,7 +341,7 @@ public class LuceneJsonConverter
         }
         return jarray;
     }
-
+/** Comments about this class */
     @SuppressWarnings("unused")
     private static JsonArray listSection(Collection<?> c) throws Exception
     {
@@ -346,7 +356,7 @@ public class LuceneJsonConverter
         }
         return jarray;
     }
-
+/** Comments about this class */
     @SuppressWarnings("unused")
     private static JsonArray listSequence(Collection<?> c) throws Exception
     {
@@ -361,52 +371,52 @@ public class LuceneJsonConverter
         }
         return jarray;
     }
-
+/** Comments about this class */
     private static List<String> addendum_exclude()
     {
         return Arrays.asList("meetings");
     }
-
+/** Comments about this class */
     private static List<String> agenda_exclude()
     {
         return Arrays.asList("addendums");
     }
-
+/** Comments about this class */
     private static List<String> supplemental_exclude()
     {
         return Arrays.asList("calendar");
     }
-
+/** Comments about this class */
     private static List<String> section_exclude()
     {
         return Arrays.asList("supplemental");
     }
-
+/** Comments about this class */
     private static List<String> sequence_exclude()
     {
         return Arrays.asList("supplemental");
     }
-
+/** Comments about this class */
     private static List<String> calendar_entry_exclude()
     {
         return Arrays.asList("section", "sequence");
     }
-
+/** Comments about this class */
     private static List<String> internal_vote_exclude()
     {
         return Arrays.asList("bill");
     }
-
+/** Comments about this class */
     private static List<String> internal_action_exclude()
     {
         return Arrays.asList("bill");
     }
-
+/** Comments about this class */
     private static List<String> internal_bill_exclude()
     {
         return Arrays.asList("actions", "fulltext", "memo", "sortIndex", "votes");
     }
-
+/** Comments about this class */
     private static List<String> transcript_exclude()
     {
         return Arrays.asList("relatedBills", "transcriptTextProcessed");

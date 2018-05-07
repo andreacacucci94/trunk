@@ -17,12 +17,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
+// Richiede commento
 
+/**
+ * PJDCC - Summary for class responsabilities.
+ *
+ * @author 
+ * @since 
+ * @version 
+ */
 @SuppressWarnings("serial")
 public class TranscriptServlet extends HttpServlet
 {
     private static Logger logger = Logger.getLogger(TranscriptServlet.class);
-
+/** Comments about this class */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
         Calendar cal = Calendar.getInstance();
@@ -60,13 +68,14 @@ public class TranscriptServlet extends HttpServlet
         request.setAttribute("transcripts", transcripts);
         request.getSession().getServletContext().getRequestDispatcher("/views/transcripts.jsp").forward(request, response);
     }
-
+/** Comments about this class */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
         doGet(request, response);
     }
 
+    /** Comments about this class */
     @Override
     public void init() throws ServletException
     {

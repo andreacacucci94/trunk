@@ -18,13 +18,21 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.FileUtils;
 import org.codehaus.jackson.map.ObjectMapper;
+// Richiede commento
 
+/**
+ * PJDCC - Summary for class responsabilities.
+ *
+ * @author 
+ * @since 
+ * @version 
+ */
 @SuppressWarnings("serial")
 public class AdvancedSearchServlet extends HttpServlet
 {
     private ArrayList<Senator> senators;
     private ArrayList<Committee> committees;
-
+/** Comments about this class */
     public void init() throws ServletException
     {
         ObjectMapper mapper = new ObjectMapper();
@@ -69,7 +77,7 @@ public class AdvancedSearchServlet extends HttpServlet
         }
 
     }
-
+/** Comments about this class */
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
         request.setAttribute("senators", this.senators);

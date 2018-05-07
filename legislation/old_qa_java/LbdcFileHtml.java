@@ -19,29 +19,38 @@ import java.util.Collection;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * PJDCC - Summary for class responsabilities.
+ *
+ * @author 
+ * @since 
+ * @version 
+ */
+
 @AssociatedFields({	FieldName.SPONSOR,
     FieldName.COSPONSORS,
     FieldName.ACTIONS,
     FieldName.TITLE,
     FieldName.SUMMARY,
     FieldName.LAW_SECTION })
+
 public class LbdcFileHtml extends LbdcFile {
     Pattern billP = Pattern.compile(
-            "<a .+?>(.+?)</a>" + 										//bill number
-                    "(.+?)<br>\\s*" + 											//sponsors: (sponsor) (CO: ((, )?cosponsor))*
-                    "(.+?)<br>\\s*" + 											//title
-                    "<b>\\s*Primary Law:\\s*</b>(.+?)<br>\\s*" + 						//primary law
-                    "(?:<b>SUMM \\: </b>)?(BILL SUMMARY NOT FOUND|.+?)<br>\\s*" + 	//summary
-            "(?:(Criminal Sanction Impact.)(?: <br>))?"); 				//criminal sanction impact
+            "<a .+?>(.+?)</a>" + 										
+                    "(.+?)<br>\\s*" + 											
+                    "(.+?)<br>\\s*" + 											
+                    "<b>\\s*Primary Law:\\s*</b>(.+?)<br>\\s*" + 						
+                    "(?:<b>SUMM \\: </b>)?(BILL SUMMARY NOT FOUND|.+?)<br>\\s*" + 	
+            "(?:(Criminal Sanction Impact.)(?: <br>))?"); 				
     Pattern actionP = Pattern.compile("(<b>(?:&nbsp;)+</b>)?+(\\d{2}/\\d{2}/\\d{2}) (.+?)<br>");
     Pattern sponsorP = Pattern.compile("([\\w\\- ']+?)(?: CO\\: (.+))");
 
     SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yy");
-
+/** Comments about this class */
     public LbdcFileHtml(File file) {
         super(file);
     }
-
+/** Comments about this class */
     @Override
     public ArrayList<ProblemBill> getProblemBills(FieldName[] fieldNames) {
         ArrayList<ProblemBill> ret = new ArrayList<ProblemBill>();
@@ -132,9 +141,15 @@ public class LbdcFileHtml extends LbdcFile {
     }
 
     
-  
-    private Bill getBillFromHtml(String text) throws ParseException{
-    
+  /** Comments about this class */
+    private Bill editBill(Matcher m, Bill bill){
+        
+       bill.setSummary(m.group(5).equals("BILL SUMMARY NOT FOUND") ? null : m.group(5).trim()); 
+       return bill;
+    }
+    /** Comments about this class */
+    private Bill getBillFromHtml(String text) {
+    	synchronized(dateFormat) {
         Bill bill = null;
 
         text = text.replaceAll("(</?(tr|td).+?>|<table.+?/table>)", "");
@@ -146,7 +161,7 @@ public class LbdcFileHtml extends LbdcFile {
             bill.setSenateBillNo(m.group(1).trim());
             bill.setTitle(m.group(3).trim());
             bill.setLawSection(m.group(4).trim());
-            bill.setSummary(m.group(5).equals("BILL SUMMARY NOT FOUND") ? null : m.group(5).trim());
+            bill = editBill(m, bill);
 
             String sponsorString = m.group(2).trim();
 
@@ -178,27 +193,31 @@ public class LbdcFileHtml extends LbdcFile {
                     continue;
                 }
 
-                
+                try {
                     billEvents.add(new Action(bill.getSenateBillNo(), sdf.parse(m.group(2)), m.group(3)));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
             }
 
             bill.setActions(billEvents);
         }
 
         return bill;
+    	}
     }
     
-
+/** Comments about this class */
     private String cln(String str) {
         return str.trim().replaceAll("  "," ").replaceAll("&apos;", "'");
     }
-
+/** Comments about this class */
     private boolean valid(Object o1, Object o2) {
         if(o1 != null && o2 != null)
             return true;
         return false;
     }
-
+/** Comments about this class */
     private void doCollectionField(ProblemBill problemBill, FieldName fieldName, Collection<?> openCol, Collection<?> lbdcCol) {
         if(valid(openCol, lbdcCol)) {
             if(lbdcCol.size() - openCol.size() > 0) {
@@ -210,7 +229,7 @@ public class LbdcFileHtml extends LbdcFile {
             }
         }
     }
-
+/** Comments about this class */
     private void doStringField(ProblemBill problemBill, FieldName fieldName, String openField, String lbdcField, String pattern) {
         if(valid(openField,lbdcField)) {
             lbdcField = cln(lbdcField);

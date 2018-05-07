@@ -15,7 +15,15 @@ import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.edit.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.font.PDFont;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
+// Richiede commento
 
+/**
+ * PJDCC - Summary for class responsabilities.
+ *
+ * @author 
+ * @since 
+ * @version 
+ */
 public class PDFConverter
 {
     // Kirkland started on May 16, 2011
@@ -40,7 +48,7 @@ public class PDFConverter
     private static Float fontWidth = 7f;
 
     public static final int NO_LINE_NUM_INDENT = 11;
-
+/** Comments about this class */
     public static void write(IBaseObject object, OutputStream out) throws IOException, COSVisitorException, ApiRequestException
     {
         if (object instanceof Transcript) {
@@ -50,7 +58,7 @@ public class PDFConverter
             throw new ApiRequestException("Unable to convert "+object.getOtype()+"s to pdf.");
         }
     }
-
+/** Comments about this class */
     public static void write(Transcript transcript, OutputStream out) throws IOException, COSVisitorException
     {
         PDDocument doc = new PDDocument();
@@ -79,7 +87,7 @@ public class PDFConverter
         doc.save(out);
         doc.close();
     }
-
+/** Comments about this class */
     private static void drawPageText(TranscriptPage page, PDPageContentStream contentStream) throws IOException {
         if (page.getTranscriptNumber() == null) {
             contentStream.moveTextPositionByAmount(0, top - fontWidth);
@@ -104,23 +112,23 @@ public class PDFConverter
             drawLine(text, offset, contentStream);
         }
     }
-
+/** Comments about this class */
     private static int lineNumberLength(TranscriptLine line) {
         return line.fullText().trim().split("\\s")[0].length();
     }
-
+/** Comments about this class */
     private static void drawLine(String line, float offset, PDPageContentStream contentStream) throws IOException {
         contentStream.moveTextPositionByAmount(offset, -fontSize);
         contentStream.drawString(line);
         contentStream.moveTextPositionByAmount(-offset, -fontSize);
     }
-
+/** Comments about this class */
     private static void drawTranscriptNumber(String line, float offset, PDPageContentStream contentStream) throws IOException {
         contentStream.moveTextPositionByAmount(offset, top + fontWidth);
         contentStream.drawString(line);
         contentStream.moveTextPositionByAmount(-offset, -fontSize * 2);
     }
-
+/** Comments about this class */
     private static void drawStenographer(Transcript transcript, TranscriptPage page, PDPageContentStream contentStream) throws IOException {
         String stenographer;
         if (transcript.getTimeStamp().getTime() >= KIRKLAND_START_TIME) {
@@ -144,7 +152,7 @@ public class PDFConverter
         contentStream.moveTextPositionByAmount(left+ (right-left-stenographer.length()*fontWidth)/2, offset);
         contentStream.drawString(stenographer);
     }
-
+/** Comments about this class */
     private static void drawBorder(PDPageContentStream contentStream) throws IOException {
         contentStream.drawLine(left, top, left, bot);
         contentStream.drawLine(left, top, right, top);

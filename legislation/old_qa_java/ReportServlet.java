@@ -15,8 +15,14 @@ import javax.servlet.http.HttpServletResponse;
 import org.codehaus.jackson.JsonGenerator;
 import org.codehaus.jackson.util.DefaultPrettyPrinter;
 
+// Richiede commento
+
 /**
- * Servlet implementation class ReportServlet
+ * PJDCC - Summary for class responsabilities.
+ *
+ * @author 
+ * @since 
+ * @version 
  */
 public class ReportServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
@@ -24,12 +30,12 @@ public class ReportServlet extends HttpServlet {
     private static final String VIEW_PATH = "/report/index.jsp";
 
     private static ReportReader rr = null;
-
+/** Comments about this class */
     public ReportServlet() {
         super();
         rr = new ReportReader();
     }
-
+/** Comments about this class */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String format = request.getParameter("format");
@@ -55,6 +61,7 @@ public class ReportServlet extends HttpServlet {
     /**
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
      */
+    /** Comments about this class */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);

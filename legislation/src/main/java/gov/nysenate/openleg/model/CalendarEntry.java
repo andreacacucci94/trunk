@@ -3,7 +3,15 @@ package gov.nysenate.openleg.model;
 
 import java.util.Date;
 
+// Richiede commento
 
+/**
+ * PJDCC - Summary for class responsabilities.
+ *
+ * @author 
+ * @since 
+ * @version 
+ */
 public class CalendarEntry
 {
     /**

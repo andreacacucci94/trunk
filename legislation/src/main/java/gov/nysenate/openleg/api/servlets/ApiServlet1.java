@@ -26,7 +26,15 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 import org.apache.pdfbox.exceptions.COSVisitorException;
 
+// Richiede commento
 
+/**
+ * PJDCC - Summary for class responsabilities.
+ *
+ * @author 
+ * @since 
+ * @version 
+ */
 @SuppressWarnings("serial")
 public class ApiServlet1 extends HttpServlet
 {
@@ -37,13 +45,13 @@ public class ApiServlet1 extends HttpServlet
     public final static Pattern documentPattern = Pattern.compile("(?:/api)?(?:/1.0)?/(json|xml|jsonp|html-print|lrs-print|html|pdf)/(bill|calendar|meeting|transcript)/(.*)$", Pattern.CASE_INSENSITIVE);
     public final static Pattern searchPattern = Pattern.compile("(?:/api)?(?:/1.0)?/(csv|atom|rss|json|xml|jsonp)/(search|votes|bills|meetings|actions|calendars|transcripts|sponsor)(?:/(.*?[a-z].*?))?(?:/([0-9]+))?(?:/([0-9]+))?/?$", Pattern.CASE_INSENSITIVE);
 
-    
+/** Comments about this class */    
     private String editPath (HttpServletRequest request){
         
         String path = request.getServletPath()+(request.getPathInfo() != null ? request.getPathInfo() : "");
         return path;
         }
-    
+    /** Comments about this class */
     private String editTerm(String type, String term, String uriTerm){
         
         if (type.equals("sponsor")) {
@@ -58,7 +66,7 @@ public class ApiServlet1 extends HttpServlet
         }
         return term;
     }
-    
+    /** Comments about this class */
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int pageIdx = 1;
@@ -112,7 +120,7 @@ public class ApiServlet1 extends HttpServlet
             response.sendError(HttpServletResponse.SC_NOT_FOUND);
         }
     }
-
+/** Comments about this class */
     private String editTerm(String term) throws ApiRequestException{
       
       if (!type.equals("search")) {
@@ -131,7 +139,7 @@ public class ApiServlet1 extends HttpServlet
                 }
         return term;
     }
-    
+    /** Comments about this class */
     private HttpServletResponse jsonpFormat(String callback, HttpServletResponse response, SenateResponse sr) throws ApiRequestException{
         
         if (callback != null && callback != "") {
@@ -146,6 +154,7 @@ public class ApiServlet1 extends HttpServlet
         return response;
         
     }
+    /** Comments about this class */
     private HttpServletResponse jsonpFormat(String callback, HttpServletResponse response, BaseObject object) throws ApiRequestException{
         
         if (callback != null && callback != "") {
@@ -160,7 +169,7 @@ public class ApiServlet1 extends HttpServlet
         return response;
         
     }
-    
+    /** Comments about this class */
     private void doSearch(HttpServletRequest request, HttpServletResponse response, String format, String type, String term, int pageNumber, int pageSize, String sort, boolean sortOrder) throws ApiRequestException, IOException
     {
         // Verify that all bills in the query are in the proper format
@@ -217,7 +226,7 @@ public class ApiServlet1 extends HttpServlet
             throw new ApiRequestException("internal server error.");
         }
     }
-
+/** Comments about this class */
     private void doSingleView(HttpServletRequest request, HttpServletResponse response, String format, String type, String id) throws ApiRequestException, IOException, ServletException
     {
         BaseObject object = (BaseObject)Application.getLucene().getSenateObject(id, type);
@@ -250,7 +259,7 @@ public class ApiServlet1 extends HttpServlet
         
         
     }
-    
+    /** Comments about this class */
     private void structuredData(String format, HttpServletRequest response, BaseObject object, HttpServletRequest request){
             
             if (format.equals("json")) {

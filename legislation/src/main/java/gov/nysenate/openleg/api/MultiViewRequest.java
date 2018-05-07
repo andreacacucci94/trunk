@@ -23,19 +23,27 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
+// Richiede commento
 
+/**
+ * PJDCC - Summary for class responsabilities.
+ *
+ * @author 
+ * @since 
+ * @version 
+ */
 public class MultiViewRequest extends AbstractApiRequest {
     private final Logger logger = Logger.getLogger(MultiViewRequest.class);
 
     String type;
-
+/** Comments about this class */
     public MultiViewRequest(HttpServletRequest request, HttpServletResponse response,
             String format, String type, String pageNumber, String pageSize) {
         super(request, response, pageNumber, pageSize, format, getApiEnum(MultiView.values(),type));
         logger.info("New multi view request: format="+format+", type="+type+", page="+pageNumber+", size="+pageSize);
         this.type = type;
     }
-
+/** Comments about this class */
     private boolean isNotValidSenateResponse (SenateResponse sr){
         boolean flag = false;
         if(sr == null || sr.getResults() == null || sr.getResults().isEmpty()){
@@ -44,7 +52,7 @@ public class MultiViewRequest extends AbstractApiRequest {
         
         return flag;
     }
-    
+    /** Comments about this class */
     private boolean checkType(){
         
         boolean flag = false;
@@ -54,7 +62,7 @@ public class MultiViewRequest extends AbstractApiRequest {
         
         return flag;
     }
-    
+    /** Comments about this class */
     @Override
     public void fillRequest() throws ApiRequestException {
         String urlPath = TextFormatter.append("/legislation/", type, "/");
@@ -119,7 +127,7 @@ public class MultiViewRequest extends AbstractApiRequest {
         feeds.put(type+" Feed", JSPHelper.getFullLink(request, "/search/?format=atom&amp;term="+queryBuilder.query()+"&amp;title="+StringUtils.capitalize(type+" Feed")));
         request.setAttribute("feeds", feeds);
     }
-
+/** Comments about this class */
     @Override
     public String getView() {
         String vFormat = format.equals("jsonp") ? "json" : format;
@@ -131,7 +139,7 @@ public class MultiViewRequest extends AbstractApiRequest {
             return TextFormatter.append("/views/search-", vFormat, ".jsp");
         }
     }
-
+/** Comments about this class */
     @Override
     public boolean hasParameters() {
         return type!= null;
@@ -155,15 +163,17 @@ public class MultiViewRequest extends AbstractApiRequest {
             this.clazz = clazz;
             this.formats = formats;
         }
-
+        /** Comments about this class */
         @Override
         public String view() {
             return view;
         }
+        /** Comments about this class */
         @Override
         public String[] formats() {
             return formats;
         }
+        /** Comments about this class */
         @Override
         public Class<? extends BaseObject> clazz() {
             return clazz;

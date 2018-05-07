@@ -13,8 +13,14 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/*
- * abstract wrapper for api request objects
+// Richiede commento
+
+/**
+ * PJDCC - Summary for class responsabilities.
+ *
+ * @author 
+ * @since 
+ * @version 
  */
 public abstract class AbstractApiRequest implements OpenLegConstants {
     public static final String DEFAULT_FORMAT = "html";
@@ -29,7 +35,7 @@ public abstract class AbstractApiRequest implements OpenLegConstants {
     protected ApiEnum apiEnum;
 
     public final HashMap<String, String> CONTENT_TYPE;
-
+/** Comments about this class */
     public AbstractApiRequest(HttpServletRequest request, HttpServletResponse response,
             String pageNumber, String pageSize, String format, ApiEnum apiEnum) {
 
@@ -40,7 +46,7 @@ public abstract class AbstractApiRequest implements OpenLegConstants {
                 format,
                 apiEnum);
     }
-
+/** Comments about this class */
     public AbstractApiRequest(HttpServletRequest request, HttpServletResponse response,
             int pageNumber, int pageSize, String format, ApiEnum apiEnum) {
         this.request = request;
@@ -67,7 +73,7 @@ public abstract class AbstractApiRequest implements OpenLegConstants {
         this.CONTENT_TYPE.put("csv", "text/csv");
         this.CONTENT_TYPE.put("atom", "application/atom+xml");
     }
-
+/** Comments about this class */
     public void execute() throws ApiRequestException, ServletException, IOException {
         if(!isValidFormat())
             throw new ApiRequestException(
@@ -100,13 +106,14 @@ public abstract class AbstractApiRequest implements OpenLegConstants {
 
 
     }
-
+/** Comments about this class */
     protected boolean isValidPaging() {
         if(pageSize > MAX_PAGE_SIZE)
             return false;
         return true;
     }
-
+  
+/** Comments about this class */
     protected boolean isValidFormat() {
         for(String validFormat:apiEnum.formats()) {
             if(format.equalsIgnoreCase(validFormat)) {
@@ -115,7 +122,7 @@ public abstract class AbstractApiRequest implements OpenLegConstants {
         }
         return false;
     }
-
+/** Comments about this class */
     private String thisOrThat(String str1, String str2) {
         if(str1 == null || str1.matches("\\s*"))
             return str2;
@@ -155,7 +162,7 @@ public abstract class AbstractApiRequest implements OpenLegConstants {
             return def;
         }
     }
-
+/** Comments about this class */
     public static <T extends ApiEnum> T getApiEnum(T[] array, String view) {
         for(T t:array) {
             if(t.view().equals(view)) {
@@ -175,13 +182,13 @@ public abstract class AbstractApiRequest implements OpenLegConstants {
         }
         return set;
     }
-
+/** Comments about this class */
     public interface ApiEnum {
         public String view();
         public String[] formats();
         public Class<? extends BaseObject> clazz();
     }
-
+/** Comments about this class */
     @SuppressWarnings("serial")
     public static class ApiRequestException extends Exception {
         public ApiRequestException() {

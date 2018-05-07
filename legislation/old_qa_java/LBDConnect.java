@@ -26,7 +26,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.apache.log4j.Logger;
-
+/** Comments about this class */
 class Informations {
     
             String status;
@@ -42,7 +42,15 @@ class Informations {
             }
       
 }
+// Richiede commento
 
+/**
+ * PJDCC - Summary for class responsabilities.
+ *
+ * @author 
+ * @since 
+ * @version 
+ */
 public class LBDConnect {
     private static Logger logger = Logger.getLogger(LBDConnect.class);
 
@@ -66,7 +74,7 @@ public class LBDConnect {
     private static final String COMMON_QUERY_COMMITTEE = "VM:\\PROD\\COMLIST2.MAIN";
 
     private final String key;
-
+/** Comments about this class */
     public static LBDConnect getInstance() {
         String key = getInstanceKey();
 
@@ -77,20 +85,20 @@ public class LBDConnect {
         else
             return new LBDConnect(key);
     }
-
+/** Comments about this class */
     private LBDConnect(String key) {
         this.key = key;
     }
-
+/** Comments about this class */
     public String getKey() {
         return key;
     }
-
+/** Comments about this class */
     private String constructUrlForCommittees() {
         return APPLICATION + COMMON_QUERY + COMMON_QUERY_COMMITTEE
                 + TOKEN + this.key;
     }
-
+/** Comments about this class */
     public ArrayList<String> getSenateCommittees() throws IOException{
         ArrayList<String> committees = new ArrayList<String>();
 
@@ -127,14 +135,14 @@ public class LBDConnect {
 
         return committees;
     }
-
+/** Comments about this class */
     private String constructUrlBill(String billNumber, String year) {
         return APPLICATION + QUERY_TYPE + SESSION_YEAR + year
                 + QUERY_DATA + billNumber + QQ_DATA
                 + billNumber + GET_SEL + LST + BROWSER
                 + TOKEN + this.key + SELECT;
     }
-
+/** Comments about this class */
     public Bill getBillFromLbdc(String bill) {
         if(bill.indexOf("0") == -1)
             return getBillFromLbdc(bill, SessionYear.getSessionYear()+"");
@@ -143,7 +151,7 @@ public class LBDConnect {
             return getBillFromLbdc(strings[0], strings[1]);
         }
     }
-
+/** Comments about this class */
     private Informations controlIn(String in, Informations info){
       
         if(in.contains("<B>STATUS:</B>")) {
@@ -162,7 +170,7 @@ public class LBDConnect {
         return info;
     
     }
-    
+    /** Comments about this class */
     private Informations controlInfo (String in, Informations info){
         
         if(info.memo != null) {
@@ -180,7 +188,7 @@ public class LBDConnect {
         return info;
         
     }
-    
+    /** Comments about this class */
     private Bill controlStatus (Bill bill, Informations info, String billNumber, String year){
         
         if(parseStatus(info.status, bill)
@@ -198,6 +206,7 @@ public class LBDConnect {
        return bill;
        
     }
+    /** Comments about this class */
     public Bill getBillFromLbdc(String billNumber, String year) {
         Bill bill = new Bill();
         File file = new File(TEMP_FILE_NAME);
@@ -241,7 +250,7 @@ public class LBDConnect {
 
         return bill;
     }
-
+/** Comments about this class */
     private boolean parseStatus(String status, Bill bill) {
         if(status == null)
             return false;
@@ -301,7 +310,7 @@ public class LBDConnect {
         }
         return true;
     }
-
+/** Comments about this class */
     private boolean parseSummary(String summary, Bill bill) {
         if(summary == null)
             return false;
@@ -326,7 +335,7 @@ public class LBDConnect {
 
         return true;
     }
-
+/** Comments about this class */
     private boolean parseText(String text, Bill bill) {
         if(text == null)
             return false;
@@ -340,7 +349,7 @@ public class LBDConnect {
 
         return true;
     }
-
+/** Comments about this class */
     private boolean parseMemo(String memo, Bill bill) {
         if(memo == null)
             return false;
@@ -363,7 +372,7 @@ public class LBDConnect {
 
         return true;
     }
-
+/** Comments about this class */
     private static String getInstanceKey() {
         String key = null;
 
@@ -391,7 +400,7 @@ public class LBDConnect {
 
         return key;
     }
-
+/** Comments about this class */
     private SocketChannel getSocketChannel(String url, String file) throws IOException {
         URL connectUrl = new URL(url);
         String host = connectUrl.getHost();
@@ -409,7 +418,7 @@ public class LBDConnect {
 
         return channel;
     }
-
+/** Comments about this class */
     private void writeDataFromLbdc(String uri) throws IOException {
         logger.info("Reading " + uri + " from LBDC");
         SocketChannel channel = getSocketChannel(BASE_URL, uri);

@@ -10,14 +10,22 @@ import gov.nysenate.openleg.search.SearchEngine;
 
 import java.io.File;
 import java.util.ArrayList;
+// Richiede commento
 
+/**
+ * PJDCC - Summary for class responsabilities.
+ *
+ * @author 
+ * @since 
+ * @version 
+ */
 @AssociatedFields({FieldName.MEMO})
 public class LbdcFileMemo extends LbdcFile {
-
+/** Comments about this class */
     public LbdcFileMemo(File file) {
         super(file);
     }
-
+/** Comments about this class */
     @Override
     public ArrayList<ProblemBill> getProblemBills(FieldName[] fieldNames) {
         ArrayList<ProblemBill> ret = new ArrayList<ProblemBill>();

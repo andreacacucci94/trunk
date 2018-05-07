@@ -126,7 +126,7 @@ public class Action extends BaseObject
     public void setBill(Bill bill) {
         this.bill = bill;
     }
-
+/** Comments about this class */
     @Override
     public boolean equals(Object obj) {
         if (obj != null && obj instanceof Action) {
@@ -137,13 +137,13 @@ public class Action extends BaseObject
             return false;
         }
     }
-
+/** Comments about this class */
     public int getYear() {
         java.util.Calendar cal = java.util.Calendar.getInstance();
         cal.setTime(date);
         return cal.get(java.util.Calendar.YEAR);
     }
-
+/** Comments about this class */
     public static class ByEventDate implements Comparator<Action> {
         @Override
         public int compare(Action be1, Action be2) {
@@ -154,7 +154,7 @@ public class Action extends BaseObject
             return ret*-1;
         }
     }
-
+/** Comments about this class */
     @Override
     public String toString() {
         return date.toString()+" "+text;

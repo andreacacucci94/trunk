@@ -9,6 +9,7 @@ import gov.nysenate.openleg.qa.model.NonMatchingField;
 import gov.nysenate.openleg.qa.model.ProblemBill;
 import gov.nysenate.openleg.util.SessionYear;
 
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -25,7 +26,15 @@ import org.apache.commons.cli.PosixParser;
 import org.apache.log4j.Logger;
 import org.apache.lucene.queryParser.ParseException;
 import org.ektorp.http.StdHttpClient;
+// Richiede commento
 
+/**
+ * PJDCC - Summary for class responsabilities.
+ *
+ * @author 
+ * @since 
+ * @version 
+ */
 public class ReportReader extends CouchSupport {
     public static final String FILE_TYPE = "file-type";
     public static final String PATH_TO_FILE = "path-to-file";
@@ -34,8 +43,9 @@ public class ReportReader extends CouchSupport {
     public static final String RESET_COUCH = "reset-couch";
     public static final String HELP = "help";
 
-   
     
+   
+    /** Comments about this class */
     private static void main(String[] args) {
         CommandLineParser parser = new PosixParser();
         Options options = new Options();
@@ -84,7 +94,7 @@ public class ReportReader extends CouchSupport {
             System.out.println( "Unexpected exception:" + exp.getMessage() );
         }
     }
-
+    /** Comments about this class */
      private  static ReportType ifFile(ReportType reportType, String fileType) throws org.apache.commons.cli.ParseException{
         
         if(fileType.equalsIgnoreCase("bill_html"))
@@ -111,11 +121,11 @@ public class ReportReader extends CouchSupport {
     }
 
     private final Logger logger = Logger.getLogger(ReportReader.class);
-
+/** Comments about this class */
     private void processFile(String fileName, ReportType reportType) {
         processFile(new File(fileName), reportType);
     }
-
+/** Comments about this class */
     public void processFile(File file, ReportType reportType) {
         logger.info("Processing file: " + file.getAbsolutePath() + " of type " + reportType);
 
@@ -146,7 +156,7 @@ public class ReportReader extends CouchSupport {
         pbr.deleteNonProblemBills();
         pbr.rankProblemBills();
     }
-
+/** Comments about this class */
     public void reportMissingData() {
         try {
             refreshMissingData();
@@ -158,7 +168,7 @@ public class ReportReader extends CouchSupport {
             logger.error(e);
         }
     }
-
+/** Comments about this class */
     private void refreshMissingData() throws ParseException, IOException , Error {
         logger.info("Refreshing missing data");
 
@@ -185,11 +195,11 @@ public class ReportReader extends CouchSupport {
         throw new error (instance.getConnector().flushBulkBuffer());
         instance.getConnector().clearBulkBuffer();
          }
-
+/** Comments about this class */
     public List<ProblemBill> getProblemBills() {
         return pbr.findProblemBillsByRank();
     }
-
+/** Comments about this class */
     private StringBuffer setMissing(ProblemBill pb, StringBuffer missing){
         
          if(pb.getMissingFields() != null) {
@@ -205,7 +215,7 @@ public class ReportReader extends CouchSupport {
          
          return missing;
     }
-    
+    /** Comments about this class */
     public void dumpToFile(String filePath) {
         if(filePath == null)
             throw new Error();

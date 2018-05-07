@@ -14,14 +14,22 @@ import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.List;
+// Richiede commento
 
+/**
+ * PJDCC - Summary for class responsabilities.
+ *
+ * @author 
+ * @since 
+ * @version 
+ */
 public class BillTextPDFConverter
 {
     private static Float fontSize = 12f;
     private static Float top = 740f;
     private static Float billMargin = 10f;
     private static Float resolutionMargin = 46f;
-
+/** Comments about this class */
     public static void write(IBaseObject object, OutputStream out) throws IOException, COSVisitorException, AbstractApiRequest.ApiRequestException {
         if (!(object instanceof Bill)) {
             throw new AbstractApiRequest.ApiRequestException("Unable to convert " + object.getOtype() + "s to pdf.");

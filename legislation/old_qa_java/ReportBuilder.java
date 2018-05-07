@@ -12,7 +12,15 @@ import java.util.HashMap;
 
 import org.apache.log4j.Logger;
 import org.apache.lucene.queryParser.ParseException;
+// Richiede commento
 
+/**
+ * PJDCC - Summary for class responsabilities.
+ *
+ * @author 
+ * @since 
+ * @version 
+ */
 public class ReportBuilder {
     private static Logger logger = Logger.getLogger(ReportBuilder.class);
 
@@ -21,12 +29,12 @@ public class ReportBuilder {
 
     SenateObjectSearch<Bill> longSearch;
     long newestMod ;
-
+/** Comments about this class */
     public ReportBuilder() {
         longSearch = new SenateObjectSearch<Bill>();
         newestMod = 0L;
     }
-
+/** Comments about this class */
     public HashMap<String, ProblemBill> getBillReportSet(String year)
             throws ParseException, IOException {
         // add ReportBills to map, keeping track of missing fields
@@ -82,7 +90,7 @@ public class ReportBuilder {
             }
         }
     }
-
+/** Comments about this class */
     public String formatJson(String jsonData) {
         jsonData = jsonData.substring(jsonData.indexOf(":") + 1);
         jsonData = jsonData.substring(0, jsonData.lastIndexOf("}"));

@@ -13,7 +13,13 @@ import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.ResultSetHandler;
 
 
-
+/**
+ * PJDCC - Summary for class responsabilities.
+ *
+ * @author 
+ * @since 
+ * @version 
+ */
 public class ReportDAO
 {
     
@@ -21,9 +27,9 @@ public class ReportDAO
     ArrayList<ReportError> openErrors = new ArrayList<ReportError>();
     ArrayList<ReportError> closedErrors = new ArrayList<ReportError>();
     ArrayList<ReportObservation> closedObservations = new ArrayList<ReportObservation>();
-    
+    /** Comments about this class */
     private static class JoinedReportHandler implements ResultSetHandler<ArrayList<Report>> {
-
+/** Comments about this class */
         @Override
         public ArrayList<Report> handle(ResultSet results) throws SQLException
         {
@@ -96,6 +102,7 @@ public class ReportDAO
         }
 
     }
+    /** Comments about this class */
     private static boolean controlOpenedAt(Date openedAt, Date reportEndTime){
         boolean flag = false;
         if((openedAt.equals(reportEndTime) || openedAt.before(reportEndTime))){
@@ -103,7 +110,7 @@ public class ReportDAO
         }
         return flag;
     }
-    
+    /** Comments about this class */
     private static boolean controlClosedAt(Date closedAt, Date reportEndTime){
         
         boolean flag = false;
@@ -112,7 +119,7 @@ public class ReportDAO
         }
         return flag;
     }
-    
+    /** Comments about this class */
     private static void editErrors(Date openedAt, Date closedAt, Date reportEndTime, Date reportStartTime){
         
         if (openedAt.before(reportEndTime) && controlClosedAt(closedAt, reportEndTime)) {
@@ -126,7 +133,7 @@ public class ReportDAO
             closedObservations.add(error.getObservations().iterator().next());
         }
     }
-
+/** Comments about this class */
     public static ArrayList<Report> getReports() throws SQLException
     {
         String sql = "SELECT "+
@@ -147,7 +154,7 @@ public class ReportDAO
         QueryRunner runner = new QueryRunner(Application.getDB().getDataSource());
         return runner.query(sql, new JoinedReportHandler());
     }
-
+/** Comments about this class */
     public static Report getReport(int reportId) throws SQLException
     {
         String sql = "SELECT "+

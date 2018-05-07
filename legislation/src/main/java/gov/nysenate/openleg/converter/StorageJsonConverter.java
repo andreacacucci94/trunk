@@ -46,7 +46,15 @@ import org.codehaus.jackson.map.SerializationConfig.Feature;
 import org.codehaus.jackson.node.ArrayNode;
 import org.codehaus.jackson.node.ObjectNode;
 import org.codehaus.jackson.util.DefaultPrettyPrinter;
+// Richiede commento
 
+/**
+ * PJDCC - Summary for class responsabilities.
+ *
+ * @author 
+ * @since 
+ * @version 
+ */
 @SuppressWarnings("unchecked")
 public class StorageJsonConverter
 {
@@ -58,7 +66,7 @@ public class StorageJsonConverter
     protected final PrettyPrinter prettyPrinter;
 
     private final SimpleDateFormat jsonDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
+/** Comments about this class */
     public StorageJsonConverter(Storage storage)
     {
         this.storage = storage;
@@ -69,112 +77,112 @@ public class StorageJsonConverter
         this.jsonFactory = this.objectMapper.getJsonFactory();
         this.prettyPrinter = new DefaultPrettyPrinter();
     }
-
+/** Comments about this class */
     public void write(Transcript value, File storageFile) throws IOException
     {
         write(value, new FileOutputStream(storageFile));
     }
-
+/** Comments about this class */
     public void write(Bill value, File storageFile) throws IOException
     {
         write(value, new FileOutputStream(storageFile));
     }
-
+/** Comments about this class */
     public void write(Agenda value, File storageFile) throws IOException
     {
         write(value, new FileOutputStream(storageFile));
     }
-
+/** Comments about this class */
     public void write(Meeting value, File storageFile) throws IOException
     {
         write(value, new FileOutputStream(storageFile));
     }
-
+/** Comments about this class */
     public void write(Calendar value, File storageFile) throws IOException
     {
         write(value, new FileOutputStream(storageFile));
     }
-
+/** Comments about this class */
     public String toString(Transcript value) throws IOException
     {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         write(value, stream);
         return stream.toString(this.encoding);
     }
-
+/** Comments about this class */
     public String toString(Bill value) throws IOException
     {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         write(value, stream);
         return stream.toString(this.encoding);
     }
-
+/** Comments about this class */
     public String toString(Agenda value) throws IOException
     {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         write(value, stream);
         return stream.toString(this.encoding);
     }
-
+/** Comments about this class */
     public String toString(Meeting value) throws IOException
     {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         write(value, stream);
         return stream.toString(this.encoding);
     }
-
+/** Comments about this class */
     public String toString(Calendar value) throws IOException
     {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         write(value, stream);
         return stream.toString(this.encoding);
     }
-
+/** Comments about this class */
     public Transcript readTranscript(File storageFile) throws JsonProcessingException, IOException
     {
         return readTranscript(new InputStreamReader(new FileInputStream(storageFile), this.encoding));
     }
-
+/** Comments about this class */
     public Bill readBill(File storageFile) throws JsonProcessingException, IOException
     {
         return readBill(new InputStreamReader(new FileInputStream(storageFile), this.encoding));
     }
-
+/** Comments about this class */
     public Agenda readAgenda(File storageFile) throws JsonProcessingException, IOException
     {
         return readAgenda(new InputStreamReader(new FileInputStream(storageFile), this.encoding));
     }
-
+/** Comments about this class */
     public Meeting readMeeting(File storageFile) throws JsonProcessingException, IOException
     {
         return readMeeting(new InputStreamReader(new FileInputStream(storageFile), this.encoding));
     }
-
+/** Comments about this class */
     public Calendar readCalendar(File storageFile) throws JsonProcessingException, IOException
     {
         return readCalendar(new InputStreamReader(new FileInputStream(storageFile), this.encoding));
     }
-
+/** Comments about this class */
     public Bill readBill(String data) throws JsonProcessingException, IOException
     {
         return readBill(new StringReader(data));
     }
-
+/** Comments about this class */
     public Agenda readAgenda(String data) throws JsonProcessingException, IOException
     {
         return readAgenda(new StringReader(data));
     }
-
+/** Comments about this class */
     public Meeting readMeeting(String data) throws JsonProcessingException, IOException
     {
         return readMeeting(new StringReader(data));
     }
-
+/** Comments about this class */
     public Calendar readCalendar(String data) throws JsonProcessingException, IOException
     {
         return readCalendar(new StringReader(data));
     }
-
+/** Comments about this class */
     public void write(Transcript transcript, OutputStream out) throws IOException
     {
         ObjectNode node = objectMapper.createObjectNode();
@@ -195,7 +203,7 @@ public class StorageJsonConverter
         generator.writeTree(node);
         generator.close();
     }
-
+/** Comments about this class */
     public void write(Calendar calendar, OutputStream out) throws IOException
     {
         ObjectNode node = objectMapper.createObjectNode();
@@ -212,7 +220,7 @@ public class StorageJsonConverter
         generator.writeTree(node);
         generator.close();
     }
-
+/** Comments about this class */
     public Calendar readCalendar(Reader reader) throws JsonProcessingException, IOException
     {
         JsonNode node = objectMapper.readTree(reader);
@@ -233,7 +241,7 @@ public class StorageJsonConverter
         calendar.setDataSources(new HashSet<String>((HashSet<String>)makeSet(String.class, node.get("dataSources"))));
         return calendar;
     }
-
+/** Comments about this class */
     public void write(Meeting meeting, OutputStream out) throws IOException
     {
         logger.debug("Writing Agenda: "+meeting.getOid());
@@ -253,7 +261,7 @@ public class StorageJsonConverter
         generator.writeTree(node);
         generator.close();
     }
-
+/** Comments about this class */
     public Meeting readMeeting(Reader reader) throws JsonProcessingException, IOException
     {
         JsonNode node = objectMapper.readTree(reader);
@@ -269,7 +277,7 @@ public class StorageJsonConverter
         meeting.setDataSources(new HashSet<String>((HashSet<String>)makeSet(String.class, node.get("dataSources"))));
         return meeting;
     }
-
+/** Comments about this class */
     public void write(Agenda agenda, OutputStream out) throws IOException
     {
         logger.debug("Writing Agenda: "+agenda.getOid());
@@ -286,7 +294,7 @@ public class StorageJsonConverter
         generator.writeTree(node);
         generator.close();
     }
-
+/** Comments about this class */
     public Transcript readTranscript(Reader reader) throws JsonProcessingException, IOException
     {
         JsonNode node = objectMapper.readTree(reader);
@@ -307,7 +315,7 @@ public class StorageJsonConverter
         transcript.setDataSources(new HashSet<String>((HashSet<String>)makeSet(String.class, node.get("dataSources"))));
         return transcript;
     }
-
+/** Comments about this class */
     public Agenda readAgenda(Reader reader) throws JsonProcessingException, IOException
     {
         JsonNode node = objectMapper.readTree(reader);
@@ -323,7 +331,7 @@ public class StorageJsonConverter
         agenda.setDataSources(new HashSet<String>((HashSet<String>)makeSet(String.class, node.get("dataSources"))));
         return agenda;
     }
-
+/** Comments about this class */
     public void write(Bill bill, OutputStream out) throws IOException
     {
         logger.debug("Writing Bill: "+bill.getBillId());
@@ -358,7 +366,7 @@ public class StorageJsonConverter
         generator.writeTree(node);
         generator.close();
     }
-
+/** Comments about this class */
     public Bill readBill(Reader reader) throws JsonProcessingException, IOException
     {
         JsonNode node = objectMapper.readTree(reader);
@@ -399,7 +407,7 @@ public class StorageJsonConverter
         bill.setDataSources(new HashSet<String>((HashSet<String>)makeSet(String.class, node.get("dataSources"))));
         return bill;
     }
-
+/** Comments about this class */
     public List<? extends Object> makeList(Class<? extends Object> cls, JsonNode array) {
         List<Object> list = new ArrayList<Object>();
         Iterator<JsonNode> iter = array.getElements();
@@ -428,7 +436,7 @@ public class StorageJsonConverter
 
         return list;
     }
-    
+    /** Comments about this class */
     private List<Object> workOnList(Class<? extends Object> cls, Iterator<JsonNode> iter, List<Object> list){
         
         
@@ -459,12 +467,12 @@ public class StorageJsonConverter
         
         return list;
     }
-
+/** Comments about this class */
     public Set<? extends Object> makeSet(Class<? extends Object> cls, JsonNode array)
     {
         return new HashSet<Object>(makeList(cls, array));
     }
-
+/** Comments about this class */
     public CalendarEntry makeCalendarEntry(JsonNode node)
     {
         if (node.isNull()) {
@@ -481,7 +489,7 @@ public class StorageJsonConverter
             return entry;
         }
     }
-
+/** Comments about this class */
     public Sequence makeSequence(JsonNode node)
     {
         if (node.isNull()) {
@@ -501,7 +509,7 @@ public class StorageJsonConverter
             return sequence;
         }
     }
-
+/** Comments about this class */
     public Section makeSection(JsonNode node)
     {
         if (node.isNull()) {
@@ -520,7 +528,7 @@ public class StorageJsonConverter
             return section;
         }
     }
-
+/** Comments about this class */
     public Supplemental makeSupplemental(JsonNode node)
     {
         if (node.isNull()) {
@@ -546,33 +554,35 @@ public class StorageJsonConverter
             return supplemental;
         }
     }
-
+/** Comments about this class */
     public Bill makeBill(JsonNode node)
     {
         return node.isNull() ? null : (Bill)storage.get(node.asText(), Bill.class);
     }
-
+/** Comments about this class */
     public Meeting makeMeeting(JsonNode node)
     {
         return node.isNull() ? null : (Meeting)storage.get(node.asText(), Meeting.class);
     }
-
+/** Comments about this class */
     public Agenda makeAgenda(JsonNode node)
     {
         return node.isNull() ? null : (Agenda)storage.get(node.asText(), Agenda.class);
     }
-
+/** Comments about this class */
     public Date makeDate(JsonNode node)
     {
+    	synchronized(dateFormat) {
         try {
             return node.isNull() ? null : jsonDateFormat.parse(node.asText());
         }
         catch (ParseException e) {
             logger.error("Invalid json date format: "+node.asText(), e);
             return null;
+        	}
         }
     }
-
+/** Comments about this class */
     public Person makePerson(JsonNode node) {
         if (node.isNull()) {
             return null;
@@ -589,7 +599,7 @@ public class StorageJsonConverter
             return person;
         }
     }
-
+/** Comments about this class */
     public Action makeAction(JsonNode node)
     {
         if (node.isNull()) {
@@ -608,7 +618,7 @@ public class StorageJsonConverter
             return action;
         }
     }
-
+/** Comments about this class */
     public Vote makeVote(JsonNode node)
     {
         if (node.isNull()) {
@@ -635,7 +645,7 @@ public class StorageJsonConverter
             return vote;
         }
     }
-
+/** Comments about this class */
     public Addendum makeAddendum(JsonNode node)
     {
         if (node.isNull()) {
@@ -657,7 +667,7 @@ public class StorageJsonConverter
             return addendum;
         }
     }
-
+/** Comments about this class */
     public ArrayNode makeArrayNode(Collection<? extends Object> list)
     {
         ArrayNode arrayNode = objectMapper.createArrayNode();
@@ -685,7 +695,7 @@ public class StorageJsonConverter
         }
         return arrayNode;
     }
-    
+    /** Comments about this class */
     private ArrayNode workOnArrayNode(ArrayNode arrayNode, Object item){
             
         if (Addendum.class.isInstance(item)) {
@@ -715,7 +725,7 @@ public class StorageJsonConverter
         
         return arrayNode;
     }
-
+/** Comments about this class */
     public String makeNode(Bill bill)
     {
         if (bill != null) {
@@ -725,7 +735,7 @@ public class StorageJsonConverter
             return null;
         }
     }
-
+/** Comments about this class */
     public String makeNode(Meeting meeting)
     {
         if (meeting != null) {
@@ -735,7 +745,7 @@ public class StorageJsonConverter
             return null;
         }
     }
-
+/** Comments about this class */
     public String makeNode(Agenda agenda)
     {
         if (agenda != null) {
@@ -745,17 +755,19 @@ public class StorageJsonConverter
             return null;
         }
     }
-
+/** Comments about this class */
     public String makeNode(Date date)
     {
+    	synchronized(dateFormat) {
         if (date != null) {
             return jsonDateFormat.format(date);
         }
         else {
             return null;
+        	}
         }
     }
-
+/** Comments about this class */
     public JsonNode makeNode(CalendarEntry entry)
     {
         if (entry != null) {
@@ -772,7 +784,7 @@ public class StorageJsonConverter
             return objectMapper.createObjectNode().nullNode();
         }
     }
-
+/** Comments about this class */
     public JsonNode makeNode(Section section)
     {
         if (section != null) {
@@ -788,7 +800,7 @@ public class StorageJsonConverter
             return objectMapper.createObjectNode().nullNode();
         }
     }
-
+/** Comments about this class */
     public JsonNode makeNode(Sequence sequence)
     {
         if (sequence != null) {
@@ -805,7 +817,7 @@ public class StorageJsonConverter
             return objectMapper.createObjectNode().nullNode();
         }
     }
-
+/** Comments about this class */
     public JsonNode makeNode(Supplemental supplemental)
     {
         if (supplemental != null) {
@@ -822,7 +834,7 @@ public class StorageJsonConverter
             return objectMapper.createObjectNode().nullNode();
         }
     }
-
+/** Comments about this class */
     public JsonNode makeNode(Addendum addendum)
     {
         if (addendum != null) {
@@ -842,7 +854,7 @@ public class StorageJsonConverter
             return objectMapper.createObjectNode().nullNode();
         }
     }
-
+/** Comments about this class */
     public JsonNode makeNode(Person person) {
         if (person != null) {
             ObjectNode node = objectMapper.createObjectNode();
@@ -858,7 +870,7 @@ public class StorageJsonConverter
             return objectMapper.createObjectNode().nullNode();
         }
     }
-
+/** Comments about this class */
     public JsonNode makeNode(Action action)
     {
         if (action != null) {
@@ -878,7 +890,7 @@ public class StorageJsonConverter
             return objectMapper.createObjectNode().nullNode();
         }
     }
-
+/** Comments about this class */
     public JsonNode makeNode(Vote vote)
     {
         if (vote != null) {

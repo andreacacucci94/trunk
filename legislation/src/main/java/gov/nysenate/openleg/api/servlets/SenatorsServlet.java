@@ -21,14 +21,22 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.codehaus.jackson.map.ObjectMapper;
+// Richiede commento
 
+/**
+ * PJDCC - Summary for class responsabilities.
+ *
+ * @author 
+ * @since 
+ * @version 
+ */
 @SuppressWarnings("serial")
 public class SenatorsServlet extends HttpServlet
 {
     private static Logger logger = Logger.getLogger(SenatorsServlet.class);
 
     private static Pattern pathPattern = Pattern.compile("/([0-9]{4}).*");
-
+/** Comments about this class */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
@@ -76,13 +84,13 @@ public class SenatorsServlet extends HttpServlet
             break;
         }
     }
-
+/** Comments about this class */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
         doGet(request, response);
     }
-
+/** Comments about this class */
     @Override
     public void init() throws ServletException
     {

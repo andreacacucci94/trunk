@@ -23,13 +23,21 @@ import org.codehaus.jackson.map.SerializationConfig;
 import org.codehaus.jackson.map.SerializationConfig.Feature;
 import org.codehaus.jackson.map.type.CollectionType;
 import org.codehaus.jackson.map.type.SimpleType;
+// Richiede commento
 
+/**
+ * PJDCC - Summary for class responsabilities.
+ *
+ * @author 
+ * @since 
+ * @version 
+ */
 public class CommitteeWriter {
 
-    public static final String FILE = "file";
-    public static final String API_KEY = "api-key";
-    public static final String HELP = "help";
-
+    private static final String FILE = "file";
+    private static final String API_KEY = "api-key";
+    private static final String HELP = "help";
+/** Comments about this class */
     public static void main(String[] args) throws JsonGenerationException, JsonMappingException, IOException {
         CommitteeWriter writer = new CommitteeWriter();
 
@@ -61,7 +69,7 @@ public class CommitteeWriter {
             logger.error(e);
         }
     }
-
+/** Comments about this class */
     private static Logger logger = Logger.getLogger(CommitteeWriter.class);
 
     /**
@@ -70,10 +78,11 @@ public class CommitteeWriter {
      * @param filePath
      * @param mapper
      */
-    public void writeCommitteeJson(String apiKey, String filePath, ObjectMapper mapper) {
-        writeCommitteeJson(apiKey, new File(filePath), mapper);
+    public  void writeCommitteeJson(String apiKey, String filePath, ObjectMapper mapper ,HttpServletRequest req ) {
+        
+        writeCommitteeJson(apiKey, new File(req.getParameter("file")).getName(), mapper);
     }
-
+/** Comments about this class */
     public void writeCommitteeJson(String apiKey, File file, ObjectMapper mapper) {
         try {
             mapper.writeValue(file,
@@ -86,11 +95,11 @@ public class CommitteeWriter {
             logger.error(e);
         }
     }
-
+/** Comments about this class */
     public ArrayList<Committee> getCommitteesFromJson(String filePath, ObjectMapper mapper) {
         return getCommitteesFromJson(new File(filePath), mapper);
     }
-
+/** Comments about this class */
     public ArrayList<Committee> getCommitteesFromJson(File file, ObjectMapper mapper) {
         CollectionType type = CollectionType.construct(ArrayList.class, SimpleType.construct(Committee.class));
 
@@ -110,20 +119,20 @@ public class CommitteeWriter {
 
         return committees;
     }
-
+/** Comments about this class */
     public ArrayList<Committee> getCommitteesFromServices(String apiKey) {
 //        SenateServicesFactory factory = new SenateServicesFactory();
 //        SenateServicesDAO dao = factory.createSenateServicesDAO(apiKey);
 //        return dao.getCommittees();
         return null;
     }
-
+/** Comments about this class */
     public ArrayList<String> getCommitteeNamesFromLbdc() {
         LBDConnect lbd = LBDConnect.getInstance();
 
         return lbd.getSenateCommittees();
     }
-
+/** Comments about this class */
     public ArrayList<Committee> insertsectCommittees(ArrayList<String> committeeNames, ArrayList<Committee> committees) {
         for(int i = committees.size()-1; i >= 0; i--) {
             Committee committee = committees.get(i);
@@ -138,13 +147,13 @@ public class CommitteeWriter {
         }
         return committees;
     }
-
+/** Comments about this class */
     public void setMemberKeys(ArrayList<Member> members) {
         for(Member member:members) {
             member.setShortName(getSenatorKey(member.getName()));
         }
     }
-
+/** Comments about this class */
     public String getSenatorKey(String memberName) {
         String senatorKey = memberName.replaceAll(
                 "(?i)( (jr|sr)\\.?)", "");
@@ -152,7 +161,7 @@ public class CommitteeWriter {
         senatorKey = tuple[tuple.length - 1].toLowerCase();
         return senatorKey;
     }
-
+/** Comments about this class */
     public static ObjectMapper getMapper() {
         ObjectMapper mapper = new ObjectMapper();
         SerializationConfig cnfg = mapper.getSerializationConfig();

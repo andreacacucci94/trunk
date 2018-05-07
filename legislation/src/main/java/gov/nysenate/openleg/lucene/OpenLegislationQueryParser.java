@@ -8,9 +8,18 @@ import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.document.FieldType;
 import org.apache.lucene.queryparser.flexible.standard.StandardQueryParser;
 import org.apache.lucene.queryparser.flexible.standard.config.NumericConfig;
+// Richiede commento
 
+/**
+ * PJDCC - Summary for class responsabilities.
+ *
+ * @author 
+ * @since 
+ * @version 
+ */
 public class OpenLegislationQueryParser extends StandardQueryParser
 {
+    /** Comments about this class */
     public OpenLegislationQueryParser(Analyzer analyzer)
     {
         super(analyzer);

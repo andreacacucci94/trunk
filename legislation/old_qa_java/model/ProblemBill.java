@@ -7,7 +7,15 @@ import java.util.HashMap;
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.ektorp.support.CouchDbDocument;
 import org.ektorp.support.TypeDiscriminator;
+// Richiede commento
 
+/**
+ * PJDCC - Summary for class responsabilities.
+ *
+ * @author 
+ * @since 
+ * @version 
+ */
 @SuppressWarnings("serial")
 public class ProblemBill extends CouchDbDocument {
 
@@ -21,78 +29,78 @@ public class ProblemBill extends CouchDbDocument {
 
     ArrayList<String> missingFields;
     HashMap<String, NonMatchingField> nonMatchingFields;
-
+/** Comments about this class */
     public ProblemBill() {
 
     }
-
+/** Comments about this class */
     public ProblemBill(String oid, Long modified) {
         this.setId(oid);
         this.oid = oid;
         this.modified = modified;
     }
-
+/** Comments about this class */
     public String getOid() {
         return oid;
     }
-
+/** Comments about this class */
     public Long getModified() {
         return modified;
     }
-
+/** Comments about this class */
     public Long getLastReported() {
         return lastReported;
     }
-
+/** Comments about this class */
     public Double getRank() {
         return rank;
     }
-
+/** Comments about this class */
     public ArrayList<String> getMissingFields() {
         return missingFields;
     }
-
+/** Comments about this class */
     public HashMap<String, NonMatchingField> getNonMatchingFields() {
         return nonMatchingFields;
     }
-
+/** Comments about this class */
     public void setOid(String oid) {
         this.oid = oid;
     }
-
+/** Comments about this class */
     public void setModified(Long modified) {
         this.modified = modified;
     }
-
+/** Comments about this class */
     public void setLastReported(Long lastReported) {
         this.lastReported = lastReported;
     }
-
+/** Comments about this class */
     public void setRank(Double rank) {
         this.rank = rank;
     }
-
+/** Comments about this class */
     public void setMissingFields(ArrayList<String> missingFields) {
         this.missingFields = missingFields;
     }
-
+/** Comments about this class */
     public void setNonMatchingFields(
             HashMap<String, NonMatchingField> nonMatchingFields) {
         this.nonMatchingFields = nonMatchingFields;
     }
-
+/** Comments about this class */
     public void addMissingField(String field) {
         if(this.missingFields == null)
             this.missingFields = new ArrayList<String>();
         missingFields.add(field);
     }
-
+/** Comments about this class */
     public void addNonMatchingField(NonMatchingField nonMatchingField) {
         if(this.nonMatchingFields == null)
             this.nonMatchingFields = new HashMap<String, NonMatchingField>();
         nonMatchingFields.put(nonMatchingField.getField(), nonMatchingField);
     }
-
+/** Comments about this class */
     @JsonIgnore
     public static final long ONE_DAY_MS = 86400000L;
 
@@ -123,7 +131,7 @@ public class ProblemBill extends CouchDbDocument {
 
         return new BigDecimal(heat).setScale(2, BigDecimal.ROUND_UP).doubleValue();
     }
-
+/** Comments about this class */
     @JsonIgnore
     public static ProblemBill merge(ProblemBill theNew, ProblemBill theOld) {
         theOld.setModified(theNew.getModified());
@@ -156,7 +164,7 @@ public class ProblemBill extends CouchDbDocument {
         /* assume old version already has revision and id for couch */
         return theOld;
     }
-
+/** Comments about this class */
     public static ProblemBill removeNonMatchingFields(ProblemBill problemBill, FieldName[] fieldNames) {
         if(problemBill.getNonMatchingFields() != null) {
             for(FieldName fieldName:fieldNames) {

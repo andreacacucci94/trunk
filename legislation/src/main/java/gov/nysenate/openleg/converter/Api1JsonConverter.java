@@ -29,34 +29,42 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.map.SerializationConfig.Feature;
 import org.codehaus.jackson.node.ArrayNode;
 import org.codehaus.jackson.node.ObjectNode;
+// Richiede commento
 
+/**
+ * PJDCC - Summary for class responsabilities.
+ *
+ * @author 
+ * @since 
+ * @version 
+ */
 public class Api1JsonConverter
 {
     protected final String encoding = "UTF-8";
     protected final JsonFactory jsonFactory;
     protected final ObjectMapper objectMapper;
-
+/** Comments about this class */
     public Api1JsonConverter()
     {
         this.objectMapper = new ObjectMapper();
         this.objectMapper.enable(Feature.INDENT_OUTPUT);
         this.jsonFactory = this.objectMapper.getJsonFactory();
     }
-
+/** Comments about this class */
     public String toString(SenateResponse value) throws IOException
     {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         write(value, stream);
         return stream.toString(this.encoding);
     }
-
+/** Comments about this class */
     public String toString(BaseObject value) throws IOException
     {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         write(value, stream);
         return stream.toString(this.encoding);
     }
-
+/** Comments about this class */
     public void write(BaseObject object, OutputStream out) throws IOException
     {
         if (object.getOtype().equals("bill")) {
@@ -75,7 +83,7 @@ public class Api1JsonConverter
             throw new RuntimeException("Invalid base object otype: "+object.getOtype());
         }
     }
-
+/** Comments about this class */
     public void write(SenateResponse response, OutputStream out) throws IOException
     {
         ArrayNode array = objectMapper.createArrayNode();
@@ -115,7 +123,7 @@ public class Api1JsonConverter
         generator.writeTree(array);
         generator.close();
     }
-
+/** Comments about this class */
     protected void write(Calendar calendar, OutputStream out) throws IOException
     {
         ObjectNode node = objectMapper.createObjectNode();
@@ -132,7 +140,7 @@ public class Api1JsonConverter
         generator.writeTree(wrapper);
         generator.close();
     }
-
+/** Comments about this class */
     protected void write(Meeting meeting, OutputStream out) throws IOException
     {
         ObjectNode node = objectMapper.createObjectNode();
@@ -151,7 +159,7 @@ public class Api1JsonConverter
         generator.writeTree(wrapper);
         generator.close();
     }
-
+/** Comments about this class */
     protected void write(Transcript transcript, OutputStream out) throws IOException
     {
         ObjectNode node = objectMapper.createObjectNode();
@@ -167,7 +175,7 @@ public class Api1JsonConverter
         generator.writeTree(wrapper);
         generator.close();
     }
-
+/** Comments about this class */
     protected void write(Bill bill, OutputStream out) throws IOException
     {
         ObjectNode node = objectMapper.createObjectNode();
@@ -192,7 +200,7 @@ public class Api1JsonConverter
         generator.writeTree(wrapper);
         generator.close();
     }
-
+/** Comments about this class */
     protected JsonNode makeNode(Supplemental supplemental)
     {
         if (supplemental != null) {
@@ -209,7 +217,7 @@ public class Api1JsonConverter
             return objectMapper.createObjectNode().nullNode();
         }
     }
-
+/** Comments about this class */
     protected JsonNode makeNode(Section section)
     {
         if (section != null) {
@@ -225,7 +233,7 @@ public class Api1JsonConverter
             return objectMapper.createObjectNode().nullNode();
         }
     }
-
+/** Comments about this class */
     protected JsonNode makeNode(Sequence sequence)
     {
         if (sequence != null) {
@@ -241,7 +249,7 @@ public class Api1JsonConverter
             return objectMapper.createObjectNode().nullNode();
         }
     }
-
+/** Comments about this class */
     protected JsonNode makeNode(CalendarEntry entry)
     {
         if (entry != null) {
@@ -257,7 +265,7 @@ public class Api1JsonConverter
             return objectMapper.createObjectNode().nullNode();
         }
     }
-
+/** Comments about this class */
     protected JsonNode makeNode(Bill bill)
     {
         if (bill != null) {
@@ -281,12 +289,12 @@ public class Api1JsonConverter
             return objectMapper.createObjectNode().nullNode();
         }
     }
-
+/** Comments about this class */
     protected String makeNode(Date date)
     {
         return (date != null) ? String.valueOf(date.getTime()) : null;
     }
-
+/** Comments about this class */
     protected JsonNode makeNode(Person person)
     {
         if (person != null) {
@@ -298,7 +306,7 @@ public class Api1JsonConverter
             return objectMapper.createObjectNode().nullNode();
         }
     }
-
+/** Comments about this class */
     protected JsonNode makeNode(Vote vote)
     {
         if (vote != null) {
@@ -338,7 +346,7 @@ public class Api1JsonConverter
             return objectMapper.createObjectNode().nullNode();
         }
     }
-
+/** Comments about this class */
     protected JsonNode makeNode(Action action)
     {
         if (action != null) {
@@ -351,7 +359,7 @@ public class Api1JsonConverter
             return objectMapper.createObjectNode().nullNode();
         }
     }
-
+/** Comments about this class */
     protected ArrayNode makeArrayNode(Collection<? extends Object> list)
     {
         ArrayNode arrayNode = objectMapper.createArrayNode();
@@ -381,6 +389,7 @@ public class Api1JsonConverter
     
     return arrayNode;
 }
+    /** Comments about this class */
     private ArrayNode controlItem(Object item, ArrayNode arrayNode){
         
         if (Sequence.class.isInstance(item)) {

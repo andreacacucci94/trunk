@@ -36,26 +36,23 @@ public class UpdatesServlet extends HttpServlet
 
     private static class ChangeHandler implements ResultSetHandler<ArrayList<Change>> {
 
-        @Override
-        public ArrayList<Change> handle(ResultSet results) throws SQLException
-        {
-            ArrayList<Change> changes = new ArrayList<Change>();
-            while(results.next()) {
-                    try {
-                        changes.add(new Change(
-                            results.getString("oid"),
-                            results.getString("otype"),
-                            Storage.Status.valueOf(results.getString("status")),
-                            mysqlDateFormat.parse(results.getString("time"))
-                        ));
-                    }
-                    catch (ParseException e) {
-                        logger.error("Invalid change.time format", e);
-                    }
-            }
-            return changes;
-        }
-    }
+		@Override
+		public ArrayList<Change> handle(ResultSet results) throws SQLException {
+			synchronized (mysqlDateFormat) {
+			ArrayList<Change> changes = new ArrayList<Change>();
+			while (results.next()) {
+				try {
+					changes.add(new Change(results.getString("oid"), results.getString("otype"),
+							Storage.Status.valueOf(results.getString("status")),
+							mysqlDateFormat.parse(results.getString("time"))));
+				} catch (ParseException e) {
+					logger.error("Invalid change.time format", e);
+				}
+			}
+			return changes;
+			}
+		}
+	}
 
     private static final Logger logger = Logger.getLogger(UpdatesServlet.class);
 
@@ -102,14 +99,17 @@ public class UpdatesServlet extends HttpServlet
 
         try {
             if (!start.isEmpty()) {
+                synchronized (dateFormat) {
                 startDate = dateFormat.parse(start+" 00:00:00");
                 request.setAttribute("startDate", startDate);
-            }
+            }}
 
             if (!start.isEmpty()) {
+                synchronized (dateFormat) {
+            
                 endDate = dateFormat.parse(end+" 23:59:59");
                 request.setAttribute("endDate", endDate);
-            }
+            }}
 
             otype = otype.toLowerCase();
             if (!otypes.contains(otype)) {
@@ -155,14 +155,16 @@ public class UpdatesServlet extends HttpServlet
         List<Object> params = new ArrayList<Object>();
 
         if (start != null) {
+            synchronized (mysqlDateFormat) {
             query += " AND time >= ?";
             params.add(mysqlDateFormat.format(start));
-        }
+        }}
 
         if (end != null) {
+            synchronized (dateFormat) {
             query += " AND time <= ?";
             params.add(mysqlDateFormat.format(end));
-        }
+        }}
 
         if (otype != null && !otype.isEmpty()) {
             query += " AND otype = ?";

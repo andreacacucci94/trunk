@@ -29,7 +29,15 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.codehaus.jackson.map.DeserializationConfig;
 import org.codehaus.jackson.map.ObjectMapper;
+// Richiede commento
 
+/**
+ * PJDCC - Summary for class responsabilities.
+ *
+ * @author 
+ * @since 
+ * @version 
+ */
 public class ApiHelper implements OpenLegConstants {
     private final static DateFormat DATE_FORMAT_MED = SimpleDateFormat.getDateInstance(SimpleDateFormat.MEDIUM);
     private final static DateFormat DATE_FORMAT_CUSTOM = new SimpleDateFormat("MMM d, yyyy");
@@ -37,7 +45,7 @@ public class ApiHelper implements OpenLegConstants {
     private static Logger logger = Logger.getLogger(ApiHelper.class);
 
     private static ObjectMapper mapper = new ObjectMapper();
-
+/** Comments about this class */
     public static ObjectMapper getMapper() {
         if(mapper == null) {
             mapper = new ObjectMapper();
@@ -46,7 +54,7 @@ public class ApiHelper implements OpenLegConstants {
 
         return mapper;
     }
-
+/** Comments about this class */
     private boolean controlSr(SenateResponse sr){
         boolean flag =false;
         
@@ -56,7 +64,7 @@ public class ApiHelper implements OpenLegConstants {
         
         return flag;
     }
-    
+    /** Comments about this class */
     private String editTitle(String type, String title, Bill bill){
 
         if (bill.getTitle() != null)
@@ -66,7 +74,7 @@ public class ApiHelper implements OpenLegConstants {
         
         return title;
     }
-    
+    /** Comments about this class */
     private HashMap<String, String> editSponsors (HashMap<String, String> fields, Bill bill){
         
         if (bill.getSponsor() != null)
@@ -76,7 +84,7 @@ public class ApiHelper implements OpenLegConstants {
         
         return fields;
     }
-    
+    /** Comments about this class */
     private HashMap<String, String> editCalendar(HashMap<String, String> fields, Calendar calendar){
         
         if (calendar.getType() == null)
@@ -91,7 +99,7 @@ public class ApiHelper implements OpenLegConstants {
         return fields;
 
     }
-    
+    /** Comments about this class */
     private String editTitle(String title, Transcript transcript){
         
          if (transcript.getTimeStamp() != null)
@@ -102,11 +110,13 @@ public class ApiHelper implements OpenLegConstants {
          
          return title;
     }
-    
+    /** Comments about this class */
     private String suppCase(String summary, HashMap<String, String> fields, Supplemental supp){
         
+        synchronized(dateFormat) {
+            
         if (supp.getCalendarDate() != null) {
-        fields.put("date", DATE_FORMAT_CUSTOM.format(supp.getCalendarDate()));
+        fields.put("date", dateFormat.format(supp.getCalendarDate()));
 
         summary = "";
 
@@ -122,7 +132,7 @@ public class ApiHelper implements OpenLegConstants {
         }
     } else if (supp.getSequences() != null && supp.getSequences().size() > 0) {
 
-        fields.put("date", DATE_FORMAT_CUSTOM.format(supp.getSequences().get(0).getActCalDate()));
+        fields.put("date", dateFormat.format(supp.getSequences().get(0).getActCalDate()));
 
         int total = 0;
         for(Sequence seq:supp.getSequences()) {
@@ -133,8 +143,8 @@ public class ApiHelper implements OpenLegConstants {
     }
         
         return summary;
-    }
-    
+    }}
+    /** Comments about this class */
     public static ArrayList<Result> buildSearchResultList(SenateResponse sr) {
 
         ArrayList<Result> resultList = new ArrayList<Result>();
@@ -181,7 +191,7 @@ public class ApiHelper implements OpenLegConstants {
 
         return sr.getResults();
     }
-    
+    /** Comments about this class */
     private HashMap<String, String> editVote(HashMap<String,String> fields, Vote vote){
         
         if (vote.getVoteType() == Vote.VOTE_TYPE_COMMITTEE)
@@ -192,8 +202,10 @@ public class ApiHelper implements OpenLegConstants {
         
         return fields;
     }
-    
+    /** Comments about this class */
     private Result editResult(BaseObject resultObj, String type,Result result ){
+        
+        synchronized (dateFormat) {
         
         String title = "";
         String summary = "";
@@ -250,7 +262,7 @@ public class ApiHelper implements OpenLegConstants {
 
             title = billEvent.getText();
 
-            fields.put("date", DATE_FORMAT_MED.format(billEvent
+            fields.put("date", dateFormat.format(billEvent
                     .getDate()));
             fields.put("billno", billId);
         } else if (type.equals("vote")) {
@@ -275,8 +287,8 @@ public class ApiHelper implements OpenLegConstants {
         
         
         return result;
-    }
-
+    } }
+/** Comments about this class */
     public static String dateReplace(String term) {
         Pattern  p = Pattern.compile("(\\d{1,2}[-]?){2}(\\d{2,4})T\\d{2}-\\d{2}");
         Matcher m = p.matcher(term);
@@ -300,13 +312,13 @@ public class ApiHelper implements OpenLegConstants {
 
         return term;
     }
-
+/** Comments about this class */
     public static String unwrapJson(String jsonData) {
         jsonData = jsonData.substring(jsonData.indexOf(":")+1);
         jsonData = jsonData.substring(0,jsonData.lastIndexOf("}"));
         return jsonData;
     }
-
+/** Comments about this class */
     public static ApiType getApiType(String type) {
         for(ApiType apiType:ApiType.values()) {
             if(apiType.type().equalsIgnoreCase(type)) {
@@ -315,7 +327,7 @@ public class ApiHelper implements OpenLegConstants {
         }
         return null;
     }
-
+/** Comments about this class */
     public static String buildBillWildCardQuery(String billType, String billWildcard, String sessionYear) {
         return TextFormatter.append(billType,":((",
                 billWildcard, "-", sessionYear,
@@ -323,7 +335,7 @@ public class ApiHelper implements OpenLegConstants {
                 " TO ", billWildcard, "Z-", sessionYear,
                 "]) AND ", billWildcard, "*-", sessionYear, ")");
     }
-
+/** Comments about this class */
     public static String formatDate(String term, String command) {
         Date date = null;
 

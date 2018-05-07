@@ -29,7 +29,15 @@ import javax.xml.bind.UnmarshalException;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
+// Richiede commento
 
+/**
+ * PJDCC - Summary for class responsabilities.
+ *
+ * @author 
+ * @since 
+ * @version 
+ */
 public class Environment
 {
     private final Logger logger = Logger.getLogger(Environment.class);
@@ -39,12 +47,12 @@ public class Environment
     private final File workingDirectory;
     private final File storageDirectory;
     private final File archiveDirectory;
-
+/** Comments about this class */
     public Environment(String directoryPath)
     {
         this(new File(directoryPath));
     }
-
+/** Comments about this class */
     public Environment(Config config, String prefix)
     {
         this.directory = new File(config.getValue(prefix+".directory"));
@@ -53,7 +61,7 @@ public class Environment
         this.storageDirectory = new File(config.getValue(prefix+".storage"));
         this.archiveDirectory = new File(config.getValue(prefix+".archive"));
     }
-
+/** Comments about this class */
     public Environment(File directory)
     {
         this.directory = directory;
@@ -62,32 +70,32 @@ public class Environment
         this.storageDirectory = new File(directory,"json");
         this.archiveDirectory = new File(directory,"archive");
     }
-
+/** Comments about this class */
     public File getDirectory()
     {
         return directory;
     }
-
+/** Comments about this class */
     public File getStagingDirectory()
     {
         return stagingDirectory;
     }
-
+/** Comments about this class */
     public File getWorkingDirectory()
     {
         return workingDirectory;
     }
-
+/** Comments about this class */
     public File getStorageDirectory()
     {
         return storageDirectory;
     }
-
+/** Comments about this class */
     public File getArchiveDirectory()
     {
         return archiveDirectory;
     }
-
+/** Comments about this class */
     public void create() throws IOException
     {
         FileUtils.forceMkdir(directory);
@@ -96,12 +104,12 @@ public class Environment
         FileUtils.forceMkdir(storageDirectory);
         FileUtils.forceMkdir(archiveDirectory);
     }
-
+/** Comments about this class */
     public void delete() throws IOException
     {
         FileUtils.deleteQuietly(directory);
     }
-
+/** Comments about this class */
     public void reset() throws IOException
     {
         delete();
@@ -110,17 +118,17 @@ public class Environment
 
     ///////////////////////////////////////////////
     // Staging Stuff!
-
+/** Comments about this class */
     public void stageFiles(File...files) throws IOException
     {
         stageFiles(Arrays.asList(files));
     }
-
+/** Comments about this class */
     public void stageFiles(Collection<File> files) throws IOException
     {
         stageFiles(files.iterator());
     }
-
+/** Comments about this class */
     public void stageFiles(Iterator<File> fileIterator) throws IOException
     {
         while (fileIterator.hasNext()) {
@@ -140,17 +148,17 @@ public class Environment
     private static Pattern senagendaEndPattern = Pattern.compile("</senagenda.+");
     private static Pattern sencalendarOpenPattern = Pattern.compile("<sencalendar.+");
     private static Pattern sencalendarEndPattern = Pattern.compile("</sencalendar.+");
-
+/** Comments about this class */
     public void collateFiles(File...files) throws IOException
     {
         collateFiles(Arrays.asList(files));
     }
-
+/** Comments about this class */
     public void collateFiles(Collection<File> files) throws IOException
     {
         collateFiles(files.iterator());
     }
-
+/** Comments about this class */
     public void collateFiles(Iterator<File> fileIterator) throws IOException
     {
         File workDirectory = getWorkingDirectory();
@@ -164,9 +172,16 @@ public class Environment
         FileUtils.forceMkdir(calendarDirectory);
         FileUtils.forceMkdir(annotationDirectory);
         FileUtils.forceMkdir(transcriptDirectory);
-
+        
+        File file = null;
+        
+        // br viene inizializzato con workDirectory solo per non inizializzarlo nel ciclo. Tale modifica non produrrà effetti.
+        BufferedReader br = new BufferedReader(new StringReader(FileUtils.readFileToString(workDirectory, "UTF-8")));
+        File calendarFile = null;
+        File agendaFile = null;
+        File annotationFile = null;
         while(fileIterator.hasNext()) {
-            File file = fileIterator.next();
+            file = fileIterator.next();
             logger.info("Processing: "+file);
 
             int partsCounter = 1;
@@ -180,22 +195,23 @@ public class Environment
 
             }
             else {
-                BufferedReader br = new BufferedReader(new StringReader(FileUtils.readFileToString(file, "UTF-8")));
+                br = new BufferedReader(new StringReader(FileUtils.readFileToString(file, "UTF-8")));
 
                 String line;
                 while((line = br.readLine()) != null) {
                     if(sencalendarOpenPattern.matcher(line).find()) {
-                        File calendarFile = new File(calendarDirectory, file.getName()+"-calendar-"+partsCounter+".xml");
+                        calendarFile = new File(calendarDirectory, file.getName()+"-calendar-"+partsCounter+".xml");
                         extractXmlDocumentToFile(br,line,sencalendarEndPattern, calendarFile);
                         partsCounter++;
+                        
                     }
                     else if(senagendaOpenPattern.matcher(line).find()) {
-                        File agendaFile = new File(agendaDirectory, file.getName()+"-agenda-"+partsCounter+".xml");
+                        agendaFile = new File(agendaDirectory, file.getName()+"-agenda-"+partsCounter+".xml");
                         extractXmlDocumentToFile(br,line,senagendaEndPattern, agendaFile);
                         partsCounter++;
                     }
                     else if(senannotatedOpenPattern.matcher(line).find()) {
-                        File annotationFile = new File(annotationDirectory, file.getName()+"-annotation-"+partsCounter+".xml");
+                        annotationFile = new File(annotationDirectory, file.getName()+"-annotation-"+partsCounter+".xml");
                         extractXmlDocumentToFile(br,line,senannotatedEndPattern, annotationFile);
                         partsCounter++;
                     }
@@ -207,7 +223,7 @@ public class Environment
             }
         }
     }
-
+/** Comments about this class */
     private void extractXmlDocumentToFile(BufferedReader br, String openTag, Pattern closePattern, File destination) throws IOException
     {
         logger.info("Extracting: "+destination);
@@ -247,7 +263,7 @@ public class Environment
 
     ///////////////////////////////////////////////////
     // Ingest Stuff
-
+/** Comments about this class */
     public static class FileNameComparator implements Comparator<File>
     {
         public int compare(File a, File b)
@@ -255,7 +271,7 @@ public class Environment
             return a.getName().compareTo(b.getName());
         }
     }
-
+/** Comments about this class */
     public HashMap<String, Change> ingestFiles(File...files)
     {
         return ingestFiles(Arrays.asList(files));
@@ -267,7 +283,7 @@ public class Environment
         CalendarProcessor calendarProcessor = new CalendarProcessor();
         AgendaProcessor agendaProcessor = new AgendaProcessor();
         TranscriptProcessor transcriptProcessor = new TranscriptProcessor();
-        
+   /** Comments about this class */     
     public void findType(String type, File file){
         
         if (type.equals("bills")) {
@@ -292,7 +308,7 @@ public class Environment
             storage.clear();
         }
     }
-    
+    /** Comments about this class */
     public HashMap<String, Change> ingestFiles(Collection<File> files)
     {
        

@@ -16,13 +16,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
+// Richiede commento
 
+/**
+ * PJDCC - Summary for class responsabilities.
+ *
+ * @author 
+ * @since 
+ * @version 
+ */
 public class SingleViewRequest extends AbstractApiRequest {
     private final Logger logger = Logger.getLogger(SingleViewRequest.class);
 
     String type;
     String id;
-
+/** Comments about this class */
     public SingleViewRequest(HttpServletRequest request, HttpServletResponse response,
             String format, String type, String id) {
         super(request, response, 1, 1, format, getApiEnum(SingleView.values(),type));
@@ -30,7 +38,7 @@ public class SingleViewRequest extends AbstractApiRequest {
         this.type = type;
         this.id = id;
     }
-
+/** Comments about this class */
     @Override
     public void fillRequest() throws ApiRequestException {
         IBaseObject so = Application.getLucene().getSenateObject(id, type);
@@ -66,18 +74,18 @@ public class SingleViewRequest extends AbstractApiRequest {
             logger.error(e);
         }
     }
-
+/** Comments about this class */
     @Override
     public String getView() {
         String vFormat = format.equals("jsonp") ? "json" : format;
         return TextFormatter.append("/views/", type, "-", vFormat, ".jsp");
     }
-
+/** Comments about this class */
     @Override
     public boolean hasParameters() {
         return type != null && id != null;
     }
-
+/** Comments about this class */
     public enum SingleView implements ApiEnum {
         BILL		("bill",		Bill.class, 		new String[] {"html", "json", "jsonp", "mobile", "xml",
             "csv", "html-print", "lrs-print"}),
@@ -88,21 +96,23 @@ public class SingleViewRequest extends AbstractApiRequest {
         public final String view;
         public final Class<? extends BaseObject> clazz;
         public final String[] formats;
-
+/** Comments about this class */
         private SingleView(final String view, final Class<? extends BaseObject> clazz, final String[] formats) {
             this.view = view;
             this.clazz = clazz;
             this.formats = formats;
         }
-
+        /** Comments about this class */
         @Override
         public String view() {
             return view;
         }
+        /** Comments about this class */
         @Override
         public String[] formats() {
             return formats;
         }
+        /** Comments about this class */
         @Override
         public Class<? extends BaseObject> clazz() {
             return clazz;

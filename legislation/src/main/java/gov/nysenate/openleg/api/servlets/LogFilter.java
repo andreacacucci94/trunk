@@ -11,16 +11,24 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
+// Richiede commento
 
+/**
+ * PJDCC - Summary for class responsabilities.
+ *
+ * @author 
+ * @since 
+ * @version 
+ */
 public class LogFilter implements Filter
 {
     private final Logger logger = Logger.getLogger(LogFilter.class);
-
+/** Comments about this class */
     public void init(FilterConfig filterConfig)
     {
 
     }
-
+/** Comments about this class */
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException
     {
         try {
@@ -52,7 +60,7 @@ public class LogFilter implements Filter
         }
     }
 
-
+/** Comments about this class */
     public void destroy()
     {
 

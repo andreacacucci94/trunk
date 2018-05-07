@@ -13,14 +13,22 @@ import java.util.ArrayList;
 import java.util.regex.MatchResult;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+// Richiede commento
 
+/**
+ * PJDCC - Summary for class responsabilities.
+ *
+ * @author 
+ * @since 
+ * @version 
+ */
 @AssociatedFields({FieldName.FULLTEXT})
 public class LbdcFilePaging extends LbdcFile {
-
+/** Comments about this class */
     public LbdcFilePaging(File file) {
         super(file);
     }
-
+/** Comments about this class */
     @Override
     public ArrayList<ProblemBill> getProblemBills(FieldName[] fieldNames) {
         ArrayList<ProblemBill> ret = new ArrayList<ProblemBill>();
@@ -65,7 +73,7 @@ public class LbdcFilePaging extends LbdcFile {
 
         return ret;
     }
-
+/** Comments about this class */
     private void updateList(String rawBillNo, String formattedBillNo, String lbdcPageCount, ArrayList<ProblemBill> list) {
         if(formattedBillNo != null) {
             ProblemBill problemBill = getProblemBill(rawBillNo, formattedBillNo, lbdcPageCount);
@@ -75,7 +83,7 @@ public class LbdcFilePaging extends LbdcFile {
             }
         }
     }
-
+/** Comments about this class */
     private ProblemBill getProblemBill(String rawBillNo, String formattedBillNo, String lbdcPageCount) {
         Bill luceneBill = SearchEngine.getInstance().getBill(formattedBillNo);
 
@@ -96,7 +104,7 @@ public class LbdcFilePaging extends LbdcFile {
         }
         return null;
     }
-
+/** Comments about this class */
     private String combineBillFields(String house, String number, String amd) {
         if(house.matches("\\s*"))
             return null;
@@ -104,7 +112,7 @@ public class LbdcFilePaging extends LbdcFile {
             amd = "";
         return this.getBillNumber(number + amd, (house.equals("A") ? true : false));
     }
-
+/** Comments about this class */
     private int getPageNumber(String billNo, String text) {
         if(text == null)
             return -1;

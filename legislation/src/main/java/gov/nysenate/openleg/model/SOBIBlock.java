@@ -256,7 +256,7 @@ public class SOBIBlock
     }
 
 
-    public char getType()
+    private char getType()
     {
         return type;
     }

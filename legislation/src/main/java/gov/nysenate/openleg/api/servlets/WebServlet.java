@@ -30,10 +30,17 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 import org.apache.commons.lang3.text.StrSubstitutor;
 
-/*
- * a cleaner and [hopefully] more intelligent catch all for generated views
+// Richiede commento
+
+/**
+ * PJDCC - Summary for class responsabilities.
+ *
+ * @author 
+ * @since 
+ * @version 
  */
 @SuppressWarnings("serial")
+
 public class WebServlet extends HttpServlet implements OpenLegConstants {
 
     public static final int SINGLE_FORMAT = 1;
@@ -63,13 +70,15 @@ public class WebServlet extends HttpServlet implements OpenLegConstants {
      * 		${context_path}/api/[view type]
      * 		${context_path}/api/1.0/[view type]
      */
+    
+    
     public static final String BASE_START = "^(?i)${context_path}/(?:(?:api/)(?:(?<=api/)1\\.0/)?(?:(";
 
     /*
      * Ends base start, surrounds possible formats associated with a view
      */
     public static final String BASE_MIDDLE = ")/))?(";
-
+/** Comments about this class */
     public static final String BASE_END = "$";
 
     /*
@@ -84,7 +93,7 @@ public class WebServlet extends HttpServlet implements OpenLegConstants {
      * Captures ID from single view
      */
     public static final String SINGLE_END = ")/(.+)";
-
+/** Comments about this class */
     public static final String MULTI_END = ")/?";
 
     /*
@@ -193,7 +202,7 @@ public class WebServlet extends HttpServlet implements OpenLegConstants {
                         formattedBaseStart, searchFormats, BASE_MIDDLE, searchViews, SEARCH_END, PAGING, BASE_END)
         );
     }
-
+/** Comments about this class */
     private boolean controlM(Pattern patt, AbstractApiRequest apiRequest, Matcher m, String uri){
         
         boolean flag = false;

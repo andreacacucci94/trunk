@@ -15,13 +15,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
+// Richiede commento
 
+/**
+ * PJDCC - Summary for class responsabilities.
+ *
+ * @author 
+ * @since 
+ * @version 
+ */
 public class KeyValueViewRequest extends AbstractApiRequest {
     private final Logger logger = Logger.getLogger(KeyValueViewRequest.class);
 
     String key;
     String value;
-
+/** Comments about this class */
     public KeyValueViewRequest(HttpServletRequest request, HttpServletResponse response,
             String format, String key, String value, String pageNumber, String pageSize) {
         super(request, response, pageNumber, pageSize, format, getApiEnum(KeyValueView.values(),key));
@@ -29,7 +37,7 @@ public class KeyValueViewRequest extends AbstractApiRequest {
         this.key = key;
         this.value = value;
     }
-
+/** Comments about this class */
     @Override
     public void fillRequest() throws ApiRequestException {
         String urlPath = TextFormatter.append("/legislation/", key, "/", value, "/");
@@ -93,7 +101,7 @@ public class KeyValueViewRequest extends AbstractApiRequest {
             request.setAttribute("results", sr);
         }
     }
-
+/** Comments about this class */
     @Override
     public String getView() {
         String vFormat = format.equals("jsonp") ? "json" : format;
@@ -104,12 +112,12 @@ public class KeyValueViewRequest extends AbstractApiRequest {
             return TextFormatter.append("/views/search-", vFormat, ".jsp");
         }
     }
-
+/** Comments about this class */
     @Override
     public boolean hasParameters() {
         return key != null && value != null;
     }
-
+/** Comments about this class */
     public enum KeyValueView implements ApiEnum {
         SPONSOR("sponsor", 		Bill.class, 	new String[] {"html", "json", "jsonp", "xml", "rss", "csv", "html-list"}),
         COMMITTEE("committee", 	Bill.class, 	new String[] {"html", "json", "jsonp", "xml", "rss", "csv", "html-list"});
@@ -117,21 +125,23 @@ public class KeyValueViewRequest extends AbstractApiRequest {
         public final String view;
         public final Class<? extends BaseObject> clazz;
         public final String[] formats;
-
+/** Comments about this class */
         private KeyValueView(final String view, final Class<? extends BaseObject> clazz, final String[] formats) {
             this.view = view;
             this.clazz = clazz;
             this.formats = formats;
         }
-
+        /** Comments about this class */
         @Override
         public String view() {
             return view;
         }
+        /** Comments about this class */
         @Override
         public String[] formats() {
             return formats;
         }
+        /** Comments about this class */
         @Override
         public Class<? extends BaseObject> clazz() {
             return clazz;

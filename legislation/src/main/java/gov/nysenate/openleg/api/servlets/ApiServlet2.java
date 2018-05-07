@@ -19,7 +19,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
+// Richiede commento
 
+/**
+ * PJDCC - Summary for class responsabilities.
+ *
+ * @author 
+ * @since 
+ * @version 
+ */
 @SuppressWarnings("serial")
 public class ApiServlet2 extends HttpServlet
 {
@@ -62,6 +70,7 @@ public class ApiServlet2 extends HttpServlet
         
         return integer;
     }
+      /** Comments about this class */
       private boolean setSortOrder(String sortOrderParam ) throws ApiRequestException{
         
         boolean sortOrder = false;
@@ -76,7 +85,7 @@ public class ApiServlet2 extends HttpServlet
             }
         return sortOrder;
     }
-      
+      /** Comments about this class */
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int pageIdx = 1;
@@ -124,7 +133,7 @@ public class ApiServlet2 extends HttpServlet
             response.sendError(HttpServletResponse.SC_NOT_FOUND);
         }
     }
-
+/** Comments about this class */
     private void doSearch(HttpServletRequest request, HttpServletResponse response, String format, String type, String term, int pageNumber, int pageSize, String sort, boolean sortOrder) throws ApiRequestException
     {
         try {
@@ -157,7 +166,7 @@ public class ApiServlet2 extends HttpServlet
             throw new ApiRequestException("internal server error.");
         }
     }
-
+/** Comments about this class */
      private HttpServletResponse jsonpFormat(String callback, HttpServletResponse response, SenateResponse sr) throws ApiRequestException{
         
         if (callback != null && callback != "") {
@@ -172,7 +181,7 @@ public class ApiServlet2 extends HttpServlet
         return response;
         
     }
-     
+     /** Comments about this class */
     private void doSingleView(HttpServletRequest request, HttpServletResponse response, String format, String type, String id) throws ApiRequestException
     {
         try {

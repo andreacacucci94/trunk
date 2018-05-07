@@ -28,7 +28,15 @@ import org.jdom2.DocType;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.output.XMLOutputter;
+// Richiede commento
 
+/**
+ * PJDCC - Summary for class responsabilities.
+ *
+ * @author 
+ * @since 
+ * @version 
+ */
 public class Api1XmlConverter
 {
     protected final Document doc;
@@ -36,7 +44,7 @@ public class Api1XmlConverter
     protected final String encoding = "UTF-8";
 
     protected static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S z");
-
+/** Comments about this class */
     public Api1XmlConverter()
     {
         xmlOutputter = new XMLOutputter();
@@ -45,21 +53,21 @@ public class Api1XmlConverter
         doc.setProperty("version", "1.0");
         doc.setProperty("encoding", "UTF-8");
     }
-
+/** Comments about this class */
     public String toString(SenateResponse value) throws IOException
     {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         write(value, stream);
         return stream.toString(this.encoding);
     }
-
+/** Comments about this class */
     public String toString(BaseObject value) throws IOException
     {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         write(value, stream);
         return stream.toString(this.encoding);
     }
-
+/** Comments about this class */
     public void write(BaseObject object, OutputStream out) throws IOException
     {
         if (object.getOtype().equals("bill")) {
@@ -78,7 +86,7 @@ public class Api1XmlConverter
             throw new RuntimeException("Invalid base object otype: "+object.getOtype());
         }
     }
-
+/** Comments about this class */
     public void write(SenateResponse response, OutputStream out) throws IOException
     {
         Element root = new Element("results");
@@ -144,7 +152,7 @@ public class Api1XmlConverter
         }
         write(root, out);
     }
-
+/** Comments about this class */
     private Element editElemCos(Element elemCos, Element elemCosChild, Person coSponsor){
         
         if (coSponsor.getFullname()!=null)
@@ -154,12 +162,12 @@ public class Api1XmlConverter
                 }
         return elemCos;
     }
-    
+    /** Comments about this class */
     private Element setAttr(Element billElement, Bill bill){
        billElement.setAttribute("sponsor", bill.getSponsor() != null ? bill.getSponsor().getFullname() : "n/a"); 
        return billElement;
     }
-    
+    /** Comments about this class */
     protected void write(Bill bill, OutputStream out) throws IOException
     {
         Element billElement = new Element("bill");
@@ -249,7 +257,7 @@ public class Api1XmlConverter
 
         write(makeElement("docket", billElement), out);
     }
-    
+    /** Comments about this class */
     private Element editBill(Element billElement, Bill bill){
         
         if (bill.getFulltext()!=null) {
@@ -262,7 +270,7 @@ public class Api1XmlConverter
         
         return billElement;
     }
-
+/** Comments about this class */
     protected void write(Transcript transcript, OutputStream out) throws IOException
     {
         Element root = new Element("transcript");
@@ -273,23 +281,23 @@ public class Api1XmlConverter
         root.addContent(makeElement("text", new CDATA(transcript.getTranscriptText())));
         write(root, out);
     }
-
+/** Comments about this class */
     protected void write(Meeting meeting, OutputStream out) throws IOException
     {
         write(makeElement("meeting", meeting), out);
     }
-
+/** Comments about this class */
     protected void write(Calendar calendar, OutputStream out) throws IOException
     {
         write(makeElement("calendar", calendar), out);
     }
-
+/** Comments about this class */
     protected void write(Element root, OutputStream out) throws IOException
     {
         doc.setContent(root);
         xmlOutputter.output(doc, out);
     }
-
+/** Comments about this class */
     protected Element makeElement(String tag, Calendar value)
     {
         Element root = new Element(tag);
@@ -302,7 +310,7 @@ public class Api1XmlConverter
         }
         return root;
     }
-
+/** Comments about this class */
     protected Element makeElement(String tag, Supplemental value)
     {
         Element root = new Element(tag);
@@ -316,7 +324,7 @@ public class Api1XmlConverter
         }
         return root;
     }
-
+/** Comments about this class */
     protected Element makeElement(String tag, Sequence value)
     {
         Element root = new Element(tag);
@@ -328,7 +336,7 @@ public class Api1XmlConverter
         }
         return root;
     }
-
+/** Comments about this class */
     protected Element makeElement(String tag, Section value)
     {
         Element root = new Element(tag);
@@ -340,7 +348,7 @@ public class Api1XmlConverter
         }
         return root;
     }
-
+/** Comments about this class */
     protected Element makeElement(String tag, CalendarEntry value)
     {
         Element root = new Element(tag);
@@ -352,7 +360,7 @@ public class Api1XmlConverter
         }
         return root;
     }
-
+/** Comments about this class */
     protected Element makeElement(String tag, Meeting value)
     {
         Element root = new Element(tag);
@@ -366,7 +374,7 @@ public class Api1XmlConverter
         }
         return root;
     }
-
+/** Comments about this class */
     protected Element makeShortElement(String tag, Bill value)
     {
         Element root = new Element(tag);
@@ -385,7 +393,7 @@ public class Api1XmlConverter
         }
         return root;
     }
-
+/** Comments about this class */
     protected Element makeElementList(String listTag, String itemTag, Collection<? extends Object> list)
     {
         Element element = new Element(listTag);
@@ -407,7 +415,7 @@ public class Api1XmlConverter
         }
         return element;
     }
-    
+    /** Comments about this class */
     private Element editElement(Element element, Object item, String itemTag){
         
         if(Sequence.class.isInstance(item)) {
@@ -427,28 +435,30 @@ public class Api1XmlConverter
         return element;
     }
 
-
+/** Comments about this class */
     protected Element makeElement(String tag, Date value)
     {
+        synchronized (dateFormat) {
         Element element = new Element(tag);
         element.addContent(dateFormat.format(value));
         return element;
+        }
     }
-
+/** Comments about this class */
     protected Element makeElement(String tag, String value)
     {
         Element element = new Element(tag);
         element.addContent(value);
         return element;
     }
-
+/** Comments about this class */
     protected Element makeElement(String tag, CDATA value)
     {
         Element element = new Element(tag);
         element.addContent(value);
         return element;
     }
-
+/** Comments about this class */
     protected Element makeElement(String tag, Element...values)
     {
         Element element = new Element(tag);
