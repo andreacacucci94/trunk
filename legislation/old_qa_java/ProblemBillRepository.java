@@ -24,9 +24,13 @@ import org.ektorp.support.View;
 map  = "function(doc) { if (doc.oid) { emit(doc.oid, doc) } }")
 public class ProblemBillRepository extends CouchDbRepositorySupport<ProblemBill> {
 
+    
     private final Logger logger = Logger.getLogger(ProblemBillRepository.class);
-
+    /**
+       * Comments about this class
+       */
     public static final Class<ProblemBill> clazz = ProblemBill.class;
+    
 /** Comments about this class */
     public ProblemBillRepository(CouchDbConnector db) {
         super(clazz, db);

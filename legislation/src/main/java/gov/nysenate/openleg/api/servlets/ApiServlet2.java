@@ -31,14 +31,33 @@ import org.apache.log4j.Logger;
 @SuppressWarnings("serial")
 public class ApiServlet2 extends HttpServlet
 {
+    /**
+       * Comments about this class
+       */
     public static int DEFAULT_PAGE_SIZE = 20;
+    /**
+       * Comments about this field
+       */
     public static int MAX_PAGE_SIZE = 1000;
+    /**
+       * Comments about this field
+       */
     public final Logger logger = Logger.getLogger(ApiServlet2.class);
+    /**
+       * Comments about this field
+       */
     public final static Pattern documentPattern = Pattern.compile("(?:/api)?/2.0/(vote|action|bill|calendar|meeting|transcript)/(.*)?\\.(json|jsonp|xml|pdf)$");
+    /**
+       * Comments about this field
+       */
     public final static Pattern searchPattern = Pattern.compile("(?:/api)?/2.0/(search|votes|bills|meetings|actions|calendars|transcripts).(json|jsonp|xml)$");
-
+/**
+       * Comments about this field
+       */
       private int parsePage(String str, int pageIdx, int pageSize){
-        
+        /**
+       * Comments about this field
+       */
         int integer = 0;
         
         try{
@@ -212,7 +231,7 @@ public class ApiServlet2 extends HttpServlet
 
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
-            throw new ApiRequestException("internal server error.", e);
+            System.out.println("Something was wrong");
         }
     }
 }

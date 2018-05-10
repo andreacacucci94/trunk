@@ -93,8 +93,17 @@ public class SingleViewRequest extends AbstractApiRequest {
             MEETING		("meeting", 	Meeting.class, 		new String[] {"html", "json", "jsonp", "mobile", "xml"}),
             TRANSCRIPT	("transcript", 	Transcript.class, 	new String[] {"html", "json", "jsonp", "mobile", "xml"});
 
+            /**
+       * Comments about this class
+       */
         public final String view;
+        /**
+       * Comments about this field
+       */
         public final Class<? extends BaseObject> clazz;
+        /**
+       * Comments about this field
+       */
         public final String[] formats;
 /** Comments about this class */
         private SingleView(final String view, final Class<? extends BaseObject> clazz, final String[] formats) {

@@ -20,6 +20,8 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Collection;
 import java.util.Date;
+import static java.lang.System.out;
+
 
 import org.codehaus.jackson.JsonEncoding;
 import org.codehaus.jackson.JsonFactory;
@@ -80,8 +82,10 @@ public class Api1JsonConverter
             write((Transcript)object, out);
         }
         else {
-            throw new RuntimeException("Invalid base object otype: "+object.getOtype());
+            throw new InvalidBaseObjException("Invalid base object otype: "+object.getOtype());
         }
+        
+        
     }
 /** Comments about this class */
     public void write(SenateResponse response, OutputStream out) throws IOException
@@ -405,7 +409,7 @@ public class Api1JsonConverter
             arrayNode.add(makeNode((Bill)item));
         }
         else {
-            throw new RuntimeException("Invalid array node type: "+item.getClass());
+            throw new InvalidArrayNodeException("Invalid array node type: "+item.getClass());
         }
         return arrayNode;
     }

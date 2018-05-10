@@ -27,6 +27,13 @@ import org.jdom2.DocType;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.output.XMLOutputter;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.LocalDateTime;
+import java.time.Month;
+import java.util.Date;
+import java.time.temporal.ChronoUnit;
 // Richiede commento
 
 /**
@@ -44,7 +51,7 @@ public class Api2XmlConverter
     protected final XMLOutputter xmlOutputter;
     protected final String encoding = "UTF-8";
 
-    protected static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S z");
+    LocalDateTime date2= LocalDateTime.now();
 /** Comments about this class */
     public Api2XmlConverter()
     {
@@ -119,7 +126,7 @@ public class Api2XmlConverter
             element.addContent(makeElement(itemTag, (String)item));
         }
         else {
-            throw new RuntimeException("Invalid array node type: "+item.getClass());
+            throw new InvalidArrayNodeException("Invalid array node type: "+item.getClass());
         }
         return element;
     }
@@ -170,7 +177,7 @@ public class Api2XmlConverter
             return makeElement("action", (Action)object);
         }
         else {
-            throw new RuntimeException("Invalid base object otype: "+object.getOtype());
+            throw new InvalidBaseObjException("Invalid base object otype: "+object.getOtype());
         }
     }
 /** Comments about this class */

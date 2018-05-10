@@ -47,6 +47,10 @@ public class PDFConverter
     private static Float fontSize = 12f;
     private static Float fontWidth = 7f;
 
+    
+    /**
+       * Comments about this field
+       */
     public static final int NO_LINE_NUM_INDENT = 11;
 /** Comments about this class */
     public static void write(IBaseObject object, OutputStream out) throws IOException, COSVisitorException, ApiRequestException

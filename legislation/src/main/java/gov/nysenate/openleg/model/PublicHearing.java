@@ -15,16 +15,41 @@ import java.util.TreeMap;
  */
 public class PublicHearing extends BaseObject
 {
+    /**
+       * Comments about this field
+       */
     public ArrayList<String> committees;
+    /**
+       * Comments about this field
+       */
     public String title;
+    /**
+       * Comments about this field
+       */
     public String location;
+    /**
+       * Comments about this field
+       */
     public Date timeStamp;
-
+/**
+       * Comments about this field
+       */
     public ArrayList<Person> presidingSenators;
+    /**
+       * Comments about this field
+       */
     public ArrayList<Person> presentSenators;
+    /**
+       * Comments about this field
+       */
     public ArrayList<Person> presentAssemblyPersons;
+    /**
+       * Comments about this field
+       */
     public ArrayList<Person> speakers;
-
+/**
+       * Comments about this field
+       */
     public TreeMap<Integer, String> pages;
 /** Comments about this class */
     public PublicHearing() {

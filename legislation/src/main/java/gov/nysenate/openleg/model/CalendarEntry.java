@@ -227,16 +227,20 @@ public class CalendarEntry
 
     @Override
     public class OVERRIDE{
-    public boolean equals(Object obj)
-    {
-        if (obj != null && obj instanceof CalendarEntry) {
-            CalendarEntry other = (CalendarEntry) obj;
-            return other.getOid().equals(this.getOid());
+    public class EQLFIXED {
+        /**
+       * Comments about this field
+       */
+        public int value;
+        public boolean equals (Object o) {
+          if (getClass () != o.getClass ()
+          )  { // FIXED
+             return false; }
+         else {
+           return true; 
+         }
         }
-        else {
-            return false;
-        }
-    }
+      }
     public int hashCode() {
         return value;
     }}

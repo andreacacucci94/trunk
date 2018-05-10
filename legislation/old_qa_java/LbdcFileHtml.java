@@ -9,7 +9,7 @@ import gov.nysenate.openleg.qa.model.LbdcFile.AssociatedFields;
 import gov.nysenate.openleg.qa.model.NonMatchingField;
 import gov.nysenate.openleg.qa.model.ProblemBill;
 import gov.nysenate.openleg.search.SearchEngine;
-import gov.nysenate.openleg.util.SessionYear;
+import gov.nysenate.openleg.util.SessionYear; 
 
 import java.io.File;
 import java.text.ParseException;
@@ -18,6 +18,21 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.LocalDateTime;
+import java.time.Month;
+import java.util.Date;
+import java.time.temporal.ChronoUnit;
 
 /**
  * PJDCC - Summary for class responsabilities.
@@ -45,7 +60,7 @@ public class LbdcFileHtml extends LbdcFile {
     Pattern actionP = Pattern.compile("(<b>(?:&nbsp;)+</b>)?+(\\d{2}/\\d{2}/\\d{2}) (.+?)<br>");
     Pattern sponsorP = Pattern.compile("([\\w\\- ']+?)(?: CO\\: (.+))");
 
-    SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yy");
+   LocalDate date1 = LocalDate.now();
 /** Comments about this class */
     public LbdcFileHtml(File file) {
         super(file);
@@ -58,8 +73,10 @@ public class LbdcFileHtml extends LbdcFile {
         Bill lbdcBill = null;
 
         open();
+        
+        Bill d=nextBill();
 
-        while((lbdcBill = nextBill()) != null) {
+        while((lbdcBill = d) != null) {
             Bill luceneBill = SearchEngine.getInstance().getBill(lbdcBill.getSenateBillNo() + "-" + SessionYear.getSessionYear());
 
             if(luceneBill == null) {
@@ -106,8 +123,8 @@ public class LbdcFileHtml extends LbdcFile {
         String in = null;
         StringBuffer buffer = null;
         boolean readToggle = false;
-
-        while((in = er.readLine()) != null) {
+        String h = er.readLine();
+        while((in = h) != null) {
             //if in matches the beginning of a new bill element
             if(in.matches("(</td></tr>)?(<tr align=\"left\"|\\Q <script>document.getElementById(\"SRCHCNT\")\\E).*$")) {
 
@@ -187,8 +204,9 @@ public class LbdcFileHtml extends LbdcFile {
             m.usePattern(actionP).reset(text);
 
             ArrayList<Action> billEvents = new ArrayList<Action>();
-
-            while(m.find()) {
+            
+            boolean f= m.find();
+            while(f) {
                 if(m.group(1) != null) {
                     continue;
                 }
@@ -196,7 +214,7 @@ public class LbdcFileHtml extends LbdcFile {
                 try {
                     billEvents.add(new Action(bill.getSenateBillNo(), sdf.parse(m.group(2)), m.group(3)));
                 } catch (ParseException e) {
-                    e.printStackTrace();
+                   System.out.println("Something was wrong");
                 }
             }
 

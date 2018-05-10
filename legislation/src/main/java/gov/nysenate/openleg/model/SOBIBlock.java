@@ -136,9 +136,10 @@ public class SOBIBlock
      */
     public void extend(String line) {
         if (!this.isMultiline())
-            throw new RuntimeException("Only multi-line blocks may be extended");
+            throw new NoMultiLineBlockException("Only multi-line blocks may be extended");
         this.dataBuffer.append("\n"+line.substring(12));
     }
+    
 
     /**
      * Gets the string representation of the block's data.
@@ -169,12 +170,20 @@ public class SOBIBlock
      * identical in content (case-sensitive).
      */
     public class OVERRIDE{
-    public boolean equals(Object obj)
-    {
-        return obj!= null && obj instanceof SOBIBlock
-           && ((SOBIBlock)obj).getHeader().equals(this.getHeader())
-           && ((SOBIBlock)obj).getData().trim().equals(this.getData().trim());
-    }
+   public class EQLFIXED {
+       /**
+       * Comments about this class
+       */
+        public int value;
+        public boolean equals (Object o) {
+          if (getClass () != o.getClass ()
+          )  { // FIXED
+             return false; }
+         else {
+           return true; 
+         }
+        }
+      }
     public int hashCode() {
         return value;
     }}

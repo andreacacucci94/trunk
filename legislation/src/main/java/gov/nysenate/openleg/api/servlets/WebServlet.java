@@ -43,25 +43,73 @@ import org.apache.commons.lang3.text.StrSubstitutor;
 
 public class WebServlet extends HttpServlet implements OpenLegConstants {
 
+    /**
+       * Comments about this class
+       */
     public static final int SINGLE_FORMAT = 1;
+    /**
+       * Comments about this field
+       */
     public static final int SINGLE_TYPE = 2;
+    /**
+       * Comments about this field
+       */
     public static final int SINGLE_ID = 3;
-
+/**
+       * Comments about this field
+       */
     public static final int MULTI_FORMAT = 1;
+    /**
+       * Comments about this field
+       */
     public static final int MULTI_TYPE = 2;
+    /**
+       * Comments about this field
+       */
     public static final int MULTI_PAGE_NUMBER = 3;
+    /**
+       * Comments about this field
+       */
     public static final int MULTI_PAGE_SIZE = 4;
-
+/**
+       * Comments about this field
+       */
     public static final int KEY_VALUE_FORMAT = 1;
+    /**
+       * Comments about this field
+       */
     public static final int KEY_VALUE_KEY = 2;
+    /**
+       * Comments about this field
+       */
     public static final int KEY_VALUE_VALUE = 3;
+    /**
+       * Comments about this field
+       */
     public static final int KEY_VALUE_PAGE_NUMBER = 4;
+    /**
+       * Comments about this field
+       */
     public static final int KEY_VALUE_PAGE_SIZE = 5;
-
+/**
+       * Comments about this field
+       */
     public static final int SEARCH_FORMAT = 1;
+    /**
+       * Comments about this field
+       */
     public static final int SEARCH_KEY = 2;
+    /**
+       * Comments about this field
+       */
     public static final int SEARCH_VALUE = 3;
+    /**
+       * Comments about this field
+       */
     public static final int SEARCH_PAGE_NUMBER = 4;
+    /**
+       * Comments about this field
+       */
     public static final int SEARCH_PAGE_SIZE = 5;
 
     /*
@@ -71,12 +119,17 @@ public class WebServlet extends HttpServlet implements OpenLegConstants {
      * 		${context_path}/api/1.0/[view type]
      */
     
-    
+     /**
+       * Comments about this field
+       */
     public static final String BASE_START = "^(?i)${context_path}/(?:(?:api/)(?:(?<=api/)1\\.0/)?(?:(";
 
     /*
      * Ends base start, surrounds possible formats associated with a view
      */
+     /**
+       * Comments about this field
+       */
     public static final String BASE_MIDDLE = ")/))?(";
 /** Comments about this class */
     public static final String BASE_END = "$";
@@ -87,11 +140,17 @@ public class WebServlet extends HttpServlet implements OpenLegConstants {
      * 		../[page]
      * 		../[page]/[page size]
      */
+     /**
+       * Comments about this field
+       */
     public static final String PAGING = "(?:(\\d+)/?+)?(?:(\\d+)/?)?";
 
     /*
      * Captures ID from single view
      */
+     /**
+       * Comments about this field
+       */
     public static final String SINGLE_END = ")/(.+)";
 /** Comments about this class */
     public static final String MULTI_END = ")/?";
@@ -99,17 +158,38 @@ public class WebServlet extends HttpServlet implements OpenLegConstants {
     /*
      * Captures value for Key Value view
      */
+     /**
+       * Comments about this field
+       */
     public static final String KEY_VALUE_END = ")/(.*?)/?+";
 
     /*
      * Captures value for Search view
      */
+     /**
+       * Comments about this field
+       */
     public static final String SEARCH_END = ")(?:/)?(?:(.+?)/?+)?";
 
+     /**
+       * Comments about this field
+       */
     public Pattern SINGLE_PATTERN;
+     /**
+       * Comments about this field
+       */
     public Pattern MULTI_PATTERN;
+     /**
+       * Comments about this field
+       */
     public Pattern KEY_VALUE_PATTERN;
+     /**
+       * Comments about this field
+       */
     public Pattern SEARCH_PATTERN;
+     /**
+       * Comments about this field
+       */
 
     private final Logger logger = Logger.getLogger(WebServlet.class);
 
@@ -117,6 +197,9 @@ public class WebServlet extends HttpServlet implements OpenLegConstants {
      * Generates patterns based on views listed
      * in SingleView, MultiView and KeyValueView enums
      */
+     /**
+       * Comments about this field
+       */
     @Override
     public void init() throws ServletException {
 

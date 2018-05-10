@@ -36,11 +36,30 @@ import org.ektorp.http.StdHttpClient;
  * @version 
  */
 public class ReportReader extends CouchSupport {
+    
+    /**
+       * Comments about this field
+       */
     public static final String FILE_TYPE = "file-type";
+    /**
+       * Comments about this field
+       */
     public static final String PATH_TO_FILE = "path-to-file";
+    /**
+       * Comments about this field
+       */
     public static final String REPORT_MISSING_DATA = "report-missing-data";
+    /**
+       * Comments about this field
+       */
     public static final String DUMP = "dump";
+    /**
+       * Comments about this field
+       */
     public static final String RESET_COUCH = "reset-couch";
+    /**
+       * Comments about this field
+       */
     public static final String HELP = "help";
 
     

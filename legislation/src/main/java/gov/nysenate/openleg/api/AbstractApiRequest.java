@@ -23,17 +23,46 @@ import javax.servlet.http.HttpServletResponse;
  * @version 
  */
 public abstract class AbstractApiRequest implements OpenLegConstants {
+    /**
+       * Comments about this class
+       */
     public static final String DEFAULT_FORMAT = "html";
+    /**
+       * Comments about this field
+       */
     public static final int DEFAULT_PAGE_NUMBER = 1;
+    /**
+       * Comments about this field
+       */
     public static final int DEFAULT_PAGE_SIZE = 20;
 
+    /**
+       * Comments about this field
+       */
     protected HttpServletRequest request;
+    /**
+       * Comments about this field
+       */
     protected HttpServletResponse response;
+    /**
+       * Comments about this field
+       */
     protected int pageNumber;
+    /**
+       * Comments about this field
+       */
     protected int pageSize;
+    /**
+       * Comments about this field
+       */
     protected String format;
+     /**
+       * Comments about this field
+       */
     protected ApiEnum apiEnum;
-
+ /**
+       * Comments about this field
+       */
     public final HashMap<String, String> CONTENT_TYPE;
 /** Comments about this class */
     public AbstractApiRequest(HttpServletRequest request, HttpServletResponse response,

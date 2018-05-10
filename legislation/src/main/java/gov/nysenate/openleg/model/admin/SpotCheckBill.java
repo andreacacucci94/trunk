@@ -9,21 +9,57 @@ import java.util.ArrayList;
  * @version 
  */
 public class SpotCheckBill {
+    /**
+       * Comments about this field
+       */
     public int year;
+    /**
+       * Comments about this field
+       */
     public int pages;
-
+/**
+       * Comments about this field
+       */
     public String id;
+    /**
+       * Comments about this field
+       */
     public String law;
+    /**
+       * Comments about this field
+       */
     public String title;
+    /**
+       * Comments about this field
+       */
     public String sponsor;
+    /**
+       * Comments about this field
+       */
     public String summary;
+    /**
+       * Comments about this field
+       */
     public String sameas;
-
-    private boolean currentAmendment;
-
+    /**
+       * Comments about this field
+       */
+     private boolean currentAmendment;
+    /**
+       * Comments about this field
+       */
     public ArrayList<String> actions;
+    /**
+       * Comments about this field
+       */
     public ArrayList<String> cosponsors;
+    /**
+       * Comments about this field
+       */
     public ArrayList<String> multisponsors;
+    /**
+       * Comments about this field
+       */
     public ArrayList<String> amendments;
 /** Comments about this class */
     public SpotCheckBill() {

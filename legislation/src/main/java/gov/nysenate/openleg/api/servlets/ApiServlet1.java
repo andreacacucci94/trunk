@@ -38,11 +38,25 @@ import org.apache.pdfbox.exceptions.COSVisitorException;
 @SuppressWarnings("serial")
 public class ApiServlet1 extends HttpServlet
 {
+    /**
+       * Comments about this field
+       */
     public static int MAX_PAGE_SIZE = 1000;
+    /**
+       * Comments about this field
+       */
     public static int DEFAULT_PAGE_SIZE = 20;
-
+/**
+       * Comments about this field
+       */
     public final Logger logger = Logger.getLogger(ApiServlet1.class);
+    /**
+       * Comments about this field
+       */
     public final static Pattern documentPattern = Pattern.compile("(?:/api)?(?:/1.0)?/(json|xml|jsonp|html-print|lrs-print|html|pdf)/(bill|calendar|meeting|transcript)/(.*)$", Pattern.CASE_INSENSITIVE);
+    /**
+       * Comments about this field
+       */
     public final static Pattern searchPattern = Pattern.compile("(?:/api)?(?:/1.0)?/(csv|atom|rss|json|xml|jsonp)/(search|votes|bills|meetings|actions|calendars|transcripts|sponsor)(?:/(.*?[a-z].*?))?(?:/([0-9]+))?(?:/([0-9]+))?/?$", Pattern.CASE_INSENSITIVE);
 
 /** Comments about this class */    
@@ -245,7 +259,7 @@ public class ApiServlet1 extends HttpServlet
                     BillTextPDFConverter.write(object, response.getOutputStream());
                 } catch (COSVisitorException e) {
                     logger.error(e.getMessage(), e);
-                    throw new ApiRequestException("internal server error.", e);
+                   System.out.println("Something was wrong");
                 }
             }
             else if(format.equals("html") || format.equals("html-print")) {

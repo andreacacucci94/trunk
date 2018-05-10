@@ -66,7 +66,7 @@ public class KeyValueViewRequest extends AbstractApiRequest {
             }
         } catch (QueryBuilderException e) {
             logger.error("Invalid query construction", e);
-            throw new ApiRequestException("Invalid query construction", e);
+           System.out.println("Something was wrong");
         }
 
         try {
@@ -122,8 +122,17 @@ public class KeyValueViewRequest extends AbstractApiRequest {
         SPONSOR("sponsor", 		Bill.class, 	new String[] {"html", "json", "jsonp", "xml", "rss", "csv", "html-list"}),
         COMMITTEE("committee", 	Bill.class, 	new String[] {"html", "json", "jsonp", "xml", "rss", "csv", "html-list"});
 
+        /**
+       * Comments about this class
+       */
         public final String view;
+        /**
+       * Comments about this field
+       */
         public final Class<? extends BaseObject> clazz;
+        /**
+       * Comments about this field
+       */
         public final String[] formats;
 /** Comments about this class */
         private KeyValueView(final String view, final Class<? extends BaseObject> clazz, final String[] formats) {

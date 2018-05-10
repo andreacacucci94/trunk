@@ -120,7 +120,7 @@ public class Api2JsonConverter
             return makeNode((Action)object);
         }
         else {
-            throw new RuntimeException("Invalid base object otype: "+object.getOtype());
+            throw new InvalidBaseObjException("Invalid base object otype: "+object.getOtype());
         }
     }
 /** Comments about this class */
@@ -145,7 +145,7 @@ public class Api2JsonConverter
                 arrayNode.add(makeNode((CalendarEntry)item));
             }
             else {
-                throw new RuntimeException("Invalid array node type: "+item.getClass());
+                throw new InvalidArrayNodeException("Invalid array node type: "+item.getClass());
             }
         return arrayNode;
     }

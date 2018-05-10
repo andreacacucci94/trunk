@@ -5,6 +5,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.LocalDateTime;
+import java.time.Month;
+import java.util.Date;
+import java.time.temporal.ChronoUnit;
+
 /**
  *
  * @author GraylinKim
@@ -68,9 +75,11 @@ public class Meeting extends BaseObject
      * @param id
      */
     public Meeting(String committeeName, Date meetingDateTime) {
+        LocalDate date2;
+        date2 = LocalDate.now();
         this.setCommitteeName(committeeName);
         this.setMeetingDateTime(meetingDateTime);
-        this.setOid(committeeName+"-"+new SimpleDateFormat("MM-dd-yyyy").format(this.getMeetingDateTime()));
+        this.oid  = date2.atTime(LocalTime.MIN)+"-"+committeeName;
 
         java.util.Calendar calendar = java.util.Calendar.getInstance();
         calendar.setTime(meetingDateTime);
@@ -178,15 +187,23 @@ public class Meeting extends BaseObject
     @Override
     public class OVERRIDE{
     public boolean equals(Object obj)
-    {
-        if (obj != null && obj instanceof Meeting)
-        {
-            if ( ((Meeting)obj).getOid().equals(this.getOid()))
-                return true;
+    public class EQLFIXED {
+        public int value;
+        public boolean equals (Object o) {
+          if (getClass () != o.getClass ()
+          )  { // FIXED
+             return false; }
+         else {
+           return true; 
+         }
         }
-
-        return false;
-    }
+        if ( ((Meeting)obj).getOid().equals(this.getOid()))
+                return true;
+      }
+    
+    if ( ((Meeting)obj).getOid().equals(this.getOid()))
+                return true;
+    
     public int hashCode() {
         return value;
     }}

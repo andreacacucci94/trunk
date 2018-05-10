@@ -26,12 +26,31 @@ import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.ResultSetHandler;
 import org.apache.log4j.Logger;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.LocalDateTime;
+import java.time.Month;
+import java.util.Date;
+import java.time.temporal.ChronoUnit;
+
+
 /**
  * Servlet implementation class UpdateServlet
  */
 @SuppressWarnings("serial")
 public class UpdatesServlet extends HttpServlet
 {
+    /**
+       * Comments about this field
+       */
     public static final int QUERY_LIMIT = 250;
 
     private static class ChangeHandler implements ResultSetHandler<ArrayList<Change>> {
@@ -56,8 +75,10 @@ public class UpdatesServlet extends HttpServlet
 
     private static final Logger logger = Logger.getLogger(UpdatesServlet.class);
 
-    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
-    private static final SimpleDateFormat mysqlDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    LocalDate date1 = LocalDate.now();
+    LocalDateTime date2= LocalDateTime.now();
+    
+    
 
     private final QueryRunner runner;
 

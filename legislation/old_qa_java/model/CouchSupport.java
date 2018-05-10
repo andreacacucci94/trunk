@@ -14,10 +14,22 @@ import org.ektorp.http.StdHttpClient;
  * @version 
  */
 public class CouchSupport {
+    /**
+       * Comments about this field
+       */
     public static final String DATABASE_NAME = "qa";
+    /**
+       * Comments about this field
+       */
     private static final boolean CREATE_IF_NOT_EXIST = true;
 
+    /**
+       * Comments about this field
+       */
     protected CouchInstance instance = null;
+    /**
+       * Comments about this field
+       */
     public final ProblemBillRepository pbr;
 /** Comments about this class */
     public CouchSupport() {

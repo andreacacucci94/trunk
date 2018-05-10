@@ -95,16 +95,21 @@ public class Supplemental {
 /** Comments about this class */
     @Override
     public class OVERRIDE{
-    public boolean equals(Object obj) {
-
-        if (obj != null && obj instanceof Supplemental)
-        {
-            if ( ((Supplemental)obj).getId().equals(this.getId()))
-                return true;
+   public class EQLFIXED {
+       /**
+       * Comments about this field
+       */
+        public int value;
+        public boolean equals (Object o) {
+          if (getClass () != o.getClass ()
+          )  { // FIXED
+             return false; }
+         else {
+           
+            return true;
+         }
         }
-
-        return false;
-    }
+      }
     public int hashCode() {
         return value;
     }}

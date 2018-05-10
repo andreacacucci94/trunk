@@ -7,7 +7,7 @@ import gov.nysenate.openleg.util.EasyReader;
 import gov.nysenate.openleg.util.SessionYear;
 
 import java.io.BufferedReader;
-import java.io.File;
+import java.io.File; 
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
@@ -24,6 +24,21 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.LocalDateTime;
+import java.time.Month;
+import java.util.Date;
+import java.time.temporal.ChronoUnit;
 
 import org.apache.log4j.Logger;
 /** Comments about this class */
@@ -207,30 +222,32 @@ public class LBDConnect {
        
     }
     /** Comments about this class */
+    @SuppressWarnings("empty-statement")
     public Bill getBillFromLbdc(String billNumber, String year) {
         Bill bill = new Bill();
         File file = new File(TEMP_FILE_NAME);
         try {
             writeDataFromLbdc(constructUrlBill(billNumber, year));
 
-            BufferedReader br = new BufferedReader(new FileReader(file));
-
+            Informations info;
             //skip past http header
-            while(!br.readLine().equals("Content-type: text/html"));
-            br.readLine();
-
-            String in = null;
-
-            Informations info  = new Informations();
-
-            while((in = br.readLine()) != null) {
+            try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+                //skip past http header
+                boolean a= br.readLine().equals("Content-type: text/html");
+                while(!a);
+                br.readLine();
+                String in = null;
+                info = new Informations();
                 
-                info = controlIn(in, info);
-                
-                info = controlInfo(in, info);
-                
+                String  c= br.readLine();
+                while(in == c &&  in != null) {
+                    
+                    info = controlIn(in, info);
+                    
+                    info = controlInfo(in, info);
+                    
+                }
             }
-            br.close();
 
             bill.setSenateBillNo(bill + "-" + year);
 
@@ -239,15 +256,13 @@ public class LBDConnect {
 
         } catch (IOException e) {
             logger.error(e);
-        }
-        catch (Exception e) {
-            logger.error(e);
+ 
         }
         finally {
          try{
-         file.close();
+         bill.close();
          }catch(Exception e){}
-            
+            System.out.println("Exception IO");
         }
 
         return bill;
@@ -280,7 +295,7 @@ public class LBDConnect {
         String title = strings[6].replace("TITLE....","");
         bill.setTitle(title);
 
-        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yy");
+        LocalDate date1 = LocalDate.now();
         Action be = new Action();
         for(int i = 7; i < strings.length;) {
             if(strings[i].matches("\\d{2}/\\d{2}/\\d{2}")) {
@@ -300,7 +315,8 @@ public class LBDConnect {
             else {
                 if(strings[i].charAt(0) == sameAsBillNo.charAt(0)) {
                     i += 2;
-                    while(strings[i].matches("\\d{2}/\\d{2}/\\d{2}")) {
+                    boolean d= strings[i].matches("\\d{2}/\\d{2}/\\d{2}");
+                    while(d) {
                         i += 2;
                     }
                     i += 2;
@@ -385,8 +401,9 @@ public class LBDConnect {
             Matcher tokenMatcher = null;
 
             String in = null;
-
-            while((in = br.readLine()) != null) {
+            
+            String s=br.readLine();
+            while((in = s) != null) {
 
                 tokenMatcher = tokenPattern.matcher(in);
 
@@ -423,22 +440,23 @@ public class LBDConnect {
 /** Comments about this class */
     private void writeDataFromLbdc(String uri) throws IOException {
         logger.info("Reading " + uri + " from LBDC");
-        SocketChannel channel = getSocketChannel(BASE_URL, uri);
-
-        FileOutputStream out = new FileOutputStream(TEMP_FILE_NAME);
-        FileChannel local = out.getChannel();
-
-        ByteBuffer buffer = ByteBuffer.allocate(131072);
-        while(channel.read(buffer) != -1) {
-            buffer.flip();
-            local.write(ByteBuffer.wrap(
-                    Charset.forName("ISO-8859-1")
-                    .decode(buffer).toString().getBytes()));
-            buffer.clear();
+        try (SocketChannel channel = getSocketChannel(BASE_URL, uri); 
+                FileOutputStream out = new FileOutputStream(TEMP_FILE_NAME); 
+                FileChannel local = out.getChannel()) {
+            
+            ByteBuffer buffer = ByteBuffer.allocate(131072);
+            int s=channel.read(buffer);
+            while(s != -1) {
+                buffer.flip();
+                local.write(ByteBuffer.wrap(
+                        Charset.forName("ISO-8859-1")
+                                .decode(buffer).toString().getBytes()));
+                buffer.clear();
+            }
+           local.close ();
+           out.close();
+           channel.close();
         }
-
-        local.close();
-        out.close();
-        channel.close();
+       
     }
 }

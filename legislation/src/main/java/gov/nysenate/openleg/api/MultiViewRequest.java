@@ -88,7 +88,7 @@ public class MultiViewRequest extends AbstractApiRequest {
             queryBuilder.otype(type).and().current().and().active();
         } catch (QueryBuilderException e) {
             logger.error("Invalid query construction", e);
-            throw new ApiRequestException("Invalid query construction", e);
+           System.out.println("Something was wrong");
         }
 
         try {
@@ -154,8 +154,17 @@ public class MultiViewRequest extends AbstractApiRequest {
         VOTES		("votes", 		Vote.class, 		new String[] {"html", "json", "jsonp", "xml", "rss", "csv", "html-list"}),
         ACTIONS		("actions", 	Action.class, 	new String[] {"html", "json", "jsonp", "xml", "rss", "csv", "html-list"});
 
+        /**
+       * Comments about this field
+       */
         public final String view;
+        /**
+       * Comments about this field
+       */
         public final Class<? extends BaseObject> clazz;
+        /**
+       * Comments about this field
+       */
         public final String[] formats;
 
         private MultiView(final String view, final Class<? extends BaseObject> clazz, final String[] formats) {

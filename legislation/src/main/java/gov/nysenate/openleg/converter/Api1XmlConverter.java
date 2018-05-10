@@ -28,6 +28,21 @@ import org.jdom2.DocType;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.output.XMLOutputter;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.LocalDateTime;
+import java.time.Month;
+import java.util.Date;
+import java.time.temporal.ChronoUnit;
 // Richiede commento
 
 /**
@@ -43,7 +58,7 @@ public class Api1XmlConverter
     protected final XMLOutputter xmlOutputter;
     protected final String encoding = "UTF-8";
 
-    protected static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S z");
+LocalDate date1 = LocalDate.now();
 /** Comments about this class */
     public Api1XmlConverter()
     {
@@ -83,7 +98,7 @@ public class Api1XmlConverter
             write((Transcript)object, out);
         }
         else {
-            throw new RuntimeException("Invalid base object otype: "+object.getOtype());
+            throw new InvalidBaseObjException("Invalid base object otype: "+object.getOtype());
         }
     }
 /** Comments about this class */
@@ -428,7 +443,7 @@ public class Api1XmlConverter
             element.addContent(makeElement(itemTag, (String)item));
         }
         else {
-            throw new RuntimeException("Invalid array node type: "+item.getClass());
+            throw new InvalidArrayNodeException ("Invalid array node type: "+item.getClass());
         }
         
         

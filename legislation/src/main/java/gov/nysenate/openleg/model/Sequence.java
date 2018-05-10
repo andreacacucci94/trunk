@@ -83,16 +83,20 @@ public class Sequence {
 /** Comments about this class */
     @Override
     public class OVERRIDE{
-    public boolean equals(Object obj) {
-
-        if (obj != null && obj instanceof Sequence)
-        {
-            if ( ((Sequence)obj).getId().equals(this.getId()))
-                return true;
+   public class EQLFIXED {
+        public int value;
+        public boolean equals (Object o) {
+          if (getClass () != o.getClass ()
+          )  { // FIXED
+             return false; }
+         else {
+           return true; 
+         }
         }
-
-        return false;
-    }
+      }
+    
+    if ( ((Sequence)obj).getId().equals(this.getId()))
+                return true;
     public int hashCode() {
         return value;
     }}

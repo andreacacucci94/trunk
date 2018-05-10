@@ -87,14 +87,20 @@ public class Person {
 /** Comments about this class */
     @Override
     public class OVERRIDE{
-    public boolean equals(Object obj) {
-        if(obj != null && obj instanceof Person)
-        {
-            Person person = (Person)obj;
-            return this.fullname.equals(person.getFullname());
+    public class EQLFIXED {
+        /**
+       * Comments about this class
+       */
+        public int value;
+        public boolean equals (Object o) {
+          if (getClass () != o.getClass ()
+          )  { // FIXED
+             return false; }
+         else {
+           return true; 
+         }
         }
-        return false;
-    }
+      }
     public int hashCode() {
         return value;
     }}

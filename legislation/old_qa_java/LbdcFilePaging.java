@@ -11,7 +11,7 @@ import gov.nysenate.openleg.search.SearchEngine;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.regex.MatchResult;
-import java.util.regex.Matcher;
+import java.util.regex.Matcher; 
 import java.util.regex.Pattern;
 // Richiede commento
 
@@ -51,7 +51,9 @@ public class LbdcFilePaging extends LbdcFile {
          * OUT_DATE = 7
          * PAGES = 8
          */
-        while((in = er.readLine()) != null) {
+        
+        String f= er.readLine();
+        while((in = f) != null) {
             String tuple[] = in.replaceAll(",,", ", ,").split(",");
 
             /* check senate bill if exists */
@@ -124,7 +126,8 @@ public class LbdcFilePaging extends LbdcFile {
         Matcher m = pagePattern.matcher(text);
 
         MatchResult result = null;
-        while(m.find()) result = m.toMatchResult();
+        boolean g=m.find();
+        while(g) result = m.toMatchResult();
 
         if(result != null) {
             //with non capturing groups when a match is found it will either be in group 1 or 2

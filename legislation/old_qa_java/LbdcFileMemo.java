@@ -10,7 +10,7 @@ import gov.nysenate.openleg.search.SearchEngine;
 
 import java.io.File;
 import java.util.ArrayList;
-// Richiede commento
+// Richiede commento 
 
 /**
  * PJDCC - Summary for class responsabilities.
@@ -33,8 +33,8 @@ public class LbdcFileMemo extends LbdcFile {
         open();
 
         String in = null;
-
-        while((in = er.readLine()) != null) {
+        String f= er.readLine();
+        while((in = f)  != null) {
             if(!in.matches("\\s*")) {
                 Bill luceneBill = SearchEngine.getInstance().getBill(getBillNumber(in, false));
 

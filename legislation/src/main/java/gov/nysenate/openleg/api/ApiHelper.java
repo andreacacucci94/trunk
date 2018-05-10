@@ -301,11 +301,11 @@ public class ApiHelper implements OpenLegConstants {
         Matcher m = p.matcher(term);
 
         LocalDate sdf= LocalDate.now();
-
-        while(m.find()) {
+        boolean t= m.find();
+        while(t) {
             String d = term.substring(m.start(),m.end());
 
-            Date date = null;
+            Date date = null; 
             try {
                 date = sdf.parse(d);
                 term = term.substring(0, m.start()) + date.getTime() + term.substring(m.end());

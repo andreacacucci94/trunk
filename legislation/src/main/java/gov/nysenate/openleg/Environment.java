@@ -12,7 +12,7 @@ import gov.nysenate.util.Config;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.IOException;
+import java.io.IOException; 
 import java.io.StringReader;
 import java.util.Arrays;
 import java.util.Collection;
@@ -198,7 +198,9 @@ public class Environment
                 br = new BufferedReader(new StringReader(FileUtils.readFileToString(file, "UTF-8")));
 
                 String line;
-                while((line = br.readLine()) != null) {
+                String d=br.readLine();
+          
+                while((line = d) != null) {
                     if(sencalendarOpenPattern.matcher(line).find()) {
                         calendarFile = new File(calendarDirectory, file.getName()+"-calendar-"+partsCounter+".xml");
                         extractXmlDocumentToFile(br,line,sencalendarEndPattern, calendarFile);
@@ -234,7 +236,8 @@ public class Environment
         dataBuffer.append(openTag).append("&newl;");
 
         String line;
-        while((line = br.readLine()) != null) {
+        String d=br.readLine();
+        while((line = d) != null) {
             // We shouldn't have to replace the valid UTF-8 character right?
             // sb.append(in.replaceAll("\\xb9","&sect;") + "&newl;");
             dataBuffer.append(line).append("&newl;");
@@ -245,7 +248,8 @@ public class Environment
 
         StringBuffer xmlBuffer = new StringBuffer();
         Matcher cdataMatcher = cdataPattern.matcher(data);
-        while(cdataMatcher.find()) {
+        boolean e=cdataMatcher.find();
+        while(e) {
             String cdata = cdataMatcher.group(0);
             // Remove all our &newl; from inside of CDATA blocks as it doesn't belong.
             cdata = cdata.replaceAll("&newl;","").replaceAll("\\\\n", "\n");

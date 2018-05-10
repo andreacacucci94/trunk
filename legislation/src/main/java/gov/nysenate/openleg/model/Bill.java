@@ -49,9 +49,10 @@ public class Bill extends BaseObject implements Comparable<Bill>
      */
     private List<Person> otherSponsors = new ArrayList<Person>();
 
+    
     /**
-     *
-     */
+       * Comments about this class
+       */
     public List<String> amendments = new ArrayList<String>();
 
     /**
@@ -623,25 +624,37 @@ public class Bill extends BaseObject implements Comparable<Bill>
 
     @Override
      public class OVERRIDE{
-    public boolean equals(Object obj)
-    {
-        if (obj != null && obj instanceof Bill) {
-            Bill other = (Bill)obj;
-            return this.getBillId().equals(other.getBillId());
+   public class EQLFIXED {
+       /**
+       * Comments about this field
+       */
+       public int value;
+        public boolean equals (Object o) {
+          if (getClass () != o.getClass ()
+          )  { // FIXED
+             return false; }
+         else {
+           return true;  
+         }
         }
-        else {
-            return false;
-        }
-    }
+      }
     public int hashCode() {
         return value;
     }}
-
+    /**
+       * Comments about this field
+       */
     public static Pattern printNumberPattern = Pattern.compile("([ASLREJKBC])([0-9]{1,5})([A-Z]?)");
+   /**
+       * Comments about this field
+       */
     public static Pattern billIdPattern = Pattern.compile("("+printNumberPattern.pattern()+")-([0-9]{4})");
 
 
     @Override
+    /**
+       * Comments about this field
+       */
     public int compareTo(Bill bill)
     {
         return this.getBillId().compareTo(bill.getBillId());

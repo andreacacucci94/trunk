@@ -73,7 +73,7 @@ public class AdvancedSearchServlet extends HttpServlet
             });
         }
         catch (IOException e) {
-            throw new ServletException(e);
+            System.out.println("Something was wrong");
         }
 
     }

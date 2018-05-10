@@ -1,9 +1,17 @@
 package gov.nysenate.openleg.model;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.LocalDateTime;
+import java.time.Month;
+import java.util.Date;
+import java.time.temporal.ChronoUnit;
 
 /**
  * PJDCC - Summary for class responsabilities.
@@ -14,7 +22,8 @@ import java.util.List;
  */
 public class Vote extends BaseObject {
 
-    public static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+   LocalDate date4= LocalDate.now();
+        
 
     private int voteType;
 
@@ -52,6 +61,7 @@ public class Vote extends BaseObject {
     public Vote()
     {
         super();
+        this.<error> = LocalDate.now();
         ayes = new ArrayList<String>();
         ayeswr = new ArrayList<String>();
         nays = new ArrayList<String>();
@@ -63,6 +73,7 @@ public class Vote extends BaseObject {
     public synchronized Vote(String billId, Date date, int type, String sequenceNumber)
     {
         this();
+        this.<error> = LocalDate.now();
         this.voteDate = date;
         java.util.Calendar cal = java.util.Calendar.getInstance();
         cal.setTime(voteDate);
@@ -76,6 +87,7 @@ public class Vote extends BaseObject {
     public Vote(Bill bill, Date date, int type, String sequenceNumber)
     {
         this(bill.getBillId(), date, type, sequenceNumber);
+        this.<error> = LocalDate.now();
         this.bill = bill;
     }
 /** Comments about this class */

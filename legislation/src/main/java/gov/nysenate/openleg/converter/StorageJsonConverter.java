@@ -46,6 +46,24 @@ import org.codehaus.jackson.map.SerializationConfig.Feature;
 import org.codehaus.jackson.node.ArrayNode;
 import org.codehaus.jackson.node.ObjectNode;
 import org.codehaus.jackson.util.DefaultPrettyPrinter;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern
+        
+        
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.LocalDateTime;
+import java.time.Month;
+import java.util.Date;
+import java.time.temporal.ChronoUnit;
+
 // Richiede commento
 
 /**
@@ -65,7 +83,7 @@ public class StorageJsonConverter
     protected final ObjectMapper objectMapper;
     protected final PrettyPrinter prettyPrinter;
 
-    private final SimpleDateFormat jsonDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+     private LocalDateTime date2= LocalDateTime.now();
 /** Comments about this class */
     public StorageJsonConverter(Storage storage)
     {
@@ -80,14 +98,16 @@ public class StorageJsonConverter
 /** Comments about this class */
     public void write(Transcript value, File storageFile) throws IOException
     {
+        FileOutputStream outF = null ;
        try {
-    		write(value, new FileOutputStream(storageFile));
+    		write(value, outF));
     	} catch (IOException e) {
     		System.out.println("Exception IO");
     	}
-       finnally{
+       finally{
        try{
          value.close();
+         outF.close
          }catch(Exception e){}
             System.out.println("Exception IO");
     }
@@ -95,14 +115,17 @@ public class StorageJsonConverter
 /** Comments about this class */
     public void write(Bill value, File storageFile) throws IOException
     {
+        FileOutputStream outF = null ;
+        
         try {
-    		write(value, new FileOutputStream(storageFile));
+    		write(value, outF));
     	} catch (IOException e) {
     		System.out.println("Exception IO");
     	}
         finally{
         try{
          value.close();
+         outF.close/();
          }catch(Exception e){}
             System.out.println("Exception IO");
         }
@@ -110,29 +133,39 @@ public class StorageJsonConverter
 /** Comments about this class */
     public void write(Agenda value, File storageFile) throws IOException
     {
+        FileOutputStream outF = null ;
         try {
-			write(value, new FileOutputStream(storageFile));
+            
+             outF = new FileOutputStream(storageFile);
+             
+			write(value, outF));
 		} catch (IOException e) {
 		System.out.println("Exception IO");
 		}
         finally{
         try{
-         value.close();
+         value.close
+         outF.close();
          }catch(Exception e){}
             System.out.println("Exception IO");
         }
     }
+    
 /** Comments about this class */
     public void write(Meeting value, File storageFile) throws IOException
     {
+        FileOutputStream outF = null ; 
+        
         try {
-    		write(value, new FileOutputStream(storageFile));
+                outF = new FileOutputStream(storageFile);
+    		write(value, outF);
 	} catch (IOException e) {
 		System.out.println("Exception IO");
 	}
         finally{
         try{
          value.close();
+         outF.close();
          }catch(Exception e){}
             System.out.println("Exception IO");
         }
@@ -512,7 +545,7 @@ public class StorageJsonConverter
             list.add(makeCalendarEntry(iter.next()));
         }
         else {
-            throw new RuntimeException("Invalid list item type: "+cls);
+            throw new InvalidItemException("Invalid list item type: "+cls);
         }
         
         return list;
@@ -770,7 +803,7 @@ public class StorageJsonConverter
             arrayNode.add(makeNode((CalendarEntry)item));
         }
         else {
-            throw new RuntimeException("Invalid array node type: "+item.getClass());
+            throw new InvalidArrayNodeException("Invalid array node type: "+item.getClass());
         }
         
         return arrayNode;

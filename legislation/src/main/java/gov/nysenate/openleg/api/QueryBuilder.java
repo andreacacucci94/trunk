@@ -15,21 +15,57 @@ import org.apache.log4j.Logger;
  * @version 
  */
 public class QueryBuilder {
+    /**
+       * Comments about this class
+       */
     public static Logger logger = Logger.getLogger(QueryBuilder.class);
-
+/**
+       * Comments about this field
+       */
     public static final String OTYPE  = "otype";
+    /**
+       * Comments about this field
+       */
     public static final String OID  = "oid";
+    /**
+       * Comments about this field
+       */
     public static final String YEAR = "year";
+    /**
+       * Comments about this field
+       */
     public static final String WHEN = "when";
+    /**
+       * Comments about this field
+       */
     public static final String ACTIVE = "active";
-
+/**
+       * Comments about this field
+       */
     public static final String SEPARATOR = ":";
+    /**
+       * Comments about this field
+       */
     public static final String TO = "TO";
+    /**
+       * Comments about this field
+       */
     public static final String AND = "AND";
+    /**
+       * Comments about this field
+       */
     public static final String OR = "OR";
+    /**
+       * Comments about this field
+       */
     public static final String NOT = "NOT";
-
+    /**
+       * Comments about this field
+       */
     protected StringBuffer query;
+    /**
+       * Comments about this field
+       */
     protected boolean operatorToggle = true;
 /** Comments about this class */
     private QueryBuilder() {

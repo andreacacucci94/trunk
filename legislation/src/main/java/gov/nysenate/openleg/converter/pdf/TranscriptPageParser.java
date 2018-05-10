@@ -42,7 +42,8 @@ public class TranscriptPageParser
         TranscriptPage page = new TranscriptPage();
         int lineCount = 0;
         TranscriptLine line = new TranscriptLine(pageLines.get(0));
-        for (int i = 0; i < pageLines.size(); i++) {
+        int e =pageLines.size();
+        for (int i = 0; i < e; i++) {
             line.setLine(pageLines.get(i));
             if (line.isTranscriptNumber()) {
                 page.setTranscriptNumber(line.removeInvalidCharacters());
@@ -121,8 +122,8 @@ public class TranscriptPageParser
         String str = "";
         TranscriptLine line = new TranscriptLine(str);
         TranscriptLine nextLine = new TranscriptLine(str);
-        
-        for (int i = 0; i < firstPage.size(); i++) {
+        int d=firstPage.size();
+        for (int i = 0; i < d; i++) { 
             line.setLine(firstPage.get(i));
 
             if (!line.isEmpty()) {

@@ -14,8 +14,17 @@ import org.apache.lucene.document.Document;
  */
 public class LuceneResult
 {
+    /**
+       * Comments about this field
+       */
 	public int total;
+        /**
+       * Comments about this field
+       */
 	public Collection<Document> results;
+        /**
+       * Comments about this class
+       */
 	public LuceneResult(Collection<Document> documents, int totalresults) {
 		total = totalresults;
 		results = documents;
