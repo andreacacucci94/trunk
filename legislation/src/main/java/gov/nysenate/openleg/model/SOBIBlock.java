@@ -1,4 +1,4 @@
-package gov.nysenate.openleg.model;
+ package gov.nysenate.openleg.model;
 
 import java.io.File;
 import java.util.Arrays;

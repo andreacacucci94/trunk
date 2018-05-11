@@ -1,4 +1,4 @@
-package gov.nysenate.openleg.model;
+ package gov.nysenate.openleg.model;
 
 import java.util.Comparator;
 import java.util.Date;

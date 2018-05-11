@@ -1,4 +1,4 @@
-package gov.nysenate.openleg.converter;
+ package gov.nysenate.openleg.converter;
 
 
 import gov.nysenate.openleg.model.Action;

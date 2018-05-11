@@ -7,7 +7,7 @@ import gov.nysenate.openleg.model.Result;
 import gov.nysenate.openleg.model.SenateResponse;
 import gov.nysenate.openleg.util.Application;
 import gov.nysenate.openleg.util.TextFormatter;
-
+ 
 import java.io.IOException;
 import java.util.ArrayList;
 

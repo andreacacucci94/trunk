@@ -5,7 +5,7 @@ import gov.nysenate.openleg.qa.model.ProblemBill;
 
 import java.util.Collection;
 import java.util.List;
-
+ 
 import org.apache.log4j.Logger;
 import org.ektorp.CouchDbConnector;
 import org.ektorp.support.CouchDbRepositorySupport;

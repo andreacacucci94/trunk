@@ -1,4 +1,4 @@
-package gov.nysenate.openleg.lucene;
+ package gov.nysenate.openleg.lucene;
 
 import java.util.Collection;
 

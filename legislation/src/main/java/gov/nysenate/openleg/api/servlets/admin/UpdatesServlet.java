@@ -1,4 +1,4 @@
-package gov.nysenate.openleg.api.servlets.admin;
+ package gov.nysenate.openleg.api.servlets.admin;
 
 import gov.nysenate.openleg.model.Change;
 import gov.nysenate.openleg.util.Application;

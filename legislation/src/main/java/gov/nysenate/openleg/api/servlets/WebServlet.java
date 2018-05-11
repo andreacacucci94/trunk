@@ -1,4 +1,4 @@
-package gov.nysenate.openleg.api.servlets;
+ package gov.nysenate.openleg.api.servlets;
 
 import gov.nysenate.openleg.api.AbstractApiRequest;
 import gov.nysenate.openleg.api.AbstractApiRequest.ApiRequestException;

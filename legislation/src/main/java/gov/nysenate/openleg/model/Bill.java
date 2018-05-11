@@ -1,4 +1,4 @@
-package gov.nysenate.openleg.model;
+ package gov.nysenate.openleg.model;
 
 import gov.nysenate.openleg.util.SessionYear;
 import gov.nysenate.openleg.util.TextFormatter;

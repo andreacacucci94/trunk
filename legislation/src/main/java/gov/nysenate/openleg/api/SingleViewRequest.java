@@ -1,4 +1,4 @@
-package gov.nysenate.openleg.api;
+ package gov.nysenate.openleg.api;
 
 import gov.nysenate.openleg.api.QueryBuilder.QueryBuilderException;
 import gov.nysenate.openleg.model.BaseObject;

@@ -4,7 +4,7 @@ import gov.nysenate.openleg.model.BaseObject;
 import gov.nysenate.openleg.util.OpenLegConstants;
 import gov.nysenate.openleg.util.TextFormatter;
 
-import java.io.IOException;
+import java.io.IOException; 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;

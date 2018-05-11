@@ -9,7 +9,7 @@ import gov.nysenate.openleg.qa.model.NonMatchingField;
 import gov.nysenate.openleg.qa.model.ProblemBill;
 import gov.nysenate.openleg.util.SessionYear;
 
-
+ 
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
