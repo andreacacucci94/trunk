@@ -1,7 +1,7 @@
  package gov.nysenate.openleg.model;
 
 import java.util.Comparator;
-import java.util.Date;
+import java.util.Date; 
 
 /**
  * Represents a single action on a single bill. E.g. REFERRED TO RULES
@@ -130,20 +130,22 @@ public class Action extends BaseObject
      
     @Override
     public class OVERRIDE{
-    public class EQLFIXED {
+    
         /**
        * Comments about this field
        */
         public int value;
         public boolean equals (Object o) {
-          if (getClass () != o.getClass ()
-          )  { // FIXED
-             return false; }
-         else {
-          return true; 
+          if (this.getClass () != o.getClass ())  
+          { 
+              Action other = Action obj;
+                return this.getOid().equals(other.getOid());
+             
+          }else {
+          return false; 
          }
         }
-      }
+      
     public int hashCode() {
         return value;
     }}

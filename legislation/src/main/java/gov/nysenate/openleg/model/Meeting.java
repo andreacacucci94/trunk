@@ -186,12 +186,12 @@ public class Meeting extends BaseObject
 
     @Override
     public class OVERRIDE{
-    public boolean equals(Object obj)
-    public class EQLFIXED {
+    
+    
         public int value;
         public boolean equals (Object o) {
-          if (getClass () != o.getClass ()
-          )  { // FIXED
+          if (this.getClass () != o.getClass ()
+          )  { 
              return false; }
          else {
            return true; 
@@ -199,10 +199,9 @@ public class Meeting extends BaseObject
         }
         if ( ((Meeting)obj).getOid().equals(this.getOid()))
                 return true;
-      }
+       
     
-    if ( ((Meeting)obj).getOid().equals(this.getOid()))
-                return true;
+    
     
     public int hashCode() {
         return value;

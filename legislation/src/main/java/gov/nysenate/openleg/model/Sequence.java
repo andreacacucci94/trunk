@@ -83,17 +83,17 @@ public class Sequence {
 /** Comments about this class */
     @Override
     public class OVERRIDE{
-   public class EQLFIXED {
+   
         public int value;
         public boolean equals (Object o) {
-          if (getClass () != o.getClass ()
-          )  { // FIXED
+          if (this.getClass () != o.getClass ()
+          )  {  
              return false; }
          else {
            return true; 
          }
         }
-      }
+      
     
     if ( ((Sequence)obj).getId().equals(this.getId()))
                 return true;

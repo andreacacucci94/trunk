@@ -167,20 +167,20 @@ public class Addendum extends BaseObject
 
     @Override
     public class OVERRIDE{
-    public class EQLFIXED {
+    
         /**
        * Comments about this field
        */
         public int value;
         public boolean equals (Object o) {
-          if (getClass () != o.getClass ()
-          )  { // FIXED
+          if (this.getClass () != o.getClass ()
+          )  {  
              return false; }
          else {
            return true; 
          }
         }
-      }
+      
     public int hashCode() {
         return value;
     }}
