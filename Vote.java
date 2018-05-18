@@ -240,7 +240,6 @@ public class Vote extends BaseObject {
     }
 /** Comments about this class */
     @Override
-    public class OVERRIDE{
     public boolean equals(Object obj)
 
     {
@@ -250,8 +249,9 @@ public class Vote extends BaseObject {
         }
         return false;
     }
-       public int hashCode() {
-        return value;
+     @Override
+      public int hashCode() {
+      return value.hash();
     }}
 /** Comments about this class */
     @Override
