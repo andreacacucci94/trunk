@@ -252,7 +252,7 @@ public class Vote extends BaseObject {
      @Override
       public int hashCode() {
       return value.hash();
-    }}
+    }
 /** Comments about this class */
     @Override
     public String toString() {
