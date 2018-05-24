@@ -86,8 +86,6 @@ public class Person {
     }
 /** Comments about this class */
     @Override
-    public class OVERRIDE{
-     
         /**
        * Comments about this class
        */
@@ -100,10 +98,10 @@ public class Person {
            return true; 
          }
         }
-      
+      @Override
     public int hashCode() {
         return value;
-    }}
+    }
 /** Comments about this class */
     @Override
     public String toString() {

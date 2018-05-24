@@ -623,7 +623,7 @@ public class Bill extends BaseObject implements Comparable<Bill>
     }
 
     @Override
-     public class OVERRIDE{
+   
    
        /**
        * Comments about this field
@@ -637,10 +637,10 @@ public class Bill extends BaseObject implements Comparable<Bill>
            return true;  
          }
         }
-      
+      @Override
     public int hashCode() {
         return value;
-    }}
+    }
     /**
        * Comments about this field
        */

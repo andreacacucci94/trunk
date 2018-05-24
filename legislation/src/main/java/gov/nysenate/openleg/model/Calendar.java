@@ -204,7 +204,6 @@ public class Calendar extends BaseObject
     }
 
     @Override
-    public class OVERRIDE{
      
         /**
        * Comments about this field
@@ -218,8 +217,8 @@ public class Calendar extends BaseObject
            return true; 
          }
         }
-      
+      @Override
     public int hashCode() {
         return value;
-    }}
+    }
 }

@@ -117,7 +117,7 @@ public class Agenda extends BaseObject
     }
 
     @Override
-     public class OVERRIDE{
+   
     
        /**
        * Comments about this field
@@ -131,8 +131,8 @@ public class Agenda extends BaseObject
            return true; 
          }
         }
-      
+      @Override
     public int hashCode() {
         return value;
-    }}
+    }
 }

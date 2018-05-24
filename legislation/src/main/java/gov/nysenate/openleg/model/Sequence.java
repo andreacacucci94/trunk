@@ -82,7 +82,7 @@ public class Sequence {
     }
 /** Comments about this class */
     @Override
-    public class OVERRIDE{
+    
    
         public int value;
         public boolean equals (Object o) {
@@ -97,8 +97,9 @@ public class Sequence {
     
     if ( ((Sequence)obj).getId().equals(this.getId()))
                 return true;
+    @Override
     public int hashCode() {
         return value;
-    }}
+    }
 
 }

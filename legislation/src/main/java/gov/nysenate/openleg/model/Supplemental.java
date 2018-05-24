@@ -93,23 +93,23 @@ public class Supplemental {
         this.id = id;
     }
 /** Comments about this class */
-    @Override
-    public class OVERRIDE{
+   
    public class EQLFIXED {
        /**
        * Comments about this field
        */
         public int value;
+            @Override
         public boolean equals (Object o) {
           if (getClass () != o.getClass ()
-          )  { // FIXED
+          )  { 
              return false; }
          else {
            
             return true;
          }
         }
-      }
+     @Override 
     public int hashCode() {
         return value;
     }}

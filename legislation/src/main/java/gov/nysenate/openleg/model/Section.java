@@ -78,9 +78,7 @@ public class Section {
     }
 /** Comments about this class */
     @Override
-    public class OVERRIDE{
-    
-        /**
+       /**
        * Comments about this field
        */
         public int value;
@@ -92,8 +90,9 @@ public class Section {
            return true; 
          }
         }
-      
+      @Override
      public int hashCode() {
         return value;
-    }}
+    }
 }
+

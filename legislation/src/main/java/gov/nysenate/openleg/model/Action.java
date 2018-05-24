@@ -129,7 +129,6 @@ public class Action extends BaseObject
 /** Comments about this class */
      
     @Override
-    public class OVERRIDE{
     
         /**
        * Comments about this field
@@ -143,12 +142,12 @@ public class Action extends BaseObject
              
           }else {
           return false; 
-         }
-        }
-      
+         }}
+        
+    @Override  
     public int hashCode() {
-        return value;
-    }}
+        return 0;
+    }
     
 /** Comments about this class */
     public int getYear() {

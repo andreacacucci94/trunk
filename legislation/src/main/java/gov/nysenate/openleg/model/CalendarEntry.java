@@ -226,7 +226,6 @@ public class CalendarEntry
     }
 
     @Override
-    public class OVERRIDE{
     
         /**
        * Comments about this field
@@ -240,8 +239,8 @@ public class CalendarEntry
            return true; 
          }
         }
-      
+      @Override
     public int hashCode() {
         return value;
-    }}
+    }
 }

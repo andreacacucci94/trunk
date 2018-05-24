@@ -185,7 +185,6 @@ public class Meeting extends BaseObject
     }
 
     @Override
-    public class OVERRIDE{
     
     
         public int value;
@@ -202,10 +201,10 @@ public class Meeting extends BaseObject
        
     
     
-    
+    @Override
     public int hashCode() {
         return value;
-    }}
+    }
 
     @Override
     public String toString() {

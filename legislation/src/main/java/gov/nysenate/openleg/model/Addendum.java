@@ -166,7 +166,6 @@ public class Addendum extends BaseObject
     }
 
     @Override
-    public class OVERRIDE{
     
         /**
        * Comments about this field
@@ -180,10 +179,10 @@ public class Addendum extends BaseObject
            return true; 
          }
         }
-      
+    @Override  
     public int hashCode() {
         return value;
-    }}
+    }
 
     @Override
     public String toString() {
