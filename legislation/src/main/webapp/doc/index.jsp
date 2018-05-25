@@ -2,4 +2,4 @@
 <body>
  <h1> Something was wrong </h1>
 </body>
-<% response.sendRedirect("/legislation/developers/");%>
+<%= response.sendRedirect("/legislation/developers/");%>
