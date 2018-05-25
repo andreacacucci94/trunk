@@ -128,18 +128,6 @@ public class Bill extends BaseObject implements Comparable<Bill>
         super();
     }
 
-    /**
-     * Constructs a minimal Bill object.
-     *
-     * @param senateBillNo - The unique bill id
-     * @param year - The session year this bill was introduced to
-     */
-    private Bill(String billId, int session)
-    {
-        this.setBillId(billId);
-        this.setSession(session);
-        this.setYear(session);
-    }
 
     /**
      * @return - True if this bill is a resolution of some sort.
@@ -172,13 +160,6 @@ public class Bill extends BaseObject implements Comparable<Bill>
         return billId;
     }
 
-    /**
-     * @param billId - The new bill id.
-     */
-    private void setBillId(String billId)
-    {
-        this.billId = billId;
-    }
 
     /**
      * The object type of the bill.

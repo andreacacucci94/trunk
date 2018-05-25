@@ -34,21 +34,7 @@ public class Agenda extends BaseObject
         addendums = new ArrayList<Addendum>();
     }
 
-    /**
-     * Fully constructs a new agenda.
-     *
-     * @param session - The session year for the agenda
-     * @param year - The calendar year for the agenda
-     * @param number - The agenda number for the calendar year
-     */
-    private Agenda(int session, int year, int number)
-    {
-        this();
-        this.setSession(session);
-        this.setYear(year);
-        this.setNumber(number);
-        this.setOid("commagenda-"+number+"-"+year);
-    }
+
 
     /**
      * The object type of the agenda.
@@ -66,13 +52,6 @@ public class Agenda extends BaseObject
         return this.oid;
     }
 
-    /**
-     * @param oid - The new object id.
-     */
-    private void setOid(String oid)
-    {
-        this.oid = oid;
-    }
 
     /**
      * @return - The agenda number.
@@ -82,13 +61,6 @@ public class Agenda extends BaseObject
         return number;
     }
 
-    /**
-     * @param number - The new agenda number.
-     */
-   private void setNumber(int number)
-    {
-        this.number = number;
-    }
 
     /**
      * @return - The list of addendum.

@@ -185,21 +185,7 @@ public class ApiServlet2 extends HttpServlet
             throw new ApiRequestException("internal server error.");
         }
     }
-/** Comments about this class */
-     private HttpServletResponse jsonpFormat(String callback, HttpServletResponse response, SenateResponse sr) throws ApiRequestException{
-        
-        if (callback != null && callback != "") {
-            PrintWriter out = response.getWriter();
-            response.setContentType("application/javascript");
-            out.write(callback+"("+new Api1JsonConverter().toString(sr)+");");
-        }
-        else {
-            throw new ApiRequestException("callback parameter required for jsonp queries.");
-        }
-        
-        return response;
-        
-    }
+
      /** Comments about this class */
     private void doSingleView(HttpServletRequest request, HttpServletResponse response, String format, String type, String id) throws ApiRequestException
     {

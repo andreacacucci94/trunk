@@ -94,7 +94,6 @@ public class Supplemental {
     }
 /** Comments about this class */
    
-   public class EQLFIXED {
        /**
        * Comments about this field
        */

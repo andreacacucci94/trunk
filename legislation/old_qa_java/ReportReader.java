@@ -63,71 +63,7 @@ public class ReportReader extends CouchSupport {
     public static final String HELP = "help";
 
     
-   
-    /** Comments about this class */
-    private static void main(String[] args) {
-        CommandLineParser parser = new PosixParser();
-        Options options = new Options();
-        options.addOption("ft", FILE_TYPE, true, "(bill_html|memo|paging)");
-        options.addOption("f", PATH_TO_FILE, true, "path to file being parsed");
-        options.addOption("m", REPORT_MISSING_DATA, false, "refresh report on missing data");
-        options.addOption("d", DUMP, true, "dump missing data information to file");
-        options.addOption("r", RESET_COUCH, false, "reset couchdb");
-        options.addOption("h", HELP, false, "print this message");
 
-        try {
-            CommandLine line = parser.parse(options, args);
-
-            if(line.hasOption("-h")) {
-                HelpFormatter formatter = new HelpFormatter();
-                formatter.printHelp("posix", options );
-            }
-            else {
-                ReportReader reader = new ReportReader();
-
-                if(line.hasOption(RESET_COUCH)) {
-                    CouchInstance instance = CouchInstance.getInstance(CouchSupport.DATABASE_NAME, true, new StdHttpClient.Builder().build());
-                    instance.getDbInstance().deleteDatabase(CouchSupport.DATABASE_NAME);
-                }
-                else if(line.hasOption(FILE_TYPE) && line.hasOption(PATH_TO_FILE)) {
-                    ReportType reportType = null;
-                    String fileType = line.getOptionValue(FILE_TYPE);
-
-                    reportType = ifFile(reportType, fileType);
-
-
-                    reader.processFile(line.getOptionValue(PATH_TO_FILE), reportType);
-                }
-                else if(line.hasOption(REPORT_MISSING_DATA)) {
-                    reader.reportMissingData();
-                }
-                else if(line.hasOption(DUMP)) {
-                    reader.dumpToFile(line.getOptionValue(DUMP));
-                }
-                else {
-                    throw new org.apache.commons.cli.ParseException("use with -h for options");
-                }
-            }
-        }
-        catch( org.apache.commons.cli.ParseException exp ) {
-            System.out.println( "Unexpected exception:" + exp.getMessage() );
-        }
-    }
-    /** Comments about this class */
-     private  static ReportType ifFile(ReportType reportType, String fileType) throws org.apache.commons.cli.ParseException{
-        
-        if(fileType.equalsIgnoreCase("bill_html"))
-                        reportType = ReportType.BILL_HTML;
-                    else if(fileType.equalsIgnoreCase("memo"))
-                        reportType = ReportType.MEMO;
-                    else if(fileType.equalsIgnoreCase("paging"))
-                        reportType = ReportType.PAGING;
-
-                    if(reportType==null)
-                        throw new org.apache.commons.cli.ParseException("invalid file type: " + fileType);
-
-         return reportType;
-    }
      
     /*
      * report files come in three flavors:

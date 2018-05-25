@@ -16,7 +16,10 @@ import org.ektorp.support.DesignDocument;
  * @version 
  */
 public class CouchInstance {
-    private static CouchInstance couchInstance = null;
+    private static CouchInstance couchInstance ;
+    static{
+        couchInstance=null;
+    }
 /** Comments about this class */
     public static CouchInstance getInstance(String databaseName, boolean createIfNotExist, HttpClient httpClient) {
         if(couchInstance == null) {
