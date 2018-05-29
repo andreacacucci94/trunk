@@ -33,11 +33,26 @@ public class SingleViewRequest extends AbstractApiRequest {
 /** Comments about this class */
     public SingleViewRequest(HttpServletRequest request, HttpServletResponse response,
             String format, String type, String id) {
+        
+        String request = request.getParameter();
+        
         super(request, response, 1, 1, format, getApiEnum(SingleView.values(),type));
         logger.info("New single view request: format="+format+", type="+type+", id="+id);
         this.type = type;
         this.id = id;
     }
+    
+    public static String neutralizeMessage(String message) {
+  // ensure no CRLF injection into logs for forging records
+  String clean = message.replace( '\n', '_' ).replace( '\r', '_' );
+  if ( ESAPI.securityConfiguration().getLogEncodingRequired() ) {
+      clean = ESAPI.encoder().encodeForHTML(clean);
+      if (!message.equals(clean)) {
+          clean += " (Encoded)";
+      }
+  }
+  return clean;
+}
 /** Comments about this class */
     @Override
     public void fillRequest() throws ApiRequestException {

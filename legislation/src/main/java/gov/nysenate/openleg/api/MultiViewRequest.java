@@ -39,10 +39,29 @@ public class MultiViewRequest extends AbstractApiRequest {
 /** Comments about this class */
     public MultiViewRequest(HttpServletRequest request, HttpServletResponse response,
             String format, String type, String pageNumber, String pageSize) {
+        
+        String request = request.getParameter();
+         
         super(request, response, pageNumber, pageSize, format, getApiEnum(MultiView.values(),type));
         logger.info("New multi view request: format="+format+", type="+type+", page="+pageNumber+", size="+pageSize);
         this.type = type;
+        
+     
     }
+    public static String neutralizeMessage(String message) {
+  // ensure no CRLF injection into logs for forging records
+  String clean = message.replace( '\n', '_' ).replace( '\r', '_' );
+  if ( ESAPI.securityConfiguration().getLogEncodingRequired() ) {
+      clean = ESAPI.encoder().encodeForHTML(clean);
+      if (!message.equals(clean)) {
+          clean += " (Encoded)";
+      }
+  }
+  return clean;
+}
+    
+  
+}
 /** Comments about this class */
     private boolean isNotValidSenateResponse (SenateResponse sr){
         boolean flag = false;

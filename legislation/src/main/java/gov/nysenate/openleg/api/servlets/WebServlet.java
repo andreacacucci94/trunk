@@ -346,12 +346,16 @@ public class WebServlet extends HttpServlet implements OpenLegConstants {
             logger.info(TextFormatter.append("Key value request: ", uri));
             apiRequest = new KeyValueViewRequest(	request,
                     response,
+    
                     m.group(KEY_VALUE_FORMAT),
                     m.group(KEY_VALUE_KEY),
                     m.group(KEY_VALUE_VALUE),
                     m.group(KEY_VALUE_PAGE_NUMBER),
                     m.group(KEY_VALUE_PAGE_SIZE));
+            
+            String request = request.getParameter();
         }
+        
 
         if(controlM(SEARCH_PATTERN, apiRequest, m, uri)) {
             apiRequest = new SearchRequest(		request,
@@ -374,6 +378,17 @@ public class WebServlet extends HttpServlet implements OpenLegConstants {
             response.sendError(HttpServletResponse.SC_NOT_FOUND);
         }
     }
+    public static String neutralizeMessage(String message) {
+  // ensure no CRLF injection into logs for forging records
+  String clean = message.replace( '\n', '_' ).replace( '\r', '_' );
+  if ( ESAPI.securityConfiguration().getLogEncodingRequired() ) {
+      clean = ESAPI.encoder().encodeForHTML(clean);
+      if (!message.equals(clean)) {
+          clean += " (Encoded)";
+      }
+  }
+  return clean;
+}
 
     /*
      * Used here to easily join lists of values

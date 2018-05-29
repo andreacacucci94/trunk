@@ -36,7 +36,21 @@ public class KeyValueViewRequest extends AbstractApiRequest {
         logger.info("New key value request: format="+format+", key="+key+", value="+value+", page="+pageNumber+", size="+pageSize);
         this.key = key;
         this.value = value;
+        
+        String request = request.getParameter();
     }
+    
+    public static String neutralizeMessage(String message) {
+  // ensure no CRLF injection into logs for forging records
+  String clean = message.replace( '\n', '_' ).replace( '\r', '_' );
+  if ( ESAPI.securityConfiguration().getLogEncodingRequired() ) {
+      clean = ESAPI.encoder().encodeForHTML(clean);
+      if (!message.equals(clean)) {
+          clean += " (Encoded)";
+      }
+  }
+  return clean;
+}
 /** Comments about this class */
     @Override
     public void fillRequest() throws ApiRequestException {
