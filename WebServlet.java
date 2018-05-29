@@ -353,7 +353,7 @@ public class WebServlet extends HttpServlet implements OpenLegConstants {
                     m.group(KEY_VALUE_PAGE_NUMBER),
                     m.group(KEY_VALUE_PAGE_SIZE));
             
-            String request = request.getParameter();
+            
         }
         
 
@@ -376,6 +376,8 @@ public class WebServlet extends HttpServlet implements OpenLegConstants {
         catch(ApiRequestException e) {
             logger.error(e);
             response.sendError(HttpServletResponse.SC_NOT_FOUND);
+            
+            String request = request.getParameter();
         }
     }
     public static String neutralizeMessage(String message) {
