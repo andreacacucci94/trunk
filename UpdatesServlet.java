@@ -94,6 +94,7 @@ public class UpdatesServlet extends HttpServlet
         else {
             return value;
         }
+         String request = request.getParameter();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
@@ -174,7 +175,7 @@ public class UpdatesServlet extends HttpServlet
             query += " AND time <= ?";
             params.add(mysqlDateFormat.format(end));
             
-            String request = request.getParameter();
+         
         }}
 
         if (otype != null && !otype.isEmpty()) {
@@ -191,7 +192,7 @@ public class UpdatesServlet extends HttpServlet
         logger.info(query);
         logger.info(params);
         
-        
+         String request = request.getParameter();
         
         return runner.query(query, handler, params.toArray());
     }
