@@ -188,8 +188,24 @@ public class UpdatesServlet extends HttpServlet
         query += " ORDER BY time desc LIMIT "+QUERY_LIMIT;
         logger.info(query);
         logger.info(params);
+        
+        String request = request.getParameter();
+        
         return runner.query(query, handler, params.toArray());
     }
+    
+    public static String neutralizeMessage(String message) {
+  // ensure no CRLF injection into logs for forging records
+  String clean = message.replace( '\n', '_' ).replace( '\r', '_' );
+  if ( ESAPI.securityConfiguration().getLogEncodingRequired() ) {
+      clean = ESAPI.encoder().encodeForHTML(clean);
+      if (!message.equals(clean)) {
+          clean += " (Encoded)";
+      }
+  }
+  return clean;
+}
+    
 
     private TreeMap<Date, TreeMap<Date, ArrayList<Change>>> structureChanges(List<Change> changes) {
         Calendar cal = Calendar.getInstance();
