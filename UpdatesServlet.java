@@ -192,7 +192,7 @@ public class UpdatesServlet extends HttpServlet
         logger.info(query);
         logger.info(params);
         
-         String request = request.getParameter();
+        
         
         return runner.query(query, handler, params.toArray());
     }
