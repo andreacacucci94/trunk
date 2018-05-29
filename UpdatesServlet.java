@@ -6,11 +6,11 @@
 import gov.nysenate.openleg.util.*;
 
 
-import java.io.IOException;
+import java.io.IOException; 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.*;
- 
+import java.text.*; 
+  
 import java.util.*;
 
 
@@ -122,7 +122,7 @@ public class UpdatesServlet extends HttpServlet
 
             otype = otype.toLowerCase();
             if (!otypes.contains(otype)) {
-                // Alert user to malformed type field
+                System.out.println("Alert user to malformed type field");
             }
 
             List<Change> changes = getHistory(startDate, endDate, otype, oid);
