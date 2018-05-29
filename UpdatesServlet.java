@@ -173,6 +173,8 @@ public class UpdatesServlet extends HttpServlet
             synchronized (dateFormat) {
             query += " AND time <= ?";
             params.add(mysqlDateFormat.format(end));
+            
+            String request = request.getParameter();
         }}
 
         if (otype != null && !otype.isEmpty()) {
@@ -189,7 +191,7 @@ public class UpdatesServlet extends HttpServlet
         logger.info(query);
         logger.info(params);
         
-        String request = request.getParameter();
+        
         
         return runner.query(query, handler, params.toArray());
     }
