@@ -49,7 +49,7 @@ public class ApiServlet1 extends HttpServlet
 /**
        * Comments about this field
        */
-    public final Logger logger = Logger.getLogger();
+    public final Logger logger = Logger.getLogger(ApiServlet1.class);
     /**
        * Comments about this field
        */
