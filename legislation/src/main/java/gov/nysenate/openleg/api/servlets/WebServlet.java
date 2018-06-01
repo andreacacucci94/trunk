@@ -171,10 +171,7 @@ public class WebServlet extends HttpServlet implements OpenLegConstants {
        */
     public static final String SEARCH_END = ")(?:/)?(?:(.+?)/?+)?";
 
-     /**
-       * Comments about this field
-       */
-    public Pattern SINGLE_PATTERN;
+    
      /**
        * Comments about this field
        */
@@ -201,8 +198,9 @@ public class WebServlet extends HttpServlet implements OpenLegConstants {
        * Comments about this field
        */
     @Override
-    public void init() throws ServletException {
-
+    public void  init() throws ServletException {
+        
+    
         String singleViews = new Join<SingleView>() {
             @Override
             public String value(SingleView t) {
@@ -263,7 +261,9 @@ public class WebServlet extends HttpServlet implements OpenLegConstants {
         Map<String, String> subMap = new HashMap<>();
         subMap.put("context_path", this.getServletContext().getContextPath());
         String formattedBaseStart = StrSubstitutor.replace(BASE_START, subMap);
-
+        
+        Pattern SINGLE_PATTERN;
+        
         SINGLE_PATTERN = Pattern.compile(
                 TextFormatter.append(
 
@@ -301,25 +301,30 @@ public class WebServlet extends HttpServlet implements OpenLegConstants {
      * applicable ApiRequest extension and routes request
      */
     @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response)	throws ServletException, IOException
+    public void doGet(HttpServletRequest request, HttpServletResponse response , 
+            String formattedBaseStart , String searchFormats,String singleFormats, String singleViews, String uri,  )
+            throws ServletException, IOException 
     {
         Matcher m = null;
-
-        String uri = URLDecoder.decode(request.getRequestURI(), ENCODING);
+       
         AbstractApiRequest apiRequest = null;
 
+        String request = request.getParameter(multiFormats, multiViews, MULTI_END, PAGING, BASE_END ); 
+        
         /*
          *	/legislation/(api/(1.0/)?[format]/)?[type]/[id]
          *
          *		ex. /legislation/api/html/bill/s1234-2011
          */
+        Pattern SINGLE_PATTERN;
         
-        if(controlM(SINGLE_PATTERN, apiRequest, m, uri)) {
-            apiRequest = new SingleViewRequest(	request,
-                    response,
-                    m.group(SINGLE_FORMAT),
-                    m.group(SINGLE_TYPE),
-                    m.group(SINGLE_ID));
+        SINGLE_PATTERN = Pattern.compile(
+                TextFormatter.append(
+                        formattedBaseStart, singleFormats, BASE_MIDDLE, singleViews, SINGLE_END, BASE_END)
+        );
+        
+        if(m = singlePatternWork();
+
         }
 
         /*
@@ -347,13 +352,16 @@ public class WebServlet extends HttpServlet implements OpenLegConstants {
             apiRequest = new KeyValueViewRequest(	request,
                     response,
     
+                   
+                    
                     m.group(KEY_VALUE_FORMAT),
                     m.group(KEY_VALUE_KEY),
                     m.group(KEY_VALUE_VALUE),
                     m.group(KEY_VALUE_PAGE_NUMBER),
                     m.group(KEY_VALUE_PAGE_SIZE));
-            
+                    
             String request = request.getParameter();
+           
         }
         
 
