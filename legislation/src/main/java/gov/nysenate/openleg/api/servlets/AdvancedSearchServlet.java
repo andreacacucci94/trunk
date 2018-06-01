@@ -30,13 +30,14 @@ import org.codehaus.jackson.map.ObjectMapper;
 @SuppressWarnings("serial")
 public class AdvancedSearchServlet extends HttpServlet
 {
-    private ArrayList<Senator> senators;
-    private ArrayList<Committee> committees;
+    
 /** Comments about this class */
     public void init() throws ServletException
     {
         ObjectMapper mapper = new ObjectMapper();
         int sessionYear = SessionYear.getSessionYear();
+        ArrayList<Senator> senators = new ArrayList<>();
+        ArrayList<Committee> committees = new ArrayList<>();
 
         try {
             File committeesBase = new File(URLDecoder.decode(SenatorsServlet.class.getClassLoader().getResource("data/committees/").getPath()));
@@ -44,12 +45,12 @@ public class AdvancedSearchServlet extends HttpServlet
 
             if (!committeesDir.exists()) committeesDir.mkdirs();
 
-            this.committees = new ArrayList<Committee>();
+            
             for (File committeeFile : FileUtils.listFiles(committeesDir, new String[]{"json"}, false)) {
-                this.committees.add(mapper.readValue(committeeFile, Committee.class));
+                committees.add(mapper.readValue(committeeFile, Committee.class));
             }
 
-            Collections.sort(this.committees, new Comparator<Committee>() {
+            Collections.sort(committees, new Comparator<Committee>() {
                 public int compare(Committee a, Committee b)
                 {
                     return a.getName().compareTo(b.getName());
@@ -60,12 +61,12 @@ public class AdvancedSearchServlet extends HttpServlet
             File senatorsDir = new File(senatorsBase, String.valueOf(sessionYear));
             if (!senatorsDir.exists()) senatorsDir.mkdirs();
 
-            this.senators = new ArrayList<Senator>();
+            
             for (File senatorFile : FileUtils.listFiles(senatorsDir, new String[]{"json"}, false)) {
-                this.senators.add(mapper.readValue(senatorFile, Senator.class));
+                senators.add(mapper.readValue(senatorFile, Senator.class));
             }
 
-            Collections.sort(this.senators, new Comparator<Senator>() {
+            Collections.sort(senators, new Comparator<Senator>() {
                 public int compare(Senator a, Senator b)
                 {
                     return a.getLastName().compareTo(b.getLastName());
@@ -78,10 +79,10 @@ public class AdvancedSearchServlet extends HttpServlet
 
     }
 /** Comments about this class */
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+    public void doGet(HttpServletRequest request, HttpServletResponse response, ArrayList<Senator> senators, ArrayList<Commitee> committees) throws ServletException, IOException
     {
-        request.setAttribute("senators", this.senators);
-        request.setAttribute("committees", this.committees);
+        request.setAttribute("senators", senators);
+        request.setAttribute("committees", committees);
         request.getSession().getServletContext().getRequestDispatcher("/views/advanced.jsp").forward(request, response);
     }
 
