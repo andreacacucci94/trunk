@@ -6,11 +6,11 @@ import gov.nysenate.openleg.model.*;
 import gov.nysenate.openleg.util.*;
 
 
-import java.text.*; 
+import java.text.*;  
 import java.util.*;
 
 import java.time.*; 
-
+ 
 
 
 import org.apache.commons.lang3.StringUtils;
@@ -54,7 +54,7 @@ public class ApiHelper implements OpenLegConstants {
         return flag;
     }
     /** Comments about this class */
-    private String editTitle(String type, String title, Bill bill){
+    private String editTitle( String title, Bill bill){
 
         if (bill.getTitle() != null)
             title += bill.getTitle();
@@ -261,9 +261,16 @@ public class ApiHelper implements OpenLegConstants {
             fields.put("date", dateFormat.format(billEvent
                     .getDate()));
             fields.put("billno", billId);
-        } else if (type.equals("vote")) {
-            Vote vote = (Vote) resultObj;
+            
+            else if ((type.equals("vote")) &&(vote.getVoteType() == Vote.VOTE_TYPE_COMMITTEE)){
+                     fields.put("committee", vote.getDescription());
 
+            title +=  DATE_FORMAT_CUSTOM.format(vote.getVoteDate());
+        }
+                    
+            
+        } else  (type.equals("vote")) {
+            Vote vote = (Vote) resultObj;
             fields = editVote(fields, vote);
 
             HashMap<String, String> resultFields = result.getFields();
@@ -271,11 +278,8 @@ public class ApiHelper implements OpenLegConstants {
             fields.put("billno", resultFields.get("billno"));
             fields.put("othersponsors", resultFields.get("othersponsors"));
 
-            if (vote.getVoteType() == Vote.VOTE_TYPE_COMMITTEE)
-                fields.put("committee", vote.getDescription());
-
-            title +=  DATE_FORMAT_CUSTOM.format(vote.getVoteDate());
-        }
+           
+               
 
         result.setTitle(title);
         result.setSummary(summary);

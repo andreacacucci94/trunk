@@ -15,8 +15,8 @@ import org.apache.log4j.Logger;
 
 /**
  * PJDCC - Summary for class responsabilities.
- *
- * @author 
+ * 
+ * @author  
  * @since 
  * @version 
  */
@@ -24,12 +24,9 @@ public class LogFilter implements Filter
 {
     private final Logger logger = Logger.getLogger(LogFilter.class);
 /** Comments about this class */
-    public void init(FilterConfig filterConfig)
-    {
-
-    }
+  
 /** Comments about this class */
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException
+    public void doFilter(ServletRequest request) throws IOException, ServletException
     {
         try {
             String uri = neutralizeMessage(((HttpServletRequest)request).getServletPath());

@@ -1,4 +1,4 @@
- package gov.nysenate.openleg.api.servlets;
+package gov.nysenate.openleg.api.servlets;
 
 import gov.nysenate.openleg.api.AbstractApiRequest.ApiRequestException;
 import gov.nysenate.openleg.api.ApiHelper;
@@ -14,9 +14,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServlet; 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServletResponse; 
 
 import org.apache.log4j.Logger;
 // Richiede commento
@@ -39,10 +39,7 @@ public class ApiServlet2 extends HttpServlet
        * Comments about this field
        */
     public static int MAX_PAGE_SIZE = 1000;
-    /**
-       * Comments about this field
-       */
-    public final Logger logger = Logger.getLogger(ApiServlet2.class);
+
     /**
        * Comments about this field
        */
@@ -116,6 +113,7 @@ public class ApiServlet2 extends HttpServlet
         String pageIdxParam = request.getParameter("pageIdx");
         String pageSizeParam = request.getParameter("pageSize");
         String sortOrderParam = request.getParameter("sortOrder");
+        Logger logger = Logger.getLogger(ApiServlet2.class);
 
         try {
             
@@ -153,8 +151,9 @@ public class ApiServlet2 extends HttpServlet
         }
     }
 /** Comments about this class */
-    private void doSearch(HttpServletRequest request, HttpServletResponse response, String format, String type, String term, int pageNumber, int pageSize, String sort, boolean sortOrder) throws ApiRequestException
+    private void doSearch(HttpServletRequest request, HttpServletResponse response, String format, String term, int pageNumber, int pageSize, String sort, boolean sortOrder) throws ApiRequestException
     {
+        Logger logger = Logger.getLogger(ApiServlet2.class);
         try {
             int start = (pageNumber-1) * pageSize;
             SenateResponse sr = Application.getLucene().search(term, start, pageSize, sort, sortOrder);
@@ -189,6 +188,7 @@ public class ApiServlet2 extends HttpServlet
      /** Comments about this class */
     private void doSingleView(HttpServletRequest request, HttpServletResponse response, String format, String type, String id) throws ApiRequestException
     {
+        Logger logger = Logger.getLogger(ApiServlet2.class);
         try {
             SenateResponse sr = Application.getLucene().search("otype:"+type+" AND oid:\""+id+"\"", 0, 1, null, false);
             ApiHelper.buildSearchResultList(sr);
@@ -206,11 +206,15 @@ public class ApiServlet2 extends HttpServlet
                 response.setContentType("application/xml");
                 new Api2XmlConverter().write(sr, response.getOutputStream());
             }
-            else if (format.equals("pdf")) {
-                if (sr.getResults().size() == 0) {
-                    throw new ApiRequestException("No matching document could be found.");
+            
+            else if ((format.equals("pdf")) && (sr.getResults().size() == 0)) { {
+            
+                throw new ApiRequestException("No matching document could be found.");
                 }
-
+            
+            else (format.equals("pdf")) {
+                
+   
                 response.setContentType("application/pdf");
                 PDFConverter.write(sr.getResults().get(0).object, response.getOutputStream());
             }

@@ -5,7 +5,7 @@ import org.ektorp.CouchDbInstance;
 import org.ektorp.http.HttpClient;
 import org.ektorp.impl.NameConventions;
 import org.ektorp.impl.StdCouchDbInstance;
-import org.ektorp.support.DesignDocument;
+import org.ektorp.support.DesignDocument; 
 // Richiede commento
 
 /**

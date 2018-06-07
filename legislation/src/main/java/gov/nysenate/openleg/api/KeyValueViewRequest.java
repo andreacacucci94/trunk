@@ -37,12 +37,12 @@ public class KeyValueViewRequest extends AbstractApiRequest {
         this.key = key;
         this.value = value;
         
-        String request = request.getParameter();
+        
     }
     
     public static String neutralizeMessage(String message) {
   // ensure no CRLF injection into logs for forging records
-  String clean = message.replace( '\n', '_' ).replace( '\r', '_' );
+  
   if ( ESAPI.securityConfiguration().getLogEncodingRequired() ) {
       clean = ESAPI.encoder().encodeForHTML(clean);
       if (!message.equals(clean)) {
@@ -54,24 +54,24 @@ public class KeyValueViewRequest extends AbstractApiRequest {
 /** Comments about this class */
     @Override
     public void fillRequest() throws ApiRequestException {
-        String urlPath = TextFormatter.append("/legislation/", key, "/", value, "/");
+        
 
-        String sortField = "sortindex";
-        boolean sortOrder = false;
+        
+        
 
-        QueryBuilder queryBuilder = new QueryBuilder();
+        
 
 
 
-        SenateResponse sr = null;
+        
 
         // now calculate start, end idx based on pageIdx and pageSize
-        int start = (pageNumber - 1) * pageSize;
+        
 
         try {
             queryBuilder.keyValue(key, "\""+value+"\"").and().otype("bill");
 
-            String filter = request.getParameter("filter");
+            
             if(filter != null) {
                 queryBuilder.and().insertAfter(filter);
             }
@@ -96,8 +96,8 @@ public class KeyValueViewRequest extends AbstractApiRequest {
         sr.setResults(ApiHelper.buildSearchResultList(sr));
 
         if(format.matches("(?i)(csv|json|mobile|rss|xml)")) {
-            ArrayList<Result> searchResults = ApiHelper.buildSearchResultList(sr);
-            ArrayList<Bill> bills = new ArrayList<Bill>();
+            
+           
             for(Result result: searchResults) {
                 bills.add((Bill)result.getObject());
             }
@@ -118,7 +118,7 @@ public class KeyValueViewRequest extends AbstractApiRequest {
 /** Comments about this class */
     @Override
     public String getView() {
-        String vFormat = format.equals("jsonp") ? "json" : format;
+        
         if(vFormat.matches("(?i)(csv|json|mobile|rss|xml)")) {
             return TextFormatter.append("/views/bills-", vFormat, ".jsp");
         }

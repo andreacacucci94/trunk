@@ -1,4 +1,4 @@
- package gov.nysenate.openleg.api.servlets;
+package gov.nysenate.openleg.api.servlets;
 
 import gov.nysenate.openleg.api.AbstractApiRequest.ApiRequestException;
 import gov.nysenate.openleg.api.ApiHelper;
@@ -13,9 +13,9 @@ import gov.nysenate.openleg.util.RequestUtils;
 import gov.nysenate.openleg.util.SessionYear;
 import gov.nysenate.openleg.util.TextFormatter;
 
-import java.io.IOException;
+import java.io.IOException; 
 import java.io.PrintWriter;
-import java.util.regex.Matcher;
+import java.util.regex.Matcher; 
 import java.util.regex.Pattern;
 
 import javax.servlet.ServletException;
@@ -46,10 +46,8 @@ public class ApiServlet1 extends HttpServlet
        * Comments about this field
        */
     public static int DEFAULT_PAGE_SIZE = 20;
-/**
-       * Comments about this field
-       */
-    public final Logger logger = Logger.getLogger(ApiServlet1.class);
+
+    
     /**
        * Comments about this field
        */
@@ -92,6 +90,7 @@ public class ApiServlet1 extends HttpServlet
         String pageIdxParam = request.getParameter("pageIdx");
         String pageSizeParam = request.getParameter("pageSize");
         String sortOrderParam = request.getParameter("sortOrder");
+        Logger logger = Logger.getLogger(ApiServlet1.class);
 
         try {
             
@@ -185,12 +184,13 @@ public class ApiServlet1 extends HttpServlet
         
     }
     /** Comments about this class */
-    private void doSearch(HttpServletRequest request, HttpServletResponse response, String format, String type, String term, int pageNumber, int pageSize, String sort, boolean sortOrder) throws ApiRequestException, IOException
+    private void doSearch(HttpServletRequest request, HttpServletResponse response, String format,  String term, int pageNumber, int pageSize, String sort, boolean sortOrder) throws ApiRequestException, IOException
     {
         // Verify that all bills in the query are in the proper format
         term = Bill.formatBillNo(term);
 
         term = editTerm(term);
+        Logger logger = Logger.getLogger(ApiServlet1.class);
         
 
         try {
@@ -245,6 +245,7 @@ public class ApiServlet1 extends HttpServlet
     private void doSingleView(HttpServletRequest request, HttpServletResponse response, String format, String type, String id) throws ApiRequestException, IOException, ServletException
     {
         BaseObject object = (BaseObject)Application.getLucene().getSenateObject(id, type);
+        Logger logger = Logger.getLogger(ApiServlet1.class);
 
         if(object == null) {
             throw new ApiRequestException(TextFormatter.append("couldn't find id: ", id, " of type: ", type));

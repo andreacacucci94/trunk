@@ -122,20 +122,20 @@ public class LuceneJsonConverter
                 Object obj = fields.get(counter).property;
                 fields.get(counter).setAccessible(false);
 
-                if(obj == null) {
+                else if {(obj == null) 
                     root.add(fields.get(counter).getName(), null);
                 }
-                else {
-                    if(isPrimitive(obj)) {
+                else if {
+                    (isPrimitive(obj)) 
                         root.addProperty(fields.get(counter).getName(), obj.toString());
                     }
-                    else{
+                else{
                         root = workOnRoot(root,obj,type,fields.get(counter),o,name);
                     }
-                }
-                }
-            }
-        }
+                
+                
+                }}
+        
          return root;
     }
     
