@@ -1,6 +1,0 @@
-
-<body>
-<h1>Something was wrong  </h1>  
-<%-- Comment about this  --%>
-</body>
-</html>
