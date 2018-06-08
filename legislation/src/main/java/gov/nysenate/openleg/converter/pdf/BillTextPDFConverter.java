@@ -19,12 +19,16 @@ import java.util.*;
  */
 public class BillTextPDFConverter
 {
-    private static Float fontSize = 12f;
-    private static Float top = 740f;
-    private static Float billMargin = 10f;
-    private static Float resolutionMargin = 46f;
+    
+    
+    
 /** Comments about this class */
     public static void write(IBaseObject object, OutputStream out) throws IOException, COSVisitorException, AbstractApiRequest.ApiRequestException {
+        Float billMargin = 10f;
+        Float fontSize = 12f;
+        Float top = 740f;
+        Float resolutionMargin = 46f;
+        
         if (!(object instanceof Bill)) {
             throw new AbstractApiRequest.ApiRequestException("Unable to convert " + object.getOtype() + "s to pdf.");
         }

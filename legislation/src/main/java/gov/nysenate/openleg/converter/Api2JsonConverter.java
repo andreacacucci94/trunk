@@ -1,19 +1,7 @@
 package gov.nysenate.openleg.converter;
 
-import gov.nysenate.openleg.model.Action;
-import gov.nysenate.openleg.model.Bill;
-import gov.nysenate.openleg.model.Calendar;
-import gov.nysenate.openleg.model.CalendarEntry;
-import gov.nysenate.openleg.model.IBaseObject;
-import gov.nysenate.openleg.model.Meeting;
-import gov.nysenate.openleg.model.Person;
-import gov.nysenate.openleg.model.Result;
-import gov.nysenate.openleg.model.Section;
-import gov.nysenate.openleg.model.SenateResponse;
-import gov.nysenate.openleg.model.Sequence;
-import gov.nysenate.openleg.model.Supplemental;
-import gov.nysenate.openleg.model.Transcript;
-import gov.nysenate.openleg.model.Vote;
+import gov.nysenate.openleg.model.*;
+
 import gov.nysenate.openleg.api.servlets.converter.InvalidArrayNodeException;
 
 import java.io.ByteArrayOutputStream;
@@ -21,7 +9,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Collection;
 
-import org.apache.log4j.Logger;
+import org.apache.log4j.Logger; 
 import org.codehaus.jackson.JsonEncoding;
 import org.codehaus.jackson.JsonFactory;
 import org.codehaus.jackson.JsonGenerator;

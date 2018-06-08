@@ -2,22 +2,16 @@ package gov.nysenate.openleg.api.servlets;
 
 import gov.nysenate.openleg.api.ApiHelper;
 import gov.nysenate.openleg.lucene.Lucene;
-import gov.nysenate.openleg.model.Result;
-import gov.nysenate.openleg.model.SenateResponse;
-import gov.nysenate.openleg.model.Transcript;
-import gov.nysenate.openleg.util.Application;
+import gov.nysenate.openleg.model.*;
+import gov.nysenate.openleg.util.*;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Calendar;
+import java.util.*;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.*;
 
-
-import org.apache.log4j.Logger;
+ 
+import org.apache.log4j.*;
 // Richiede commento
 
 /**
@@ -30,7 +24,7 @@ import org.apache.log4j.Logger;
 @SuppressWarnings("serial")
 public class TranscriptServlet extends HttpServlet
 {
-    private static Logger logger = Logger.getLogger(TranscriptServlet.class);
+    
 /** Comments about this class */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {

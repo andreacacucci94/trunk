@@ -1,20 +1,16 @@
 package gov.nysenate.openleg.api;
 
 import gov.nysenate.openleg.api.QueryBuilder.QueryBuilderException;
-import gov.nysenate.openleg.model.BaseObject;
-import gov.nysenate.openleg.model.Bill;
-import gov.nysenate.openleg.model.Result;
-import gov.nysenate.openleg.model.SenateResponse;
-import gov.nysenate.openleg.util.Application;
-import gov.nysenate.openleg.util.TextFormatter;
+import gov.nysenate.openleg.model.*;
+
+import gov.nysenate.openleg.util.*;
  
-import java.io.IOException;
-import java.util.ArrayList;
+import java.io.*;
+import java.util.*;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
 
-import org.apache.log4j.Logger;
+import org.apache.log4j.*; 
 // Richiede commento
 
 /**
@@ -25,7 +21,7 @@ import org.apache.log4j.Logger;
  * @version 
  */
 public class KeyValueViewRequest extends AbstractApiRequest {
-    private final Logger logger = Logger.getLogger(KeyValueViewRequest.class);
+    
 
     String key;
     String value;

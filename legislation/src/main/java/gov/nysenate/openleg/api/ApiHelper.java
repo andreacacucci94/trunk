@@ -10,7 +10,7 @@ import java.text.*;
 import java.util.*;
 
 import java.time.*; 
- 
+  
 
 
 import org.apache.commons.lang3.StringUtils;
@@ -27,7 +27,7 @@ import org.codehaus.jackson.map.ObjectMapper;
  * @version 
  */
 public class ApiHelper implements OpenLegConstants {
-    private final static DateFormat DATE_FORMAT_MED = SimpleDateFormat.getDateInstance(SimpleDateFormat.MEDIUM);
+    
     LocalDate date1 = LocalDate.now();
       
 

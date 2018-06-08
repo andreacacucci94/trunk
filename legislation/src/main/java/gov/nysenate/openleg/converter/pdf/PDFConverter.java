@@ -26,26 +26,9 @@ import org.apache.pdfbox.pdmodel.font.PDType1Font;
  */
 public class PDFConverter
 {
-    // Kirkland started on May 16, 2011
-    protected static long KIRKLAND_START_TIME = 1305086400000L;
+ 
 
-    // Candyco started Jan 1st, 2005
-    private static long CANDYCO_START_TIME = 1104555600000L;
-
-    // Candyco also did 1999-2003
-    private static long CANDYCO_1999_START = 915166800000L;
-    private static long CANDYCO_2003_END = 1072932900000L;
-
-    // Pauline Williman did 1993-1998
-    private static long WILLIMAN_START = 725864400000L;
-    private static long WILLIMAN_END = 915166500000L;
-
-    private static Float bot = 90f;
-    private static Float right = 575f;
-    private static Float top = 710f;
-    private static Float left = 105f;
-    private static Float fontSize = 12f;
-    private static Float fontWidth = 7f;
+    
 
     
     /**
@@ -67,6 +50,7 @@ public class PDFConverter
     {
         PDDocument doc = new PDDocument();
         PDFont font = PDType1Font.COURIER;
+        Float fontSize = 12f;
 
         List<TranscriptPage> pages = new TranscriptPageParser().parsePages(transcript);
 
@@ -93,6 +77,11 @@ public class PDFConverter
     }
 /** Comments about this class */
     private static void drawPageText(TranscriptPage page, PDPageContentStream contentStream) throws IOException {
+        Float fontWidth = 7f;
+        Float top = 710f;
+        Float right = 575f;
+        Float left = 105f;
+        
         if (page.getTranscriptNumber() == null) {
             contentStream.moveTextPositionByAmount(0, top - fontWidth);
         } else {
@@ -122,18 +111,35 @@ public class PDFConverter
     }
 /** Comments about this class */
     private static void drawLine(String line, float offset, PDPageContentStream contentStream) throws IOException {
+        Float fontSize = 12f;
         contentStream.moveTextPositionByAmount(offset, -fontSize);
         contentStream.drawString(line);
         contentStream.moveTextPositionByAmount(-offset, -fontSize);
     }
 /** Comments about this class */
     private static void drawTranscriptNumber(String line, float offset, PDPageContentStream contentStream) throws IOException {
+        Float fontSize = 12f;
+        Float fontWidth = 7f;
+        Float top = 710f;
         contentStream.moveTextPositionByAmount(offset, top + fontWidth);
         contentStream.drawString(line);
         contentStream.moveTextPositionByAmount(-offset, -fontSize * 2);
     }
 /** Comments about this class */
     private static void drawStenographer(Transcript transcript, TranscriptPage page, PDPageContentStream contentStream) throws IOException {
+        
+        Float right = 575f;
+        Float left = 105f;
+        Float fontSize = 12f;
+        Float fontWidth = 7f;
+        long KIRKLAND_START_TIME = 1305086400000L;
+        long CANDYCO_START_TIME = 1104555600000L;
+        long CANDYCO_2003_END = 1072932900000L;
+        long CANDYCO_1999_START = 915166800000L;
+        long WILLIMAN_START = 725864400000L;
+        
+        long WILLIMAN_END = 915166500000L;
+        
         String stenographer;
         if (transcript.getTimeStamp().getTime() >= KIRKLAND_START_TIME) {
             stenographer = "Kirkland Reporting Service";
@@ -158,6 +164,10 @@ public class PDFConverter
     }
 /** Comments about this class */
     private static void drawBorder(PDPageContentStream contentStream) throws IOException {
+        Float bot = 90f;
+        Float right = 575f;
+        Float top = 710f;
+        Float left = 105f;
         contentStream.drawLine(left, top, left, bot);
         contentStream.drawLine(left, top, right, top);
         contentStream.drawLine(left, bot, right, bot);

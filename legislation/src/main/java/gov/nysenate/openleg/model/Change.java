@@ -3,6 +3,7 @@ package gov.nysenate.openleg.model;
 import gov.nysenate.openleg.util.*;
 
 import java.util.*;
+import static jdk.nashorn.internal.objects.NativeDate.getTime;
 
 /**
  *
@@ -10,7 +11,7 @@ import java.util.*;
  */
 public class Change implements Comparable<Object>
 {
-    /**
+    /** 
      * The type of the object that was changed. 
      */
     private String otype;
@@ -123,6 +124,16 @@ public class Change implements Comparable<Object>
     @Override
     public int compareTo(Object obj)
     {
-        return this.getTime().compareTo(((Change) obj).getTime());
+        return this.getTime().compareTo(((Change) obj).getTime())==(getTime.equals((Change)obj).getTime());
     }
+    
+    @Override 
+    public boolean equals(Object obj) {
+         
+        if(this.getTime()== ((Change) obj).getTime())
+        return true;
+        
+        return false ;
+          
+        }
 }

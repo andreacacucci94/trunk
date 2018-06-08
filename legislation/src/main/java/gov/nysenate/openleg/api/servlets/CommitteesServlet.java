@@ -3,25 +3,16 @@ package gov.nysenate.openleg.api.servlets;
 import gov.nysenate.openleg.util.RequestUtils;
 import gov.nysenate.openleg.util.RequestUtils.FORMAT;
 import gov.nysenate.openleg.util.SessionYear;
-import gov.nysenate.services.model.Committee;
-import gov.nysenate.services.model.Member;
+import gov.nysenate.services.model.*;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.io.*;
+import java.util.*;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.*;
 
-import org.apache.commons.io.FileUtils;
-import org.apache.log4j.Logger;
-import org.codehaus.jackson.map.ObjectMapper;
+import org.apache.commons.io.F*;
+import org.apache.log4j.*;
+import org.codehaus.jackson.map.*;  
 // Richiede commento
 
 /**
@@ -34,7 +25,7 @@ import org.codehaus.jackson.map.ObjectMapper;
 @SuppressWarnings("serial")
 public class CommitteesServlet extends HttpServlet
 {
-    private static Logger logger = Logger.getLogger(CommitteesServlet.class);
+   
 
     private static Pattern pathPattern = Pattern.compile("/([0-9]{4}).*");
 /** Comments about this class */
@@ -84,15 +75,18 @@ public class CommitteesServlet extends HttpServlet
             response.setCharacterEncoding("UTF-8");
             mapper.writeValue(response.getOutputStream(), committees);
             break;
+        
         case HTML:
             request.setAttribute("committees", committees);
             request.setAttribute("sessionStart", sessionYear);
             request.setAttribute("sessionEnd", sessionYear+1);
             request.getRequestDispatcher("/views/committees.jsp").forward(request, response);
             break;
+        
         case XML:
             // There are no plans to add XML support at this time
             break;
+        default:
         }
     }
 /** Comments about this class */
